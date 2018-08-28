@@ -31,12 +31,12 @@ public class Student {
 	/**
 	 * constructor that sets firstname, lastname, id, email, password (hashed)
 	 * and maximum credits if they are other than 18
-	 * @param firstName
-	 * @param lastName
-	 * @param id
-	 * @param email
-	 * @param hashedPassword
-	 * @param maxCredits
+	 * @param firstName the first name of the student
+	 * @param lastName the last name of the student
+	 * @param id the id of the student
+	 * @param email the email of the student
+	 * @param password the password of the student
+	 * @param maxCredits the maximum number of credits a student can get
 	 */
 	public Student(String firstName, String lastName, String id, String email, String password, int maxCredits) {
 		setFirstName(firstName);
@@ -50,11 +50,11 @@ public class Student {
 	/**
 	 * default constructor if the maximum credits are 18
 	 * 
-	 * @param firstName
-	 * @param lastName
-	 * @param id
-	 * @param email
-	 * @param password
+	 * @param firstName the first name of the student
+	 * @param lastName the last name of the student
+	 * @param id the id of the student
+	 * @param email the email of the student
+	 * @param password the password of the student
 	 */
 	public Student(String firstName, String lastName, String id, String email, String password) {
 		setFirstName(firstName);
