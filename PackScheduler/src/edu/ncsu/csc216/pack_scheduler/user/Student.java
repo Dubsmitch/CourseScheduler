@@ -9,6 +9,8 @@ package edu.ncsu.csc216.pack_scheduler.user;
  * The class that creates a student object with a
  * first name, last name, Id, email, password and number of credits
  *
+ * @author William Mitchell
+ * @author NCSU
  */
 public class Student {
 	
