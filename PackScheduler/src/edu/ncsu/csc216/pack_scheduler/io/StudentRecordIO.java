@@ -41,7 +41,8 @@ public class StudentRecordIO {
 	                students.add(student);
 	            }
 	        } catch (IllegalArgumentException e) {
-	            //skip the line
+	            System.out.println("Cannot find file.");
+	        	break;
 	        }
 	    }
 	    fileReader.close();
