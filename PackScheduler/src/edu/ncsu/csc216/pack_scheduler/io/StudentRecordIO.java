@@ -16,8 +16,8 @@ public class StudentRecordIO {
 	            Student student = processStudent(fileReader.nextLine());
 	            boolean duplicate = false;
 	            for (int i = 0; i < students.size(); i++) {
-	                Student c = students.get(i);
-	                if (student.getId().equals(c.getId())) {
+	                Student s = students.get(i);
+	                if (student.getId().equals(s.getId())) {
 	                    //it's a duplicate
 	                    duplicate = true;
 	                }
@@ -33,7 +33,7 @@ public class StudentRecordIO {
 	    return students;
 	}
 
-	private Student processStudent (String line) {
+	private static Student processStudent (String line) {
 		//firstName, String lastName, String id, String email, String password, int maxCredits
 		Scanner lineScanner = new Scanner(line);
 		lineScanner.useDelimiter(",");
@@ -93,8 +93,14 @@ public class StudentRecordIO {
 		
 	}
 	
-	public static void writeStudentRecords(String fileName, ArrayList<Student> studentDirectory) throws IOException {
-		// TODO Auto-generated method stub
+	public static void writeStudentRecords(String fileName, ArrayList<Student> studentDirectory) throws FileNotFoundException {
+		PrintStream fileWriter = new PrintStream(new File(fileName));
+
+		for (int i = 0; i < studentDirectory.size(); i++) {
+		    fileWriter.println(studentDirectory.get(i).toString());
+		}
+
+		fileWriter.close();
 		
 	}
 
