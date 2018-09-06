@@ -1,10 +1,10 @@
 package edu.ncsu.csc216.pack_scheduler.io;
 
 import java.io.*;
-import java.util.ArrayList;
 import java.util.*;
 
 import edu.ncsu.csc216.pack_scheduler.user.Student;
+import edu.ncsu.csc216.wolf_scheduler.course.Course;
 
 public class StudentRecordIO {
 
@@ -34,8 +34,63 @@ public class StudentRecordIO {
 	}
 
 	private Student processStudent (String line) {
-		Student = 
-		return Student;	
+		//firstName, String lastName, String id, String email, String password, int maxCredits
+		Scanner lineScanner = new Scanner(line);
+		lineScanner.useDelimiter(",");
+		String firstName = "";
+		String lastName = "";
+		String id = "";
+		String email = "";
+		String password = "";
+		int maxCredits = 0;
+		
+		if (lineScanner.hasNext()) {
+			firstName = lineScanner.next();
+		} else {
+			lineScanner.close();
+			throw new IllegalArgumentException();
+			
+		}
+		
+		if (lineScanner.hasNext()) {
+			lastName = lineScanner.next();
+		} else {
+			lineScanner.close();
+			throw new IllegalArgumentException();
+		}
+		
+		if (lineScanner.hasNext()) {
+			id = lineScanner.next();
+		} else {
+			lineScanner.close();
+			throw new IllegalArgumentException();
+		}
+		
+		if (lineScanner.hasNext()) {
+			email = lineScanner.next();
+		} else {
+			lineScanner.close();
+			throw new IllegalArgumentException();
+		}
+		
+		if (lineScanner.hasNext()) {
+			 password = lineScanner.next();
+		} else {
+			lineScanner.close();
+			throw new IllegalArgumentException();
+		}
+		
+		if (lineScanner.hasNextInt()) {
+			maxCredits = lineScanner.nextInt();
+			Student s = new Student (firstName, lastName, id, email, password, maxCredits);
+			lineScanner.close();
+			return s;
+		} else {
+			Student s = new Student (firstName, lastName, id, email, password);
+			lineScanner.close();
+			return s;
+		}
+		
 	}
 	
 	public static void writeStudentRecords(String fileName, ArrayList<Student> studentDirectory) throws IOException {
