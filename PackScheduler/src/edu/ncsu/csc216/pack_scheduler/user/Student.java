@@ -80,11 +80,13 @@ public class Student {
 	 * Sets the student's email
 	 * 
 	 * @param email the email to set
+	 * @throws IllegalArgumentException email must have '@', '.' and the '@' must be
+	 * before the final '.'
 	 */
 	public void setEmail(String email) {
 		//check if null or empty
 		if (email == null || email.equals("")) {
-			throw new IllegalArgumentException ("email cannot be empty or null");
+			throw new IllegalArgumentException ("Invalid email");
 		}
 		
 		int lengthOfEmail = email.length();
@@ -107,13 +109,13 @@ public class Student {
 		}
 		//if period of symbol are -1 they are not in email, fails
 		if (locPeriod < 0 || locSymbol < 0) {
-			throw new IllegalArgumentException ("email must have '@' and a '.'");
+			throw new IllegalArgumentException ("Invalid email");
 
 		}
 		
 		//Symbol must come before the period
 		if (locSymbol > locPeriod) {
-			throw new IllegalArgumentException ("'@' must come before '.'");
+			throw new IllegalArgumentException ("Invalid email");
 
 		}
 		
