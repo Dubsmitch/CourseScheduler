@@ -16,6 +16,9 @@ public class Student {
 	
 	/** maximum number of credits a student can have */
 	public static final int MAX_CREDITS = 18;
+	/** minimum number of credits a student can have */
+	public static final int MIN_CREDITS = 3;
+	
 	
 	/** Student's first name. */
 	private String firstName;
@@ -59,12 +62,7 @@ public class Student {
 	 * @param password the password of the student
 	 */
 	public Student(String firstName, String lastName, String id, String email, String password) {
-		setFirstName(firstName);
-		setLastName(lastName);
-		setId(id);
-		setEmail(email);
-		setPassword(password);
-		this.maxCredits=18;
+		this(firstName, lastName, id, email, password, MAX_CREDITS);
 	}
 
 
@@ -84,18 +82,18 @@ public class Student {
 	 * @param email the email to set
 	 */
 	public void setEmail(String email) {
-		boolean isEmailValid = true;
+		//check if null or empty
+		if (email == null || email.equals("")) {
+			throw new IllegalArgumentException ("email cannot be empty or null");
+		}
+		
 		int lengthOfEmail=email.length();
 		char letter = 'a';
 		char symbol = '@';
-		int locSymbol = -1;
 		char period = '.';
+		int locSymbol = -1;
 		int locPeriod = -1;
 		
-		// test for null and empty 
-		if (email == null || email.equals("")) {
-			isEmailValid = false;
-		}
 		
 		//test for presence of @ and . and set their locations
 		for (int i=0; i<lengthOfEmail-1; i++) {
@@ -106,24 +104,21 @@ public class Student {
 			 if (letter == period) {
 				 locPeriod = i;
 			 }
-			 //if period is set above -1 and symbol is at -1 then the
-			 //period is before the symbol
-			 if (locPeriod > 0 && locSymbol < 0) {
-				 isEmailValid = false;
-			 }
+		}
+		//if period of symbol are -1 they are not in email, fails
+		if (locPeriod < 0 || locSymbol < 0) {
+			throw new IllegalArgumentException ("email must have '@' and a '.'");
+
 		}
 		
-		//is there a symbol and a period
-		if (locSymbol < 0 || locPeriod < 0 ) {
-			isEmailValid = false;
+		//Symbol must come before the period
+		if (locSymbol < locPeriod) {
+			throw new IllegalArgumentException ("'@' must come before '.'");
+
 		}
 		
 		// if all conditions are met then email is set
-		if (isEmailValid) {
-			this.email = email;
-		} else {
-			throw new IllegalArgumentException ("email must not be empty or null, must contain an '@' and a '.' and the @ must be before the .");
-		}
+		this.email = email;
 	}
 
 	/**
@@ -165,7 +160,7 @@ public class Student {
 	 */
 	public void setMaxCredits(int maxCredits) {
 		
-		if (maxCredits >= 19 || maxCredits < 3) {
+		if (maxCredits > MAX_CREDITS || maxCredits < MIN_CREDITS) {
 			throw new IllegalArgumentException ("maximum credits cannot be either greater than 18 or less than 3");	
 		}
 		else {
@@ -316,6 +311,9 @@ public class Student {
 
 	/**
 	 * returns a string of the student's record
+	 * separated by commas
+	 * 
+	 * @return String of student's record separated by commas
 	 */
 	@Override
 	public String toString() {
