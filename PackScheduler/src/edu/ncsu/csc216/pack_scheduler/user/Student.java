@@ -112,7 +112,7 @@ public class Student {
 		}
 		
 		//Symbol must come before the period
-		if (locSymbol < locPeriod) {
+		if (locSymbol > locPeriod) {
 			throw new IllegalArgumentException ("'@' must come before '.'");
 
 		}
