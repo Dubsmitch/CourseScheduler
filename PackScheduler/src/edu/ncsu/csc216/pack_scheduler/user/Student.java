@@ -87,7 +87,7 @@ public class Student {
 			throw new IllegalArgumentException ("email cannot be empty or null");
 		}
 		
-		int lengthOfEmail=email.length();
+		int lengthOfEmail = email.length();
 		char letter = 'a';
 		char symbol = '@';
 		char period = '.';
@@ -96,7 +96,7 @@ public class Student {
 		
 		
 		//test for presence of @ and . and set their locations
-		for (int i=0; i<lengthOfEmail-1; i++) {
+		for (int i = 0; i < lengthOfEmail - 1; i++) {
 			 letter = email.charAt(i);
 			 if (letter == symbol) {
 				 locSymbol = i;
