@@ -122,7 +122,7 @@ public class StudentRecordIO {
      * The IOException has been caught in the StudentDirectory class
      * 
      * @param fileName name of the file to which the directory will be written
-     * @param studentDirectoy Array list of Students to be written to the file
+     * @param studentDirectory Array list of Students to be written to the file
 	 * @throws FileNotFoundException thrown if the file of filename cannot be found
 	 * (this is thrown by StudentDirectory class)
      * 
