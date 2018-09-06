@@ -136,11 +136,12 @@ public class Student {
 	 * Sets the student's password
 	 * 
 	 * @param password the password to set
+	 * @throws IllegalArgumentException if provided password is empty or null
 	 */
 	public void setPassword(String password) {
 		
 		if (password == null || password.equals("")) {
-			throw new IllegalArgumentException ("password cannot be empty or null");	
+			throw new IllegalArgumentException ("Invalid password");	
 		} else {
 			this.password = password;
 		}
@@ -159,11 +160,12 @@ public class Student {
 	 * Sets the number of maximum credits
 	 * 
 	 * @param maxCredits the maxCredits to set
+	 * @throws IllegalArgumentException if provided credits are greater than 18 or less than 3
 	 */
 	public void setMaxCredits(int maxCredits) {
 		
 		if (maxCredits > MAX_CREDITS || maxCredits < MIN_CREDITS) {
-			throw new IllegalArgumentException ("maximum credits cannot be either greater than 18 or less than 3");	
+			throw new IllegalArgumentException ("Invalid max credits");	
 		}
 		else {
 			this.maxCredits = maxCredits;
@@ -210,11 +212,12 @@ public class Student {
 	 * Sets First name
 	 * 
 	 * @param firstName the firstName to set
+	 * @throws IllegalArgumentException if provided firstName is null or empty
 	 */
 	public void setFirstName(String firstName) {
 		
 		if (firstName == null || firstName.equals("")) {
-			throw new IllegalArgumentException ("first name cannot be empty or null");	
+			throw new IllegalArgumentException ("Invalid first name");	
 		}
 		else {
 			this.firstName = firstName;
@@ -225,11 +228,12 @@ public class Student {
 	 * Sets the last name of a student
 	 * 
 	 * @param lastName the lastName to set
+	 * @throws IllegalArgumentException if provided lastName is null or empty
 	 */
 	public void setLastName(String lastName) {
 		
 		if (lastName == null || lastName.equals("")) {
-			throw new IllegalArgumentException ("last name cannot be empty or null");	
+			throw new IllegalArgumentException ("Invalid last name");	
 		}
 		else {
 			this.lastName = lastName;
@@ -240,11 +244,12 @@ public class Student {
 	 * Sets the Student id
 	 * 
 	 * @param id the id to set
+	 * @throws IllegalArgumentException if provided id is null or empty
 	 */
 	private void setId(String id) {
 		
 		if (id == null || id.equals("")) {
-			throw new IllegalArgumentException ("id cannot be empty or null");	
+			throw new IllegalArgumentException ("Invalid id");	
 		}
 		else {
 			this.id = id;
