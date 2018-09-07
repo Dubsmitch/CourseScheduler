@@ -27,9 +27,11 @@ public class StudentRecordIO {
 		Scanner fileReader = new Scanner(new FileInputStream(fileName));
 	    ArrayList<Student> students = new ArrayList<Student>();
 	    while (fileReader.hasNextLine()) {
-	        try {
 	            Student student = processStudent(fileReader.nextLine());
-	            boolean duplicate = false;
+		        if (student == null) {
+		        	continue;
+		        }
+		        boolean duplicate = false;
 	            for (int i = 0; i < students.size(); i++) {
 	                Student s = students.get(i);
 	                if (student.getId().equals(s.getId())) {
@@ -37,13 +39,9 @@ public class StudentRecordIO {
 	                    duplicate = true;
 	                }
 	            }
-	            if (!duplicate) {
-	                students.add(student);
-	            }
-	        } catch (IllegalArgumentException e) {
-	            System.out.println("Cannot find file.");
-	        	break;
-	        }
+            if (!duplicate) {
+                students.add(student);
+            }	        
 	    }
 	    fileReader.close();
 	    return students;
@@ -56,7 +54,6 @@ public class StudentRecordIO {
 	 * 
 	 * @param nextLine from a scanner object that contains student information
 	 * @return student the student that will be added to an array of students
-	 * @throws IllegalArgumentExpression if all fields are not entered correctly.
 	 */
 	private static Student processStudent (String line) {
 		//firstName, String lastName, String id, String email, String password, int maxCredits
@@ -73,7 +70,7 @@ public class StudentRecordIO {
 			firstName = lineScanner.next();
 		} else {
 			lineScanner.close();
-			throw new IllegalArgumentException();
+			return null;
 			
 		}
 		
@@ -81,28 +78,28 @@ public class StudentRecordIO {
 			lastName = lineScanner.next();
 		} else {
 			lineScanner.close();
-			throw new IllegalArgumentException();
+			return null;
 		}
 		
 		if (lineScanner.hasNext()) {
 			id = lineScanner.next();
 		} else {
 			lineScanner.close();
-			throw new IllegalArgumentException();
+			return null;
 		}
 		
 		if (lineScanner.hasNext()) {
 			email = lineScanner.next();
 		} else {
 			lineScanner.close();
-			throw new IllegalArgumentException();
+			return null;
 		}
 		
 		if (lineScanner.hasNext()) {
 			 password = lineScanner.next();
 		} else {
 			lineScanner.close();
-			throw new IllegalArgumentException();
+			return null;
 		}
 		
 		if (lineScanner.hasNextInt()) {
