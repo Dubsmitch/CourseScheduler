@@ -34,7 +34,7 @@ public class StudentRecordIO {
 	            //an illegal argument exception to be thrown in student
 	            //setter method
 	            
-	            	//if (student == null) {
+	            	//if (student != null) {
 	            		//continue;
 	            	//}	
 	            	boolean duplicate = false;
