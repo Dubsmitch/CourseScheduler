@@ -27,16 +27,16 @@ public class StudentRecordIO {
 		Scanner fileReader = new Scanner(new FileInputStream(fileName));
 	    ArrayList<Student> students = new ArrayList<Student>();
 	    while (fileReader.hasNextLine()) {
-	    	//try {
+	    	try {
 	            Student student = processStudent(fileReader.nextLine());
 		        //did this statement below but it was failing because 
 	            //an invalid email was given and that was causing
 	            //an illegal argument exception to be thrown in student
 	            //setter method
 	            
-	            	if (student != null) {
-	            		continue;
-	            	}	
+	            	//if (student == null) {
+	            		//continue;
+	            	//}	
 	            	boolean duplicate = false;
 	            	for (int i = 0; i < students.size(); i++) {
 	            		Student s = students.get(i);
@@ -48,9 +48,9 @@ public class StudentRecordIO {
 	            	if (!duplicate) {
 	            		students.add(student);
 	            	}
-	    		//} catch (IllegalArgumentException e) {
-	    			//break;
-	    		//}	
+	    		} catch (IllegalArgumentException e) {
+	    			break;
+	    		}	
 	    
 	    	}
 	    fileReader.close();
