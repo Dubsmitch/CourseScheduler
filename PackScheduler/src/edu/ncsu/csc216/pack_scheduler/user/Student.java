@@ -107,7 +107,7 @@ public class Student {
 				 locPeriod = i;
 			 }
 		}
-		//if period of symbol are -1 they are not in email, fails
+		//if period or symbol are -1 they are not in email, fails
 		if (locPeriod < 0 || locSymbol < 0) {
 			throw new IllegalArgumentException ("Invalid email");
 
