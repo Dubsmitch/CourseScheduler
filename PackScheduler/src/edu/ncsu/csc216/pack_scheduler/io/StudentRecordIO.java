@@ -30,9 +30,7 @@ public class StudentRecordIO {
 	    	try {
 	            Student student = processStudent(fileReader.nextLine());
 		        //did this statement below but it was failing because 
-	            //an invalid email was given and that was causing
-	            //an illegal argument exception to be thrown in student
-	            //setter method
+	            //line 41 was throwing 'null pointer'.
 	            
 	            	//if (student != null) {
 	            		//continue;
