@@ -145,9 +145,31 @@ public class StudentTest {
 		    assertNull(s);
 		}
 
+		//test no period in email
+		s = null; //Initialize a student reference to null
+		try {
+		    s = new Student("first", "last", "id", "email@ncsuedu", "hashedpassword");
+		    //Note that for testing purposes, the password doesn't need to be hashedpassword
+		    fail(); //If we reach this point a Student was constructed when it shouldn't have been!
+		} catch (IllegalArgumentException e) {
+		    //We should get here if the expected IllegalArgumentException is thrown, but that's not enough
+		    //for the test.  We also need to make sure that the reference s is still null!
+		    assertNull(s);
+		}
 		
-
+		//test no @ lastname
+		s = null; //Initialize a student reference to null
+		try {
+		    s = new Student("first", "last", "id", "emailncsu.edu", "hashedpassword");
+		    //Note that for testing purposes, the password doesn't need to be hashedpassword
+		    fail(); //If we reach this point a Student was constructed when it shouldn't have been!
+		} catch (IllegalArgumentException e) {
+		    //We should get here if the expected IllegalArgumentException is thrown, but that's not enough
+		    //for the test.  We also need to make sure that the reference s is still null!
+		    assertNull(s);
+		}
 		
+		//test null password
 		s = null; 
 		try {
 		    s = new Student("first", "last", "id", "email@ncsu.edu", null);
@@ -157,6 +179,19 @@ public class StudentTest {
 		    //for the test.  We also need to make sure that the reference s is still null!
 		    assertNull(s);
 		}
+		
+		//test empty password
+		s = null; //Initialize a student reference to null
+		try {
+		    s = new Student("first", null, "id", "email@ncsu.edu", "");
+		    //Note that for testing purposes, the password doesn't need to be hashedpassword
+		    fail(); //If we reach this point a Student was constructed when it shouldn't have been!
+		} catch (IllegalArgumentException e) {
+		    //We should get here if the expected IllegalArgumentException is thrown, but that's not enough
+		    //for the test.  We also need to make sure that the reference s is still null!
+		    assertNull(s);
+		}
+
 
 	}
 
