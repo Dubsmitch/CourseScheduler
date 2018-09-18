@@ -6,7 +6,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class StudentTest {
-	
+	//for commit
 	///** first name **/
 	//private static final String FIRST_NAME = "First";
 	///** last name **/
