@@ -124,15 +124,6 @@ public class Student {
 	}
 
 	/**
-	 * Gets the student's password
-	 * 
-	 * @return the password
-	 */
-	public String password() {
-		return password;
-	}
-
-	/**
 	 * Sets the student's password
 	 * 
 	 * @param password the password to set
