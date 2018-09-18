@@ -111,7 +111,23 @@ public class StudentTest {
 
 	@Test
 	public void testSetFirstName() {
-		fail("Not yet implemented");
+		Student s = new Student ("first", "last", "id", "email@ncsu.edu", "hashedpassword");
+		
+		//testing trying to set first name null
+		try {
+			s.setFirstName(null);
+			fail();
+		} catch (IllegalArgumentException e) {
+			assertEquals ("first", s.getFirstName());
+		}
+		
+		try {
+			s.setFirstName("");
+			fail();
+		} catch (IllegalArgumentException e) {
+			assertEquals ("first", s.getFirstName());
+			
+		}
 	}
 
 	@Test
