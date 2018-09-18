@@ -260,13 +260,24 @@ public class StudentTest {
 			fail();
 		} catch (IllegalArgumentException e) {
 			assertEquals ("first", s.getFirstName());
+			assertEquals ("last", s.getLastName());
+			assertEquals ("id", s.getId());
+			assertEquals ("email", s.getEmail());
+			assertEquals ("password", s.getPassword());
+			assertEquals (18, s.getMaxCredits());
 		}
 		
+		//testing for an empty first name
 		try {
 			s.setFirstName("");
 			fail();
 		} catch (IllegalArgumentException e) {
 			assertEquals ("first", s.getFirstName());
+			assertEquals ("last", s.getLastName());
+			assertEquals ("id", s.getId());
+			assertEquals ("email", s.getEmail());
+			assertEquals ("password", s.getPassword());
+			assertEquals (18, s.getMaxCredits());
 			
 		}
 	}
