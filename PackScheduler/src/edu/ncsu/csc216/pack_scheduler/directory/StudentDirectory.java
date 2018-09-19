@@ -46,7 +46,7 @@ public class StudentDirectory {
 		try {
 			studentDirectory = StudentRecordIO.readStudentRecords(fileName);
 		} catch (FileNotFoundException e) {
-			throw new IllegalArgumentException("Unable to read file " + fileName);
+			throw new IllegalArgumentException("Unable to read file ");
 		}
 	}
 	

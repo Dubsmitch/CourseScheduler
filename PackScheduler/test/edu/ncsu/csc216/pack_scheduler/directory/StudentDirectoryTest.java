@@ -30,6 +30,12 @@ public class StudentDirectoryTest {
 	private static final String EMAIL = "sdent@ncsu.edu";
 	/** Test password */
 	private static final String PASSWORD = "pw";
+	/** unmatching password **/
+	private static final String NOTPASS= "Pw";
+	/** Test empty password */
+	private static final String EMPTYPASS = "";
+	/** Test null password */
+	private static final String NULLPASS = null;
 	/** Test max credits */
 	private static final int MAX_CREDITS = 15;
 	
@@ -88,7 +94,22 @@ public class StudentDirectoryTest {
 		sd.loadStudentsFromFile(validTestFile);
 		assertEquals(10, sd.getStudentDirectory().length);
 	}
-
+	
+	/**
+	 * testing file not found exception in loadStudentsFromFile()
+	 */
+//	@Test
+//	public void testLoadStudentsFromFileNotExist() {
+//		StudentDirectory sd = new StudentDirectory();
+//		
+//		//test file that doesnt exist
+//		try {
+//			sd.loadStudentsFromFile("testFile.txt");
+//			fail("attempted to load from a file that does not exist");
+//		} catch (IOException e) {
+//			
+//		}
+//	}
 	/**
 	 * Tests StudentDirectory.addStudent().
 	 */
@@ -105,6 +126,60 @@ public class StudentDirectoryTest {
 		assertEquals(ID, studentDirectory[0][2]);
 	}
 
+	
+	/**
+	 * tests adding student if passwords are empty or null strings
+	 */
+	@Test
+	public void testAddEmptyPass() {
+		StudentDirectory sd = new StudentDirectory();
+		
+		//create student with empty password
+		try{
+			sd.addStudent(FIRST_NAME, LAST_NAME, ID, EMAIL, NULLPASS, NULLPASS, MAX_CREDITS);
+			fail("Should not be able to add a student with null password");
+		} catch (IllegalArgumentException e) {
+			assertEquals("Invalid password", e.getMessage());
+		}
+		
+		try{
+			sd.addStudent(FIRST_NAME, LAST_NAME, ID, EMAIL, EMPTYPASS, EMPTYPASS, MAX_CREDITS);
+			fail("Should not be able to add a student with empty password");
+		} catch (IllegalArgumentException e) {
+			assertEquals("Invalid password", e.getMessage());
+		}
+		
+		try{
+			sd.addStudent(FIRST_NAME, LAST_NAME, ID, EMAIL, EMPTYPASS, NULLPASS, MAX_CREDITS);
+			fail("Should not be able to add a student with empty password");
+		} catch (IllegalArgumentException e) {
+			assertEquals("Invalid password", e.getMessage());
+		}
+		
+		try{
+			sd.addStudent(FIRST_NAME, LAST_NAME, ID, EMAIL, NULLPASS, EMPTYPASS, MAX_CREDITS);
+			fail("Should not be able to add a student with empty password");
+		} catch (IllegalArgumentException e) {
+			assertEquals("Invalid password", e.getMessage());
+		}
+		
+	}
+	
+	/**
+	 * tests add student if passwords do not match
+	 */
+	@Test
+	public void testAddIncorrectPass() {
+		StudentDirectory sd = new StudentDirectory();
+		
+		//create student with empty password
+		try{
+			sd.addStudent(FIRST_NAME, LAST_NAME, ID, EMAIL, PASSWORD, NOTPASS, MAX_CREDITS);
+			fail("Should not be able to add a student with unmatching passwords");
+		} catch (IllegalArgumentException e) {
+			assertEquals("Passwords do not match", e.getMessage());
+		}
+	}
 	/**
 	 * Tests StudentDirectory.removeStudent().
 	 */
