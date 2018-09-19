@@ -466,6 +466,7 @@ public class StudentTest {
 	public void testEqualsObject() {
 		Student s1 = new Student ("first", "last", "id", "email@ncsu.edu", "hashedpassword");
 		Student s2 = new Student ("first", "last", "id", "email@ncsu.edu", "hashedpassword");
+		String word = "not a student";
 		
 		//different on all states
 		Student s3 = new Student ("firsty", "last", "id", "email@ncsu.edu", "hashedpassword");
@@ -476,6 +477,8 @@ public class StudentTest {
 		Student s8 = new Student ("first", "last", "id", "email@ncsu.edu", "hashedpassword", 5);
 		//test for equality in all fields
 		assertTrue(s1.equals(s2));
+		assertTrue(s1.equals(s1));
+		assertFalse(s1.equals(word));
 		assertTrue(s2.equals(s1));
 		
 		//test for each fields
