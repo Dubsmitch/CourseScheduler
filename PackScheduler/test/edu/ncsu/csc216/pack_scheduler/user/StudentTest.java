@@ -6,18 +6,35 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class StudentTest {
-	//for commit
-	///** first name **/
-	//private static final String FIRST_NAME = "First";
-	///** last name **/
 
 	@Test
 	public void testHashCode() {
-		fail("Not yet implemented");
+		Student s1 = new Student ("first", "last", "id", "email@ncsu.edu", "hashedpassword");
+		Student s2 = new Student ("first", "last", "id", "email@ncsu.edu", "hashedpassword");
+		
+		//different on all states
+		Student s3 = new Student ("firsty", "last", "id", "email@ncsu.edu", "hashedpassword");
+		Student s4 = new Student ("first", "lasty", "id", "email@ncsu.edu", "hashedpassword");
+		Student s5 = new Student ("first", "last", "idy", "email@ncsu.edu", "hashedpassword");
+		Student s6 = new Student ("first", "last", "id", "email@ncsu.eduy", "hashedpassword");
+		Student s7 = new Student ("first", "last", "id", "email@ncsu.edu", "hashedpasswordy");
+		Student s8 = new Student ("first", "last", "id", "email@ncsu.edu", "hashedpassword", 5);
+		//test for equality in all fields
+		assertEquals(s1.hashCode(), s2.hashCode());
+		
+		//test each field for differences
+		assertNotEquals(s1.hashCode(), s3.hashCode());
+		assertNotEquals(s1.hashCode(), s4.hashCode());
+		assertNotEquals(s1.hashCode(), s5.hashCode());
+		assertNotEquals(s1.hashCode(), s6.hashCode());
+		assertNotEquals(s1.hashCode(), s7.hashCode());
+		assertNotEquals(s1.hashCode(), s8.hashCode());
 	}
 
 	@Test
 	public void testStudentStringStringStringStringStringInt() {
+		//needs to create a valid student
+		//and test for credits
 		
 		//test creating a valid Student
 		Student s = null; //Initialize a student reference to null
@@ -223,7 +240,7 @@ public class StudentTest {
 		//test empty password
 		s = null; //Initialize a student reference to null
 		try {
-		    s = new Student("first", null, "id", "email@ncsu.edu", "");
+		    s = new Student("first", "last", "id", "email@ncsu.edu", "");
 		    //Note that for testing purposes, the password doesn't need to be hashedpassword
 		    fail(); //If we reach this point a Student was constructed when it shouldn't have been!
 		} catch (IllegalArgumentException e) {
@@ -237,17 +254,147 @@ public class StudentTest {
 
 	@Test
 	public void testSetEmail() {
-		fail("Not yet implemented");
+		Student s = new Student ("first", "last", "id", "email@ncsu.edu", "hashedpassword");
+		
+		//testing trying to set email to null
+		try {
+			s.setEmail(null);
+			fail();
+		} catch (IllegalArgumentException e) {
+			assertEquals ("first", s.getFirstName());
+			assertEquals ("last", s.getLastName());
+			assertEquals ("id", s.getId());
+			assertEquals ("email@ncsu.edu", s.getEmail());
+			assertEquals ("hashedpassword", s.getPassword());
+			assertEquals (18, s.getMaxCredits());
+		}
+		
+		//testing trying to set email to empty, ""
+		try {
+			s.setEmail("");
+			fail();
+		} catch (IllegalArgumentException e) {
+			assertEquals ("first", s.getFirstName());
+			assertEquals ("last", s.getLastName());
+			assertEquals ("id", s.getId());
+			assertEquals ("email@ncsu.edu", s.getEmail());
+			assertEquals ("hashedpassword", s.getPassword());
+			assertEquals (18, s.getMaxCredits());
+		}
+		
+		//testing trying to set email to string with '.' before '@'
+		try {
+			s.setEmail("yo.ncsu@edu");
+			fail();
+		} catch (IllegalArgumentException e) {
+			assertEquals ("first", s.getFirstName());
+			assertEquals ("last", s.getLastName());
+			assertEquals ("id", s.getId());
+			assertEquals ("email@ncsu.edu", s.getEmail());
+			assertEquals ("hashedpassword", s.getPassword());
+			assertEquals (18, s.getMaxCredits());
+		}
+		
+		//testing trying to set email without '@'
+		try {
+			s.setEmail("ncsu.edu");
+			fail();
+		} catch (IllegalArgumentException e) {
+			assertEquals ("first", s.getFirstName());
+			assertEquals ("last", s.getLastName());
+			assertEquals ("id", s.getId());
+			assertEquals ("email@ncsu.edu", s.getEmail());
+			assertEquals ("hashedpassword", s.getPassword());
+			assertEquals (18, s.getMaxCredits());
+		}
+		
+		//testing trying to set email without '.'
+		try {
+			s.setEmail("ncsu@edu");
+			fail();
+		} catch (IllegalArgumentException e) {
+			assertEquals ("first", s.getFirstName());
+			assertEquals ("last", s.getLastName());
+			assertEquals ("id", s.getId());
+			assertEquals ("email@ncsu.edu", s.getEmail());
+			assertEquals ("hashedpassword", s.getPassword());
+			assertEquals (18, s.getMaxCredits());
+		}	
 	}
 
 	@Test
 	public void testSetPassword() {
-		fail("Not yet implemented");
+		Student s = new Student ("first", "last", "id", "email@ncsu.edu", "hashedpassword");
+		
+		//testing trying to set password to null
+		try {
+			s.setPassword(null);
+			fail();
+		} catch (IllegalArgumentException e) {
+			assertEquals ("first", s.getFirstName());
+			assertEquals ("last", s.getLastName());
+			assertEquals ("id", s.getId());
+			assertEquals ("email@ncsu.edu", s.getEmail());
+			assertEquals ("hashedpassword", s.getPassword());
+			assertEquals (18, s.getMaxCredits());
+		}
+		
+		//testing trying to set password to empty: ""
+		try {
+			s.setEmail("");
+			fail();
+		} catch (IllegalArgumentException e) {
+			assertEquals ("first", s.getFirstName());
+			assertEquals ("last", s.getLastName());
+			assertEquals ("id", s.getId());
+			assertEquals ("email@ncsu.edu", s.getEmail());
+			assertEquals ("hashedpassword", s.getPassword());
+			assertEquals (18, s.getMaxCredits());
+		}
 	}
 
 	@Test
 	public void testSetMaxCredits() {
-		fail("Not yet implemented");
+		Student s = new Student ("first", "last", "id", "email@ncsu.edu", "hashedpassword");
+		
+		//testing trying to set credits to less than 3
+		try {
+			s.setMaxCredits(2);
+			fail();
+		} catch (IllegalArgumentException e) {
+			assertEquals ("first", s.getFirstName());
+			assertEquals ("last", s.getLastName());
+			assertEquals ("id", s.getId());
+			assertEquals ("email@ncsu.edu", s.getEmail());
+			assertEquals ("hashedpassword", s.getPassword());
+			assertEquals (18, s.getMaxCredits());
+		}
+		
+		//testing trying to set credits to more than 18
+		try {
+			s.setMaxCredits(19);
+			fail();
+		} catch (IllegalArgumentException e) {
+			assertEquals ("first", s.getFirstName());
+			assertEquals ("last", s.getLastName());
+			assertEquals ("id", s.getId());
+			assertEquals ("email@ncsu.edu", s.getEmail());
+			assertEquals ("hashedpassword", s.getPassword());
+			assertEquals (18, s.getMaxCredits());
+		}
+		
+		//testing trying to set credits to 15
+		try {
+			s.setMaxCredits(15);
+			assertEquals ("first", s.getFirstName());
+			assertEquals ("last", s.getLastName());
+			assertEquals ("id", s.getId());
+			assertEquals ("email@ncsu.edu", s.getEmail());
+			assertEquals ("hashedpassword", s.getPassword());
+			assertEquals (15, s.getMaxCredits());
+		} catch (IllegalArgumentException e) {
+			fail();
+		}
 	}
 
 	@Test
@@ -262,8 +409,8 @@ public class StudentTest {
 			assertEquals ("first", s.getFirstName());
 			assertEquals ("last", s.getLastName());
 			assertEquals ("id", s.getId());
-			assertEquals ("email", s.getEmail());
-			assertEquals ("password", s.getPassword());
+			assertEquals ("email@ncsu.edu", s.getEmail());
+			assertEquals ("hashedpassword", s.getPassword());
 			assertEquals (18, s.getMaxCredits());
 		}
 		
@@ -275,8 +422,8 @@ public class StudentTest {
 			assertEquals ("first", s.getFirstName());
 			assertEquals ("last", s.getLastName());
 			assertEquals ("id", s.getId());
-			assertEquals ("email", s.getEmail());
-			assertEquals ("password", s.getPassword());
+			assertEquals ("email@ncsu.edu", s.getEmail());
+			assertEquals ("hashedpassword", s.getPassword());
 			assertEquals (18, s.getMaxCredits());
 			
 		}
@@ -284,17 +431,75 @@ public class StudentTest {
 
 	@Test
 	public void testSetLastName() {
-		fail("Not yet implemented");
+		Student s = new Student ("first", "last", "id", "email@ncsu.edu", "hashedpassword");
+		
+		//testing trying to set last name null, not thing should change
+		try {
+			s.setLastName(null);
+			fail();
+		} catch (IllegalArgumentException e) {
+			assertEquals ("first", s.getFirstName());
+			assertEquals ("last", s.getLastName());
+			assertEquals ("id", s.getId());
+			assertEquals ("email@ncsu.edu", s.getEmail());
+			assertEquals ("hashedpassword", s.getPassword());
+			assertEquals (18, s.getMaxCredits());
+		}
+		
+		//testing for an empty last name
+		try {
+			s.setLastName("");
+			fail();
+		} catch (IllegalArgumentException e) {
+			assertEquals ("first", s.getFirstName());
+			assertEquals ("last", s.getLastName());
+			assertEquals ("id", s.getId());
+			assertEquals ("email@ncsu.edu", s.getEmail());
+			assertEquals ("hashedpassword", s.getPassword());
+			assertEquals (18, s.getMaxCredits());
+			
+		}
+		
 	}
 
 	@Test
 	public void testEqualsObject() {
-		fail("Not yet implemented");
+		Student s1 = new Student ("first", "last", "id", "email@ncsu.edu", "hashedpassword");
+		Student s2 = new Student ("first", "last", "id", "email@ncsu.edu", "hashedpassword");
+		
+		//different on all states
+		Student s3 = new Student ("firsty", "last", "id", "email@ncsu.edu", "hashedpassword");
+		Student s4 = new Student ("first", "lasty", "id", "email@ncsu.edu", "hashedpassword");
+		Student s5 = new Student ("first", "last", "idy", "email@ncsu.edu", "hashedpassword");
+		Student s6 = new Student ("first", "last", "id", "email@ncsu.eduy", "hashedpassword");
+		Student s7 = new Student ("first", "last", "id", "email@ncsu.edu", "hashedpasswordy");
+		Student s8 = new Student ("first", "last", "id", "email@ncsu.edu", "hashedpassword", 5);
+		//test for equality in all fields
+		assertTrue(s1.equals(s2));
+		assertTrue(s2.equals(s1));
+		
+		//test for each fields
+		assertFalse(s1.equals(s3));
+		assertFalse(s1.equals(s4));
+		assertFalse(s1.equals(s5));
+		assertFalse(s1.equals(s6));
+		assertFalse(s1.equals(s7));
+		assertFalse(s1.equals(s8));
 	}
 
+	/**
+	 * Tests that toString returns the correct comma-separated value.
+	 */
 	@Test
 	public void testToString() {
-		fail("Not yet implemented");
+		Student s1 = new Student ("first", "last", "id", "email@ncsu.edu", "hashedpassword");
+		String string1 = "first,last,id,email@ncsu.edu,hashedpassword,18";
+		assertEquals(s1.toString(), string1);
+		
+		Student s2 = new Student ("first", "last", "id", "email@ncsu.edu", "hashedpassword", 15);
+		String string2 = "first,last,id,email@ncsu.edu,hashedpassword,15";
+		assertEquals(s2.toString(), string2);
+		
 	}
 
 }
