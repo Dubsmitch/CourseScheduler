@@ -466,6 +466,9 @@ public class StudentTest {
 	public void testEqualsObject() {
 		Student s1 = new Student ("first", "last", "id", "email@ncsu.edu", "hashedpassword");
 		Student s2 = new Student ("first", "last", "id", "email@ncsu.edu", "hashedpassword");
+		
+		
+		//for testing object of a different class, a string is a class
 		String word = "not a student";
 		
 		//different on all states
@@ -478,8 +481,10 @@ public class StudentTest {
 		//test for equality in all fields
 		assertTrue(s1.equals(s2));
 		assertTrue(s1.equals(s1));
-		assertFalse(s1.equals(word));
 		assertTrue(s2.equals(s1));
+		
+		//test for comparing types
+		assertFalse(s1.equals(word));
 		
 		//test for each fields
 		assertFalse(s1.equals(s3));
