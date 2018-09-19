@@ -3,6 +3,7 @@ package edu.ncsu.csc216.pack_scheduler.io;
 import static org.junit.Assert.*;
 
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Scanner;
