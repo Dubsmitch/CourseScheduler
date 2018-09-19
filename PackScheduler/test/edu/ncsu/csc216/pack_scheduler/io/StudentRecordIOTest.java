@@ -3,13 +3,19 @@ package edu.ncsu.csc216.pack_scheduler.io;
 import static org.junit.Assert.*;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import edu.ncsu.csc216.pack_scheduler.user.Student;
+import edu.ncsu.csc216.pack_scheduler.io.StudentRecordIO;
+
 /**
  * This tests the StudentRecordIO.java class and interacts
  * with testing files
@@ -19,6 +25,11 @@ import org.junit.Test;
  */
 public class StudentRecordIOTest {
 
+	/** Valid Student records **/
+	private final String validTestFile = "test-files/student_records.txt";
+	/** Invalid Student records **/
+	private final String invalidTestFile = "test-files/invalid_student_records.txt";
+	
 	private String validStudent0 = "Zahir,King,zking,orci.Donec@ametmassaQuisque.com,pw,15";
 	private String validStudent1 = "Cassandra,Schwartz,cschwartz,semper@imperdietornare.co.uk,pw,4";
 	private String validStudent2 = "Shannon,Hansen,shansen,convallis.est.vitae@arcu.ca,pw,14";
@@ -76,12 +87,63 @@ public class StudentRecordIOTest {
 	}
 	@Test
 	public void testReadStudentRecords() {
-		fail("Not yet implemented");
-	}
+		try {
+			ArrayList<Student> students = StudentRecordIO.readStudentRecords(validTestFile);
+			assertEquals(10, students.size());
+			
+			for (int i = 0; i < validStudents.length; i++) {
+				assertEquals(validStudents[i], students.get(i).toString());
+			}
+		} catch (FileNotFoundException e) {
+			fail("Unexpected error reading " + validTestFile);
+		}
 
+	}
+	
+	/**
+	 * Tests readStudentRecords().
+	 */
+	@Test
+	public void testReadInvalidStudentRecords() {
+		ArrayList<Student> students;
+		try {
+			students = StudentRecordIO.readStudentRecords(invalidTestFile);
+			assertEquals(0, students.size());
+		} catch (FileNotFoundException e) {
+			fail("Unexpected FileNotFoundException");
+		}
+	}
+	
+	
+	@Test
+	public void testWriteStudentRecordsNoPermissions() {
+	    ArrayList<Student> students = new ArrayList<Student>();
+	    students.add(new Student("Zahir", "King", "zking", "orci.Donec@ametmassaQuisque.com", hashPW, 15));
+	    //Assumption that you are using a hash of "pw" stored in hashPW
+	    
+	    try {
+	        StudentRecordIO.writeStudentRecords("/home/sesmith5/actual_student_records.txt", students);
+	        fail("Attempted to write to a directory location that doesn't exist or without the appropriate permissions and the write happened.");
+	    } catch (IOException e) {
+	        assertEquals("/home/sesmith5/actual_student_records.txt (Permission denied)", e.getMessage());
+	        //The actual error message on Jenkins!
+	    }
+	    
+	}
+	
 	@Test
 	public void testWriteStudentRecords() {
-		fail("Not yet implemented");
+		ArrayList<Student> students = new ArrayList<Student>();
+	    students.add(new Student("Zahir", "King", "zking", "orci.Donec@ametmassaQuisque.com", hashPW, 15));
+
+		
+		try {
+			StudentRecordIO.writeStudentRecords("test-files/actual_course_records.txt", students);
+		} catch (IOException e) {
+			fail("Cannot write to course records file");
+		}
+		
+		checkFiles("test-files/expected_student_records.txt", "test-files/actual_student_records.txt");
 	}
 
 }
