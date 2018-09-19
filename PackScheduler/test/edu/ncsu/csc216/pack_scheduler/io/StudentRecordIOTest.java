@@ -46,9 +46,6 @@ public class StudentRecordIOTest {
 	private String [] validStudents = {validStudent0, validStudent1, validStudent2, validStudent3, validStudent4, validStudent5,
 	        validStudent6, validStudent7, validStudent8, validStudent9};
 	
-	/** creating an array from two duplicate students **/
-	private String [] duplicateStudents = {validStudent0, validStudent0};
-	
 	private String hashPW;
 	/** used to make hashed passwords from the strings provided **/
 	private static final String HASH_ALGORITHM = "SHA-256";
@@ -130,7 +127,7 @@ public class StudentRecordIOTest {
 	public void testReadStudentRecordsDuplicate() {
 		ArrayList<Student> students; 
 		try { 
-			students = StudentRecordIO.readStudentRecords("duplicate_student_records.txt");
+			students = StudentRecordIO.readStudentRecords("test-files/duplicate_student_records.txt");
 			assertEquals (1, students.size());
 		} catch (FileNotFoundException e) {
 			fail("Unexpected error reading duplicate_student_records.txt");
