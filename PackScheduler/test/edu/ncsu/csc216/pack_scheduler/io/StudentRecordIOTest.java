@@ -119,7 +119,19 @@ public class StudentRecordIOTest {
 		}
 
 	}
-	
+	/**
+	 * test to pass in a null first name
+	 */
+	@Test
+	public void testStudentRecordsHelper() {
+	ArrayList<Student> students; 
+	try { 
+		students = StudentRecordIO.readStudentRecords("test-files/null.txt");
+		assertEquals (2, students.size());
+	} catch (FileNotFoundException e) {
+		fail("Unexpected error reading duplicate_student_records.txt");
+	}
+}
 	/**
 	 * Tests readStudentRecords) by failing duplicate test
 	 */

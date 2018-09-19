@@ -30,15 +30,17 @@ public class StudentRecordIO {
 	    	try {
 	            Student student = processStudent(fileReader.nextLine());
 		        //did this statement below but it was failing because 
-	            //line 41 was throwing 'null pointer'.
-	            
+	            //line 41 was throwing 'null pointer'
 	            	//if (student != null) {
 	            		//continue;
 	            	//}	
 	            	boolean duplicate = false;
 	            	for (int i = 0; i < students.size(); i++) {
 	            		Student s = students.get(i);
-	            		if (student.getId().equals(s.getId())) {
+	            		//null pointer exception was occuring so I added a null test
+	            		if (student == null) {
+	            			duplicate = true;
+	            		} else if (student.getId().equals(s.getId())) {
 	            			//it's a duplicate
 	            			duplicate = true;
 	            		}
