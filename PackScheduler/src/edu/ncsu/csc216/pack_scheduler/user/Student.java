@@ -261,7 +261,7 @@ public class Student {
 		result = prime * result + (id.hashCode());
 		result = prime * result + (lastName.hashCode());
 		result = prime * result + maxCredits;
-		result = prime * result + ((password == null) ? 0 : password.hashCode());
+		result = prime * result + (password.hashCode());
 		return result;
 	}
 
