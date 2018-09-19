@@ -4,9 +4,20 @@ package edu.ncsu.csc216.pack_scheduler.user;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
-
+/**
+ * This tests the Student class
+ * 
+ * Getter tests have been omitted and will be tested
+ * through the testing of the setters and constructors
+ * 
+ * @author William
+ *
+ */
 public class StudentTest {
 
+	/**
+	 * tests that hashCode() works correctly
+	 */
 	@Test
 	public void testHashCode() {
 		Student s1 = new Student ("first", "last", "id", "email@ncsu.edu", "hashedpassword");
@@ -31,6 +42,10 @@ public class StudentTest {
 		assertNotEquals(s1.hashCode(), s8.hashCode());
 	}
 
+	/**
+	 * tests all fields of the constructor to create a student
+	 * Also tests the Credits state
+	 */
 	@Test
 	public void testStudentStringStringStringStringStringInt() {
 		//needs to create a valid student
@@ -55,11 +70,8 @@ public class StudentTest {
 		s = null;
 		try {
 		    s = new Student("first", "last", "id", "email@ncsu.edu", "hashedpassword", 2);
-		    //Note that for testing purposes, the password doesn't need to be hashedpassword
-		    fail(); //If we reach this point a Student was constructed when it shouldn't have been!
+		    fail();
 		} catch (IllegalArgumentException e) {
-		    //We should get here if the expected IllegalArgumentException is thrown, but that's not enough
-		    //for the test.  We also need to make sure that the reference s is still null!
 		    assertNull(s);
 		}
 		
@@ -67,17 +79,17 @@ public class StudentTest {
 		s = null;
 		try {
 		    s = new Student("first", "last", "id", "email@ncsu.edu", "hashedpassword", 19);
-		    //Note that for testing purposes, the password doesn't need to be hashedpassword
-		    fail(); //If we reach this point a Student was constructed when it shouldn't have been!
+		    fail();
 		} catch (IllegalArgumentException e) {
-		    //We should get here if the expected IllegalArgumentException is thrown, but that's not enough
-		    //for the test.  We also need to make sure that the reference s is still null!
 		    assertNull(s);
 		}
 				
 		
 	}
-
+	/**
+	 * tests all fields of the constructor for Students except for Credits
+	 * 
+	 */
 	@Test
 	public void testStudentStringStringStringStringString() {
 		
@@ -101,22 +113,17 @@ public class StudentTest {
 		s = null;
 		try {
 		    s = new Student(null, "last", "id", "email@ncsu.edu", "hashedpassword");
-		    //Note that for testing purposes, the password doesn't need to be hashedpassword
-		    fail(); //If we reach this point a Student was constructed when it shouldn't have been!
+		    fail();
 		} catch (IllegalArgumentException e) {
-		    //We should get here if the expected IllegalArgumentException is thrown, but that's not enough
-		    //for the test.  We also need to make sure that the reference s is still null!
 		    assertNull(s);
 		}
 		//test empty firstname
 		s = null;
 		try {
 		    s = new Student("", "last", "id", "email@ncsu.edu", "hashedpassword");
-		    //Note that for testing purposes, the password doesn't need to be hashedpassword
-		    fail(); //If we reach this point a Student was constructed when it shouldn't have been!
+		   
+		    fail();
 		} catch (IllegalArgumentException e) {
-		    //We should get here if the expected IllegalArgumentException is thrown, but that's not enough
-		    //for the test.  We also need to make sure that the reference s is still null!
 		    assertNull(s);
 		}
 		
@@ -124,11 +131,8 @@ public class StudentTest {
 		s = null; //Initialize a student reference to null
 		try {
 		    s = new Student("first", null, "id", "email@ncsu.edu", "hashedpassword");
-		    //Note that for testing purposes, the password doesn't need to be hashedpassword
-		    fail(); //If we reach this point a Student was constructed when it shouldn't have been!
+		    fail(); 
 		} catch (IllegalArgumentException e) {
-		    //We should get here if the expected IllegalArgumentException is thrown, but that's not enough
-		    //for the test.  We also need to make sure that the reference s is still null!
 		    assertNull(s);
 		}
 
@@ -136,11 +140,8 @@ public class StudentTest {
 		s = null; //Initialize a student reference to null
 		try {
 		    s = new Student("first", "", "id", "email@ncsu.edu", "hashedpassword");
-		    //Note that for testing purposes, the password doesn't need to be hashedpassword
-		    fail(); //If we reach this point a Student was constructed when it shouldn't have been!
+		    fail();
 		} catch (IllegalArgumentException e) {
-		    //We should get here if the expected IllegalArgumentException is thrown, but that's not enough
-		    //for the test.  We also need to make sure that the reference s is still null!
 		    assertNull(s);
 		}
 
@@ -148,22 +149,18 @@ public class StudentTest {
 		s = null;
 		try {
 		    s = new Student("first", "last", null, "email@ncsu.edu", "hashedpassword");
-		    fail(); //If we reach this point a Student was constructed when it shouldn't have been!
+		    fail();
 		} catch (IllegalArgumentException e) {
-		    //We should get here if the expected IllegalArgumentException is thrown, but that's not enough
-		    //for the test.  We also need to make sure that the reference s is still null!
 		    assertNull(s);
 		}
 		
 		//test empty id
-		s = null; //Initialize a student reference to null
+		s = null;
 		try {
 		    s = new Student("first", "lastname", "", "email@ncsu.edu", "hashedpassword");
-		    //Note that for testing purposes, the password doesn't need to be hashedpassword
-		    fail(); //If we reach this point a Student was constructed when it shouldn't have been!
+		    
+		    fail();
 		} catch (IllegalArgumentException e) {
-		    //We should get here if the expected IllegalArgumentException is thrown, but that's not enough
-		    //for the test.  We also need to make sure that the reference s is still null!
 		    assertNull(s);
 		}
 
@@ -171,22 +168,19 @@ public class StudentTest {
 		s = null; 
 		try {
 		    s = new Student("first", "last", "id", null, "hashedpassword");
-		    fail(); //If we reach this point a Student was constructed when it shouldn't have been!
+		    fail();
 		} catch (IllegalArgumentException e) {
-		    //We should get here if the expected IllegalArgumentException is thrown, but that's not enough
-		    //for the test.  We also need to make sure that the reference s is still null!
+		    
 		    assertNull(s);
 		}
 		
 		//test empty email
-		s = null; //Initialize a student reference to null
+		s = null;
 		try {
 		    s = new Student("first", "last", "id", "", "hashedpassword");
-		    //Note that for testing purposes, the password doesn't need to be hashedpassword
-		    fail(); //If we reach this point a Student was constructed when it shouldn't have been!
+		    
+		    fail(); 
 		} catch (IllegalArgumentException e) {
-		    //We should get here if the expected IllegalArgumentException is thrown, but that's not enough
-		    //for the test.  We also need to make sure that the reference s is still null!
 		    assertNull(s);
 		}
 		
@@ -194,11 +188,9 @@ public class StudentTest {
 		s = null; //Initialize a student reference to null
 		try {
 		    s = new Student("first", "last", "id", "email.ncsu@edu", "hashedpassword");
-		    //Note that for testing purposes, the password doesn't need to be hashedpassword
-		    fail(); //If we reach this point a Student was constructed when it shouldn't have been!
+		    fail();
 		} catch (IllegalArgumentException e) {
-		    //We should get here if the expected IllegalArgumentException is thrown, but that's not enough
-		    //for the test.  We also need to make sure that the reference s is still null!
+
 		    assertNull(s);
 		}
 
@@ -206,11 +198,8 @@ public class StudentTest {
 		s = null; //Initialize a student reference to null
 		try {
 		    s = new Student("first", "last", "id", "email@ncsuedu", "hashedpassword");
-		    //Note that for testing purposes, the password doesn't need to be hashedpassword
-		    fail(); //If we reach this point a Student was constructed when it shouldn't have been!
+		    fail(); 
 		} catch (IllegalArgumentException e) {
-		    //We should get here if the expected IllegalArgumentException is thrown, but that's not enough
-		    //for the test.  We also need to make sure that the reference s is still null!
 		    assertNull(s);
 		}
 		
@@ -218,11 +207,8 @@ public class StudentTest {
 		s = null; //Initialize a student reference to null
 		try {
 		    s = new Student("first", "last", "id", "emailncsu.edu", "hashedpassword");
-		    //Note that for testing purposes, the password doesn't need to be hashedpassword
-		    fail(); //If we reach this point a Student was constructed when it shouldn't have been!
+		    fail(); 
 		} catch (IllegalArgumentException e) {
-		    //We should get here if the expected IllegalArgumentException is thrown, but that's not enough
-		    //for the test.  We also need to make sure that the reference s is still null!
 		    assertNull(s);
 		}
 		
@@ -230,10 +216,8 @@ public class StudentTest {
 		s = null; 
 		try {
 		    s = new Student("first", "last", "id", "email@ncsu.edu", null);
-		    fail(); //If we reach this point a Student was constructed when it shouldn't have been!
+		    fail(); 
 		} catch (IllegalArgumentException e) {
-		    //We should get here if the expected IllegalArgumentException is thrown, but that's not enough
-		    //for the test.  We also need to make sure that the reference s is still null!
 		    assertNull(s);
 		}
 		
@@ -241,17 +225,16 @@ public class StudentTest {
 		s = null; //Initialize a student reference to null
 		try {
 		    s = new Student("first", "last", "id", "email@ncsu.edu", "");
-		    //Note that for testing purposes, the password doesn't need to be hashedpassword
-		    fail(); //If we reach this point a Student was constructed when it shouldn't have been!
+		    fail(); 
 		} catch (IllegalArgumentException e) {
-		    //We should get here if the expected IllegalArgumentException is thrown, but that's not enough
-		    //for the test.  We also need to make sure that the reference s is still null!
 		    assertNull(s);
 		}
 
 
 	}
-
+	/**
+	 * tests that setEmail() works correctly
+	 */
 	@Test
 	public void testSetEmail() {
 		Student s = new Student ("first", "last", "id", "email@ncsu.edu", "hashedpassword");
@@ -321,7 +304,9 @@ public class StudentTest {
 			assertEquals (18, s.getMaxCredits());
 		}	
 	}
-
+	/**
+	 * tests that setPassword() works correctly
+	 */
 	@Test
 	public void testSetPassword() {
 		Student s = new Student ("first", "last", "id", "email@ncsu.edu", "hashedpassword");
@@ -352,7 +337,9 @@ public class StudentTest {
 			assertEquals (18, s.getMaxCredits());
 		}
 	}
-
+	/**
+	 * tests that setMaxCredits() works correctly
+	 */
 	@Test
 	public void testSetMaxCredits() {
 		Student s = new Student ("first", "last", "id", "email@ncsu.edu", "hashedpassword");
@@ -396,7 +383,9 @@ public class StudentTest {
 			fail();
 		}
 	}
-
+	/**
+	 *test that setFirstName() works correctly 
+	 */
 	@Test
 	public void testSetFirstName() {
 		Student s = new Student ("first", "last", "id", "email@ncsu.edu", "hashedpassword");
@@ -428,7 +417,9 @@ public class StudentTest {
 			
 		}
 	}
-
+	/**
+	 * tests that setLastName() works correctly
+	 */
 	@Test
 	public void testSetLastName() {
 		Student s = new Student ("first", "last", "id", "email@ncsu.edu", "hashedpassword");
@@ -461,7 +452,9 @@ public class StudentTest {
 		}
 		
 	}
-
+	/**
+	 * tests that equalsObject() works correctly
+	 */
 	@Test
 	public void testEqualsObject() {
 		Student s1 = new Student ("first", "last", "id", "email@ncsu.edu", "hashedpassword");
