@@ -31,7 +31,7 @@ public class StudentDirectoryTest {
 	/** Test password */
 	private static final String PASSWORD = "pw";
 	/** unmatching password **/
-	private static final String NOTPASS= "Pw";
+	private static final String NOTPASS = "Pw";
 	/** Test empty password */
 	private static final String EMPTYPASS = "";
 	/** Test null password */
