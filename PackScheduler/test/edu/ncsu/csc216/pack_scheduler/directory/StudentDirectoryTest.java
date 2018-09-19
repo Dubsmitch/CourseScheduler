@@ -143,6 +143,33 @@ public class StudentDirectoryTest {
 		}
 		
 		try{
+			sd.addStudent(FIRST_NAME, LAST_NAME, ID, EMAIL, NULLPASS, PASSWORD, MAX_CREDITS);
+			fail("Should not be able to add a student with null password");
+		} catch (IllegalArgumentException e) {
+			assertEquals("Invalid password", e.getMessage());
+		}
+		
+		try{
+			sd.addStudent(FIRST_NAME, LAST_NAME, ID, EMAIL, PASSWORD, NULLPASS, MAX_CREDITS);
+			fail("Should not be able to add a student with null password");
+		} catch (IllegalArgumentException e) {
+			assertEquals("Invalid password", e.getMessage());
+		}
+		
+		try{
+			sd.addStudent(FIRST_NAME, LAST_NAME, ID, EMAIL, EMPTYPASS, PASSWORD, MAX_CREDITS);
+			fail("Should not be able to add a student with null password");
+		} catch (IllegalArgumentException e) {
+			assertEquals("Invalid password", e.getMessage());
+		}
+		try{
+			sd.addStudent(FIRST_NAME, LAST_NAME, ID, EMAIL, PASSWORD, EMPTYPASS, MAX_CREDITS);
+			fail("Should not be able to add a student with null password");
+		} catch (IllegalArgumentException e) {
+			assertEquals("Invalid password", e.getMessage());
+		}
+		
+		try{
 			sd.addStudent(FIRST_NAME, LAST_NAME, ID, EMAIL, EMPTYPASS, EMPTYPASS, MAX_CREDITS);
 			fail("Should not be able to add a student with empty password");
 		} catch (IllegalArgumentException e) {
