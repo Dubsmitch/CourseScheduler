@@ -30,6 +30,7 @@ public class StudentRecordIOTest {
 	/** Invalid Student records **/
 	private final String invalidTestFile = "test-files/invalid_student_records.txt";
 	
+	/** strings for students **/
 	private String validStudent0 = "Zahir,King,zking,orci.Donec@ametmassaQuisque.com,pw,15";
 	private String validStudent1 = "Cassandra,Schwartz,cschwartz,semper@imperdietornare.co.uk,pw,4";
 	private String validStudent2 = "Shannon,Hansen,shansen,convallis.est.vitae@arcu.ca,pw,14";
@@ -40,13 +41,19 @@ public class StudentRecordIOTest {
 	private String validStudent7 = "Griffith,Stone,gstone,porta@magnamalesuadavel.net,pw,17";
 	private String validStudent8 = "Althea,Hicks,ahicks,Phasellus.dapibus@luctusfelis.com,pw,11";
 	private String validStudent9 = "Dylan,Nolan,dnolan,placerat.Cras.dictum@dictum.net,pw,5";
-
+	
+	/** creating an array from those string **/
 	private String [] validStudents = {validStudent0, validStudent1, validStudent2, validStudent3, validStudent4, validStudent5,
 	        validStudent6, validStudent7, validStudent8, validStudent9};
 
 	private String hashPW;
+	/** used to make hashed passwords from the strings provided **/
 	private static final String HASH_ALGORITHM = "SHA-256";
-
+	
+	/**
+	 * helper method to read from the two files
+	 * one I created and one that is expected
+	 */
 	@Before
 	public void setUp() {
 	    try {
@@ -62,6 +69,15 @@ public class StudentRecordIOTest {
 	        fail("Unable to create hash during setup");
 	    }
 	}
+	
+	/**
+	 * helper method to read from the two files
+	 * one I created and one that is expected
+	 * @param expFile
+	 * 			expFile is the expected File that is provided
+	 * @param actFile
+	 * 			actFile is the file that my test will create, to be checked
+	 */
 	private void checkFiles(String expFile, String actFile) {
 	    try {
 	        Scanner expScanner = new Scanner(new FileInputStream(expFile));
@@ -85,6 +101,10 @@ public class StudentRecordIOTest {
 	        fail("Error reading files.");
 	    }
 	}
+	
+	/**
+	 * tests readStudentRecords method
+	 */
 	@Test
 	public void testReadStudentRecords() {
 		try {
@@ -101,7 +121,7 @@ public class StudentRecordIOTest {
 	}
 	
 	/**
-	 * Tests readStudentRecords().
+	 * Tests readStudentRecords() by providing invalid student records
 	 */
 	@Test
 	public void testReadInvalidStudentRecords() {
@@ -114,7 +134,10 @@ public class StudentRecordIOTest {
 		}
 	}
 	
-	
+	/**
+	 * tests writeStudentRecords() by providing a pathway to which
+	 * I do not have permission (nothing should be attempted to be written)
+	 */
 	@Test
 	public void testWriteStudentRecordsNoPermissions() {
 	    ArrayList<Student> students = new ArrayList<Student>();
@@ -131,6 +154,10 @@ public class StudentRecordIOTest {
 	    
 	}
 	
+	/**
+	 * test writeStudentRecords; compares written file to
+	 * a provided test file
+	 */
 	@Test
 	public void testWriteStudentRecords() {
 		ArrayList<Student> students = new ArrayList<Student>();
