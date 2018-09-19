@@ -195,6 +195,32 @@ public class StudentDirectoryTest {
 	}
 	
 	/**
+	 * add duplicate students to directory
+	 */
+	@Test
+	public void testAddDupStudent() {
+		StudentDirectory sd = new StudentDirectory();
+		//add 1 student
+		sd.addStudent(FIRST_NAME, LAST_NAME, ID, EMAIL, PASSWORD, PASSWORD, MAX_CREDITS);
+		//try to add second student, should get false
+		sd.addStudent(FIRST_NAME, LAST_NAME, ID, EMAIL, PASSWORD, PASSWORD, MAX_CREDITS);
+		assertEquals(false, sd.addStudent(FIRST_NAME, LAST_NAME, ID, EMAIL, PASSWORD, PASSWORD, MAX_CREDITS));
+	}
+	
+	/**
+	 * tests adding two students to the directory
+	 */
+	@Test
+	public void testAddSecondStudent() {
+		StudentDirectory sd = new StudentDirectory();
+		//add 1 student
+		sd.addStudent(FIRST_NAME, LAST_NAME, ID, EMAIL, PASSWORD, PASSWORD, MAX_CREDITS);
+		//try to add second student.
+		sd.addStudent(FIRST_NAME, LAST_NAME, "YOU", EMAIL, "ASD", "ASD", MAX_CREDITS);
+		String [][] studentDirectory = sd.getStudentDirectory();
+		assertEquals(2, studentDirectory.length);
+	}
+	/**
 	 * tests add student if passwords do not match
 	 */
 	@Test
