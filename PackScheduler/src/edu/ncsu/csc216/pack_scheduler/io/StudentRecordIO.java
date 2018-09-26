@@ -1,7 +1,7 @@
 package edu.ncsu.csc216.pack_scheduler.io;
 
 import java.io.*;
-import java.util.*;
+import java.util.Scanner;
 
 import edu.ncsu.csc216.collections.list.SortedList;
 import edu.ncsu.csc216.pack_scheduler.user.Student;
