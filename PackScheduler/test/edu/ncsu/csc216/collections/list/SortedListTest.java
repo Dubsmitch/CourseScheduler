@@ -4,8 +4,19 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+/**
+ * A Junit test class that tests if the sortedList library is
+ * working appropriately
+ * 
+ * @author William
+ * @version 9/26/2018
+ */
 public class SortedListTest {
-
+	
+	
+	/**
+	 * Tests if the sortList() will create a list
+	 */
 	@Test
 	public void testSortedList() {
 		SortedList<String> list = new SortedList<String>();
@@ -31,7 +42,9 @@ public class SortedListTest {
 		assertEquals(11, list.size());
 		
 	}
-
+	/**
+	 * Tests if the add method will add items to the list
+	 */
 	@Test
 	public void testAdd() {
 		SortedList<String> list = new SortedList<String>();
@@ -68,6 +81,9 @@ public class SortedListTest {
 		}
 	}
 	
+	/**
+	 * Tests if the get method will get items from the list
+	 */
 	@Test
 	public void testGet() {
 		SortedList<String> list = new SortedList<String>();
@@ -106,7 +122,9 @@ public class SortedListTest {
 		}
 		
 	}
-	
+	/**
+	 * Tests if the Remove method will remove items from the list
+	 */
 	@Test
 	public void testRemove() {
 		SortedList<String> list = new SortedList<String>();
@@ -169,7 +187,9 @@ public class SortedListTest {
 		list.remove(0);
 		assertEquals(0, list.size());
 	}
-	
+	/**
+	 * tests if the indexOf() method will get the correct index of an item
+	 */
 	@Test
 	public void testIndexOf() {
 		SortedList<String> list = new SortedList<String>();
@@ -204,7 +224,9 @@ public class SortedListTest {
 			assertEquals(4, list.size());
 		}
 	}
-	
+	/**
+	 * tests if the Clear() method will clear a list
+	 */
 	@Test
 	public void testClear() {
 		SortedList<String> list = new SortedList<String>();
@@ -220,7 +242,9 @@ public class SortedListTest {
 		//TODO Test that the list is empty
 		assertEquals(0, list.size());
 	}
-
+	/**
+	 * tests if the isEmpty() method will work correctly
+	 */
 	@Test
 	public void testIsEmpty() {
 		SortedList<String> list = new SortedList<String>();
@@ -233,7 +257,9 @@ public class SortedListTest {
 		//TODO Check that the list is no longer empty
 		assertFalse(list.isEmpty());
 	}
-
+	/**
+	 * tests if the contains() method will work correctly
+	 */
 	@Test
 	public void testContains() {
 		SortedList<String> list = new SortedList<String>();
@@ -254,7 +280,10 @@ public class SortedListTest {
 		assertFalse(list.contains("e"));
 		assertFalse(list.contains("g"));
 	}
-	
+	/**
+	 * tests if the equals method will appropriately compare
+	 * two objects of the same and different types
+	 */
 	@Test
 	public void testEquals() {
 		SortedList<String> list1 = new SortedList<String>();
@@ -272,7 +301,9 @@ public class SortedListTest {
 		assertFalse(list1.equals(list3));
 		
 	}
-	
+	/**
+	 * tests if the hashCode() method will work correctly
+	 */
 	@Test
 	public void testHashCode() {
 		SortedList<String> list1 = new SortedList<String>();
