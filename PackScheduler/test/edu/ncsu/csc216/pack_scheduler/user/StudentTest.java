@@ -479,7 +479,7 @@ public class StudentTest {
 		//test for comparing types
 		assertFalse(s1.equals(word));
 		
-		//test for each fields
+		//test for each field
 		assertFalse(s1.equals(s3));
 		assertFalse(s1.equals(s4));
 		assertFalse(s1.equals(s5));
@@ -501,6 +501,36 @@ public class StudentTest {
 		String string2 = "first,last,id,email@ncsu.edu,hashedpassword,15";
 		assertEquals(s2.toString(), string2);
 		
+	}
+	
+	/**
+	 * tests that the compareTo() functions correctly
+	 * testing ordering by last name, then first name, then id
+	 */
+	@Test
+	public void testCompareTo() {
+		//("first", "last", "id", "email@ncsu.edu", "hashedpassword", 15);
+		Student s1 = new Student ("a", "a", "a", "email@ncsu.edu", "hashedpassword", 15);
+		Student s2 = new Student ("a", "a", "b", "email@ncsu.edu", "hashedpassword", 15);
+		Student s3 = new Student ("b", "a", "a", "email@ncsu.edu", "hashedpassword", 15);
+		Student s4 = new Student ("b", "b", "a", "email@ncsu.edu", "hashedpassword", 15);
+		//compare two equal students
+		assertEquals(0, s1.compareTo(s1));
+		
+		//compare two students with different last names
+		assertEquals(-1, s1.compareTo(s4));
+		assertEquals(1, s4.compareTo(s1));
+		
+		//compare two students with same last names, different first names
+		assertEquals(-1, s1.compareTo(s3));
+		assertEquals(1, s3.compareTo(s1));
+		
+		//compare two students with same first and last names, different ids
+		assertEquals(-1, s1.compareTo(s2));
+		assertEquals(1, s2.compareTo(s1));
+		
+		
+
 	}
 
 }

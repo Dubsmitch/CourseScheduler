@@ -3,6 +3,7 @@ package edu.ncsu.csc216.pack_scheduler.io;
 import java.io.*;
 import java.util.*;
 
+import edu.ncsu.csc216.collections.list.SortedList;
 import edu.ncsu.csc216.pack_scheduler.user.Student;
 
 /**
@@ -20,12 +21,12 @@ public class StudentRecordIO {
      * Students are ignored.  If the file to read cannot be found or the permissions are incorrect
      * a File NotFoundException is thrown.
      * @param fileName file to read Student records from
-     * @return a list of valid Students
+     * @return a sorted list of valid Students
      * @throws FileNotFoundException if the file cannot be found or read
      */
-	public static ArrayList<Student> readStudentRecords(String fileName) throws FileNotFoundException {
+	public static SortedList<Student> readStudentRecords(String fileName) throws FileNotFoundException {
 		Scanner fileReader = new Scanner(new FileInputStream(fileName));
-	    ArrayList<Student> students = new ArrayList<Student>();
+	    SortedList<Student> students = new SortedList<Student>();
 	    while (fileReader.hasNextLine()) {
 	    	try {
 	            Student student = processStudent(fileReader.nextLine());
@@ -44,6 +45,7 @@ public class StudentRecordIO {
 	            			//it's a duplicate
 	            			duplicate = true;
 	            		}
+	            	
 	            	}
 	            	if (!duplicate) {
 	            		students.add(student);
@@ -130,12 +132,13 @@ public class StudentRecordIO {
      * The IOException has been caught in the StudentDirectory class
      * 
      * @param fileName name of the file to which the directory will be written
-     * @param studentDirectory Array list of Students to be written to the file
+     * @param studentDirectory Sorted list of Students to be written to the file
 	 * @throws FileNotFoundException thrown if the file of filename cannot be found
 	 * (this is thrown by StudentDirectory class)
      * 
      */
-	public static void writeStudentRecords(String fileName, ArrayList<Student> studentDirectory) throws FileNotFoundException {
+	public static void writeStudentRecords(String fileName, SortedList<Student> studentDirectory)
+			throws FileNotFoundException {
 		PrintStream fileWriter = new PrintStream(new File(fileName));
 
 		for (int i = 0; i < studentDirectory.size(); i++) {

@@ -12,7 +12,7 @@ package edu.ncsu.csc216.pack_scheduler.user;
  * @author William Mitchell
  * @author NCSU
  */
-public class Student {
+public class Student implements Comparable<Student> {
 	
 	/** maximum number of credits a student can have */
 	public static final int MAX_CREDITS = 18;
@@ -301,6 +301,67 @@ public class Student {
 		return firstName + "," + lastName + "," + id + "," + email
 				+ "," + password + "," + maxCredits;
 	}
-
-	
+	/**
+	 * Compares two student's, starting with the last names
+	 * then moving to the first names then finally, comparing
+	 * ID's if need be
+	 * 
+	 * @param s
+	 * 			student to be compared to calling student
+	 * 
+	 * @return int
+	 * 			returns 1, if the object is greater
+	 * 			returns 0, if the object is equal
+	 * 			returns -1, if the object is less
+	 */
+	@Override
+	public int compareTo(Student s) {
+		// TODO Auto-generated method stub
+//		String lastNameOfThis = this.lastName;
+//		String lastNameOfObj = s.lastName;
+		
+//		String firstNameOfThis = this.firstName;
+//		String firstNameOfObj = s.firstName;
+		
+//		String idOfThis = this.getId();
+//		String idOfObj = s.getId();
+		if (this.getLastName().compareTo(s.getLastName()) == 0) {
+			if(this.getFirstName().compareTo(s.getFirstName()) == 0) {
+				if(this.getId().compareTo(s.getId()) == 0) {
+					return 0;
+				} else {
+					return this.getId().compareTo(s.getId());
+				}
+			} else {
+				return this.getFirstName().compareTo(s.getFirstName());
+			}
+		} else {
+			return this.getLastName().compareTo(s.getLastName());
+		}
+		//compare last names
+//		if (this.getLastName().compareTo(s.getLastName()) == 1) {
+//			return 1;	
+//		} else if (this.getLastName().compareTo(s.getLastName()) == -1) {
+//			return -1;
+//		} else {
+//			//if they are equal compare first names
+//			if (this.getFirstName().compareTo(s.getFirstName()) == 1) {
+//				return 1;
+//			} else if (this.getFirstName().compareTo(s.getFirstName()) == -1) {
+//				return -1;
+//			} else {
+//				//if the are equal compare ids
+//				if (idOfThis.compareTo(idOfObj) == 1) {
+//					return 1;
+//				} else if (idOfThis.compareTo(idOfObj) == -1) {
+//					return -1;
+//				} else {
+//					//this should be returned if they are equal
+					//on all fields (shouldn't ever happen)
+//					return 0;
+//				}
+//			}
+//		}
+	}
 }
+

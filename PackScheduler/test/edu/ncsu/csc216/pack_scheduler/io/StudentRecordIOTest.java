@@ -7,7 +7,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 import org.junit.Before;
@@ -15,6 +14,8 @@ import org.junit.Test;
 
 import edu.ncsu.csc216.pack_scheduler.user.Student;
 import edu.ncsu.csc216.pack_scheduler.io.StudentRecordIO;
+import edu.ncsu.csc216.collections.list.SortedList;
+
 
 /**
  * This tests the StudentRecordIO.java class and interacts
@@ -43,9 +44,13 @@ public class StudentRecordIOTest {
 	private String validStudent9 = "Dylan,Nolan,dnolan,placerat.Cras.dictum@dictum.net,pw,5";
 	
 	/** creating an array from those string **/
-	private String [] validStudents = {validStudent0, validStudent1, validStudent2, validStudent3, validStudent4, validStudent5,
-	        validStudent6, validStudent7, validStudent8, validStudent9};
+	private String [] validStudents = {validStudent3, validStudent6, validStudent4, validStudent5, validStudent2, validStudent8, validStudent0,
+	        validStudent9, validStudent1, validStudent7};
 	
+	/** create an array from those strings **/
+	//private String [] validStudents = {validStudent0, validStudent1, validStudent2, validStudent3, validStudent4, validStudent5, validStudent6,
+	//		validStudent7, validStudent8, validStudent9};
+
 	private String hashPW;
 	/** used to make hashed passwords from the strings provided **/
 	private static final String HASH_ALGORITHM = "SHA-256";
@@ -108,8 +113,9 @@ public class StudentRecordIOTest {
 	@Test
 	public void testReadStudentRecords() {
 		try {
-			ArrayList<Student> students = StudentRecordIO.readStudentRecords(validTestFile);
+			SortedList<Student> students = StudentRecordIO.readStudentRecords(validTestFile);
 			assertEquals(10, students.size());
+			//assertEquals("asdf",students.get(2).toString());
 			
 			for (int i = 0; i < validStudents.length; i++) {
 				assertEquals(validStudents[i], students.get(i).toString());
@@ -124,7 +130,7 @@ public class StudentRecordIOTest {
 	 */
 	@Test
 	public void testStudentRecordsHelper() {
-	ArrayList<Student> students; 
+	SortedList<Student> students; 
 	try { 
 		students = StudentRecordIO.readStudentRecords("test-files/null.txt");
 		assertEquals (2, students.size());
@@ -137,7 +143,7 @@ public class StudentRecordIOTest {
 	 */
 	@Test
 	public void testReadStudentRecordsDuplicate() {
-		ArrayList<Student> students; 
+		SortedList<Student> students; 
 		try { 
 			students = StudentRecordIO.readStudentRecords("test-files/duplicate_student_records.txt");
 			assertEquals (1, students.size());
@@ -150,7 +156,7 @@ public class StudentRecordIOTest {
 	 */
 	@Test
 	public void testReadInvalidStudentRecords() {
-		ArrayList<Student> students;
+		SortedList<Student> students;
 		try {
 			students = StudentRecordIO.readStudentRecords(invalidTestFile);
 			assertEquals(0, students.size());
@@ -165,7 +171,7 @@ public class StudentRecordIOTest {
 	 */
 	@Test
 	public void testWriteStudentRecordsNoPermissions() {
-	    ArrayList<Student> students = new ArrayList<Student>();
+	    SortedList<Student> students = new SortedList<Student>();
 	    students.add(new Student("Zahir", "King", "zking", "orci.Donec@ametmassaQuisque.com", hashPW, 15));
 	    //Assumption that you are using a hash of "pw" stored in hashPW
 	    
@@ -185,7 +191,7 @@ public class StudentRecordIOTest {
 	 */
 	@Test
 	public void testWriteStudentRecords() {
-		ArrayList<Student> students = new ArrayList<Student>();
+		SortedList<Student> students = new SortedList<Student>();
 	    students.add(new Student("Zahir", "King", "zking", "orci.Donec@ametmassaQuisque.com", hashPW, 15));
 
 		
