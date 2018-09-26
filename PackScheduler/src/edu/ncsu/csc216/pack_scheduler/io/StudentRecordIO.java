@@ -62,10 +62,10 @@ public class StudentRecordIO {
 	
 	/**
 	 * Reads Student information from a line and creates a Student object from 
-	 * that information and passes it into the Student array list constructor
+	 * that information and passes it into the Student sorted list constructor
 	 * 
 	 * @param nextLine from a scanner object that contains student information
-	 * @return student the student that will be added to an array of students
+	 * @return student the student that will be added to a sorted list of students
 	 */
 	private static Student processStudent (String line) {
 		//firstName, String lastName, String id, String email, String password, int maxCredits
