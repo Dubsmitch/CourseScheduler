@@ -284,10 +284,11 @@ public class SortedListTest {
 		list2.add("a");
 		list3.add("b");
 		
-		//TODO Test for the same and different hashCode		assertTrue(list1.equals(list2));
+		//TODO Test for the same and different hashCode		
+		//assertTrue(list1.equals(list2));
 		assertEquals(list2.hashCode(), list1.hashCode());
 		assertEquals(list1.hashCode(), list2.hashCode());
-		assertEquals(list1.hashCode(), list3.hashCode());
+		assertTrue(list1.hashCode() != list3.hashCode());
 	}
 
 }
