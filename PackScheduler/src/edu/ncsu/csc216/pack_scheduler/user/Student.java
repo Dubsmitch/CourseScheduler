@@ -316,15 +316,6 @@ public class Student implements Comparable<Student> {
 	 */
 	@Override
 	public int compareTo(Student s) {
-		// TODO Auto-generated method stub
-//		String lastNameOfThis = this.lastName;
-//		String lastNameOfObj = s.lastName;
-		
-//		String firstNameOfThis = this.firstName;
-//		String firstNameOfObj = s.firstName;
-		
-//		String idOfThis = this.getId();
-//		String idOfObj = s.getId();
 		if (this.getLastName().compareTo(s.getLastName()) == 0) {
 			if(this.getFirstName().compareTo(s.getFirstName()) == 0) {
 				if(this.getId().compareTo(s.getId()) == 0) {
