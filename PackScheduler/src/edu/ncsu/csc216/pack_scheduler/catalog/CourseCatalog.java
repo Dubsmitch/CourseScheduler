@@ -2,14 +2,12 @@ package edu.ncsu.csc216.pack_scheduler.catalog;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
 
 import edu.ncsu.csc216.collections.list.SortedList;
 import edu.ncsu.csc216.pack_scheduler.course.Course;
 import edu.ncsu.csc216.pack_scheduler.course.Activity;
 import edu.ncsu.csc216.pack_scheduler.io.CourseRecordIO;
-import edu.ncsu.csc216.pack_scheduler.user.Student;
-import edu.ncsu.csc216.pack_scheduler.course.ConflictException;
+
 
 public class CourseCatalog {
 	/** Course catalog. */
@@ -34,9 +32,9 @@ public class CourseCatalog {
 	
 	public void loadCoursesFromFile(String fileName) {
 		try {
-			catalog = new SortedList<Course>(CourseRecordIO.readCourseRecords(fileName));
+			catalog = CourseRecordIO.readCourseRecords(fileName);
 		} catch (FileNotFoundException e) {
-			System.out.println("Cannot find File");
+			throw new IllegalArgumentException("Unable to read file " + fileName);
 		}
 	}
 	
