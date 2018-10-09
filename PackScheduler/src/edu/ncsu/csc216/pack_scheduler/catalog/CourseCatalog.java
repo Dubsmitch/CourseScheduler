@@ -18,7 +18,7 @@ public class CourseCatalog {
 	 * 
 	 * @param fileName the name of the file from which to build a catalog
 	 */
-	public CourseCatalog(String fileName) {
+	public CourseCatalog() {
 		
 		catalog = new SortedList<Course>();
 	}
@@ -26,7 +26,7 @@ public class CourseCatalog {
 	/**
 	 * Creates an new empty catalog directory.
 	 */
-	public void newStudentDirectory() {
+	public void newCourseCatalog() {
 		catalog = new SortedList<Course>();
 	}
 	
