@@ -217,7 +217,6 @@ public class CourseCatalogTest {
 	public void testExportSchedule() {
 		//Test that empty schedule exports correctly
 		CourseCatalog ws = new CourseCatalog();
-		ws.loadCoursesFromFile(validTestFile);
 		ws.saveCourseCatalog("test-files/actual_empty_export.txt");
 		checkFiles("test-files/expected_empty_export.txt", "test-files/actual_empty_export.txt");
 		
