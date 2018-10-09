@@ -1,6 +1,7 @@
 package edu.ncsu.csc216.pack_scheduler.catalog;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import edu.ncsu.csc216.collections.list.SortedList;
@@ -69,6 +70,89 @@ public class CourseCatalog {
 		}
 	}
 	
+	public boolean removeCourseFromCatalog(String name, String section) {
+		
+		for (int i = 0; i < catalog.size(); i++) {
+            
+			Course c = catalog.get(i);
+            if (c.getName().equals(name) &&
+                    c.getSection().equals(section)) {
+                
+                catalog.remove(i);
+            	return true;
+            }
+        }
+		return false;
+	}
 	
+	public Course getCourseFromCatalog(String name, String section) {
+
+
+		for (int i = 0; i < catalog.size(); i++) {
+            
+			Course c = catalog.get(i);
+            if (c.getName().equals(name) &&
+                    c.getSection().equals(section)) {
+                
+                return c;
+            }
+        }
+		return null;
+	}
+	
+	public String [][] getCourseCatalog() {
+		//if catalog size is greater than zero
+		if (catalog.size() > 0) {
+			String [][] courseArray;
+			courseArray = new String [catalog.size()][4];
+			String courseName = "";
+			String courseSection = "";
+			String courseTitle = "";
+			String courseMeetingString = "";
+			//for each course, return a name, section, and title.
+		
+		
+			for (int i = 0; i < catalog.size(); i++) {
+				Course c = catalog.get(i);
+				courseName = c.getName();
+				courseSection = c.getSection();
+				courseTitle = c.getTitle();
+				courseMeetingString = c.getMeetingString();
+				for (int j = 0; j <= 3; j++) {
+					if (j == 0) {
+						courseArray [i][j] = courseName;  
+					}
+            	
+					if (j == 1) {
+						courseArray [i][j] = courseSection; 
+					}
+            	
+					if (j == 2) {
+						courseArray [i][j] = courseTitle; 
+					}
+					if (j == 3) {
+						courseArray[i][j] = courseMeetingString;
+					}
+					
+				}
+
+			}
+        
+			return courseArray;
+		//if catalog is size zero
+		} else {
+			String [][] courseArray;
+			courseArray = new String [0][0];
+			return courseArray;
+		}
+	}
+	public void saveCourseCatalog(String fileName) {
+		try {
+			CourseRecordIO.writeCourseRecords(fileName, catalog);
+		} catch (IOException e) {
+			throw new IllegalArgumentException ("The File Cannot be saved");
+
+		}
+	}
 }
 
