@@ -641,10 +641,15 @@ public class CourseTest {
 		Activity c7 = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, "TH", START_TIME, END_TIME);
 		Activity c8 = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, 830, END_TIME);
 		Activity c9 = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, 1400);
-		
+		Course c10 = new Course (NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
+		String c11 = "ASD";
 		//Test for equality in both directions
 		assertTrue(c1.equals(c2));
 		assertTrue(c2.equals(c1));
+		assertTrue(c10.equals(c10));
+		
+		//test a different object
+		assertFalse(c1.equals(c11));
 		
 		//Test for each of the fields
 		assertFalse(c1.equals(c3));
@@ -720,5 +725,50 @@ public class CourseTest {
 		assertEquals(-1, c1.compareTo(c3));
 		assertEquals(1, c3.compareTo(c1));
 	}	
+	
+	/**
+	 * Tests Course.getLongDisplayArray().
+	 */
+	@Test
+	public void testGetLongDisplayArray() {
+		Course c = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
+		assertEquals(NAME, c.getName());
+		assertEquals(TITLE, c.getTitle());
+		assertEquals(SECTION, c.getSection());
+		assertEquals(CREDITS, c.getCredits());
+		assertEquals(INSTRUCTOR_ID, c.getInstructorId());
+		assertEquals(MEETING_DAYS, c.getMeetingDays());
+		assertEquals(START_TIME, c.getStartTime());
+		assertEquals(END_TIME, c.getEndTime());
+		String [] actualLongDisplay = c.getLongDisplayArray();
+		assertEquals(NAME, actualLongDisplay[0]);
+		assertEquals(SECTION, actualLongDisplay[1]);
+		assertEquals(TITLE, actualLongDisplay[2]);
+		assertEquals("" + CREDITS, actualLongDisplay[3]);
+		assertEquals(INSTRUCTOR_ID, actualLongDisplay[4]);
+		assertEquals("MW 1:30PM-2:45PM", actualLongDisplay[5]);
+		assertEquals("", actualLongDisplay[6]);
+	}
+
+	/**
+	 * Tests Course.getShortDisplayArray().
+	 */
+	@Test
+	public void testGetShortDisplayArray() {
+		Course c = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
+		assertEquals(NAME, c.getName());
+		assertEquals(TITLE, c.getTitle());
+		assertEquals(SECTION, c.getSection());
+		assertEquals(CREDITS, c.getCredits());
+		assertEquals(INSTRUCTOR_ID, c.getInstructorId());
+		assertEquals(MEETING_DAYS, c.getMeetingDays());
+		assertEquals(START_TIME, c.getStartTime());
+		assertEquals(END_TIME, c.getEndTime());
+		String [] actualShortDisplay = c.getShortDisplayArray();
+		assertEquals(NAME, actualShortDisplay[0]);
+		assertEquals(SECTION, actualShortDisplay[1]);
+		assertEquals(TITLE, actualShortDisplay[2]);
+		assertEquals("MW 1:30PM-2:45PM", actualShortDisplay[3]);
+	}
 
 }
