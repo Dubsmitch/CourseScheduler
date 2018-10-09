@@ -10,7 +10,7 @@ package edu.ncsu.csc216.pack_scheduler.course;
  * @author William
  *
  */
-public class Course extends Activity {
+public class Course extends Activity implements Comparable<Course>{
 	
 	/** constant for section length */
 	private static final int SECTION_LENGTH = 3;
@@ -387,5 +387,29 @@ public class Course extends Activity {
 		
 		return true;
 	}
-
+	
+	/**
+	 * Compares two Courses, starting with the course name
+	 * then moving to the Section
+	 * 
+	 * @param c
+	 * 			course to be compared to calling course
+	 * 
+	 * @return int
+	 * 			returns 1, if the object is greater
+	 * 			returns 0, if the object is equal
+	 * 			returns -1, if the object is less
+	 */
+	@Override
+	public int compareTo(Course c) {
+		if (this.getName().compareTo(c.getName()) == 0) {
+			if(this.getSection().compareTo(c.getSection()) == 0) {
+				return 0;
+			} else {
+				return this.getSection().compareTo(c.getSection());
+			}
+		} else {
+			return this.getName().compareTo(c.getName());
+		}
+	}
 }
