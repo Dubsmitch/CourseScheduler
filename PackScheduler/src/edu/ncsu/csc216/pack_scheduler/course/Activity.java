@@ -26,6 +26,8 @@ abstract public class Activity implements Conflict {
 	
 	
 
+	public abstract int compareTo(Course c);
+	
 	/**
 	 * Creates an abstract Short array that is populated with the Activity's fields
 	 * 

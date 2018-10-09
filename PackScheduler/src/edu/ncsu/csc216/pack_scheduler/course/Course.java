@@ -402,14 +402,23 @@ public class Course extends Activity implements Comparable<Course>{
 	 */
 	@Override
 	public int compareTo(Course c) {
+		//Course other = (Course) c;
 		if (this.getName().compareTo(c.getName()) == 0) {
 			if(this.getSection().compareTo(c.getSection()) == 0) {
 				return 0;
 			} else {
-				return this.getSection().compareTo(c.getSection());
+				if (this.getSection().compareTo(c.getSection()) > 0) {
+					return 1;
+				} else {
+					return -1;
+				}
 			}
 		} else {
-			return this.getName().compareTo(c.getName());
+			if (this.getName().compareTo(c.getName()) > 0) {
+				return 1;
+			} else {
+				return -1;
+			}	
 		}
 	}
 }

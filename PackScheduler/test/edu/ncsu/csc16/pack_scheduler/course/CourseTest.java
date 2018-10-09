@@ -697,5 +697,28 @@ public class CourseTest {
 		String s2 = "CSC216,Programming Concepts - Java,001,4,sesmith5,A";
 		assertEquals(s2, c2.toString());
 	}
+	
+	/**
+	 * tests that the compareTo() functions correctly
+	 * testing ordering by last name, then first name, then id
+	 */
+	@Test
+	public void testCompareTo() {
+		
+		Course c1 = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
+		Course c2 = new Course ("abcd", TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
+		Course c3 = new Course (NAME, TITLE, "aaa", CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
+		//Student s4 = new Student ("b", "b", "a", "email@ncsu.edu", "hashedpassword", 15);
+		//compare two equal students
+		assertEquals(0, c1.compareTo(c1));
+		
+		//compare two course with different names
+		assertEquals(-1, c1.compareTo(c2));
+		assertEquals(1, c2.compareTo(c1));
+		
+		//compare two students with same names, different section
+		assertEquals(-1, c1.compareTo(c3));
+		assertEquals(1, c3.compareTo(c1));
+	}	
 
 }
