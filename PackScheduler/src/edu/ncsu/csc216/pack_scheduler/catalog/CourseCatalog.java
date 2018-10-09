@@ -1,13 +1,19 @@
 package edu.ncsu.csc216.pack_scheduler.catalog;
 
 import java.io.FileNotFoundException;
+
 import java.io.IOException;
 
 import edu.ncsu.csc216.collections.list.SortedList;
 import edu.ncsu.csc216.pack_scheduler.course.Course;
 import edu.ncsu.csc216.pack_scheduler.course.Activity;
 import edu.ncsu.csc216.pack_scheduler.io.CourseRecordIO;
-
+/**
+ * This class creates a catalog of courses
+ * 
+ * @author William
+ *
+ */
 
 public class CourseCatalog {
 	/** Course catalog. */
@@ -16,7 +22,6 @@ public class CourseCatalog {
 	/**
 	 * creates a new catalog
 	 * 
-	 * @param fileName the name of the file from which to build a catalog
 	 */
 	public CourseCatalog() {
 		
