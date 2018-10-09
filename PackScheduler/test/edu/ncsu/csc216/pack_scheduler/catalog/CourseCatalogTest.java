@@ -12,9 +12,6 @@ import java.util.Scanner;
 
 import org.junit.Before;
 import org.junit.Test;
-import edu.ncsu.csc216.collections.list.*;
-
-import edu.ncsu.csc216.pack_scheduler.course.Activity;
 import edu.ncsu.csc216.pack_scheduler.course.Course;
 
 
