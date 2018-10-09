@@ -7,6 +7,8 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import edu.ncsu.csc216.pack_scheduler.course.ConflictException;
+
 /**
  * tests if the custom exception: ConflictException
  * works as expected 
