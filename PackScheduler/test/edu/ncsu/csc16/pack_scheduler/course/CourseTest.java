@@ -4,6 +4,9 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import edu.ncsu.csc216.pack_scheduler.course.Activity;
+import edu.ncsu.csc216.pack_scheduler.course.Course;
+
 /**
  * Tests the Course class.
  * 
