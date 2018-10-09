@@ -69,7 +69,7 @@ public class CourseRecordIO {
 	 * that information
 	 * 
 	 * @param nextLine from a scanner object that contains course information
-	 * @return course the course that will be added to an array of courses
+	 * @return course the course that will be added to a sorted list of courses
 	 */
 	private static Course readCourse(String nextLine) {
 
