@@ -38,5 +38,37 @@ public class CourseCatalog {
 			System.out.println("Cannot find File");
 		}
 	}
+	
+	public boolean addCourseToCatalog(String name, String title, String section, int credits, String instructorId,
+			String meetingDays, int startTime, int endTime) {
+		//need to create the course that will be added; 
+
+		Course c = new Course(name, title, section, credits, instructorId, meetingDays,
+				startTime, endTime);
+		
+		boolean inCatalog = false;
+
+		//find out if the course is already in the catalog
+		
+		for (int i = 0; i < catalog.size(); i++) {
+			Activity a = catalog.get(i);
+
+			if (c.isDuplicate(a)) {
+				inCatalog = true;
+			}
+			
+		}
+		
+		
+		//if already in schedule, throw IAE
+		if (inCatalog) {
+			return false;
+		} else {
+			catalog.add(c);
+			return true;
+		}
+	}
+	
+	
 }
 
