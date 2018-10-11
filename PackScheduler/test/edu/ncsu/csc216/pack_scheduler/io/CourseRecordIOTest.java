@@ -44,6 +44,8 @@ public class CourseRecordIOTest {
 
 	/**
 	 * Resets course_records.txt for use in other tests.
+	 * 
+	 * @throws Exception if files cannot be found/read
 	 */
 	@Before
 	public void setUp() throws Exception {

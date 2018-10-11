@@ -21,7 +21,7 @@ import edu.ncsu.csc216.collections.list.SortedList;
  * This tests the StudentRecordIO.java class and interacts
  * with testing files
  * 
- * @author William
+ * @author William Mitchell
  *
  */
 public class StudentRecordIOTest {

@@ -16,7 +16,7 @@ import edu.ncsu.csc216.pack_scheduler.course.Course;
 
 
 /**
- * Tests the CourseCatalog class.
+ * Tests the CourseCatalog Class.
  * 
  * @author William Mitchell
  */
