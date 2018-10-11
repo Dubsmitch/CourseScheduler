@@ -18,7 +18,7 @@ import edu.ncsu.csc216.pack_scheduler.course.Course;
 /**
  * Tests the CourseCatalog class.
  * 
- * @author Sarah Heckman
+ * @author William Mitchell
  */
 public class CourseCatalogTest {
 	
