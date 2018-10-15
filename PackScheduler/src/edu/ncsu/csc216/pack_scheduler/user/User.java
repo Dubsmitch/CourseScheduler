@@ -3,15 +3,15 @@ package edu.ncsu.csc216.pack_scheduler.user;
 abstract public class User {
 
 	/** Student's first name. */
-	protected String firstName;
+	private String firstName;
 	/** Student's last name. */
-	protected String lastName;
+	private String lastName;
 	/** Student's ID. */
-	protected String id;
+	private String id;
 	/** Student's email. */
-	protected String email;
+	private String email;
 	/** Student's password. */
-	protected String password;
+	private String password;
 
 	public User() {
 		super();
