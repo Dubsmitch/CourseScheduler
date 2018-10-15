@@ -13,8 +13,12 @@ abstract public class User {
 	/** Student's password. */
 	private String password;
 
-	public User() {
-		super();
+	public User(String firstName, String lastName, String id, String email, String password) {
+		setFirstName(firstName);
+		setLastName(lastName);
+		setId(id);
+		setEmail(email);
+		setPassword(password);
 	}
 
 	/**

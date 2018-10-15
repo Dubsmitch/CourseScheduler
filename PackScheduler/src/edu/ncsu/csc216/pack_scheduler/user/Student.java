@@ -34,11 +34,7 @@ public class Student extends User implements Comparable<Student> {
 	 * @param maxCredits the maximum number of credits a student can get
 	 */
 	public Student(String firstName, String lastName, String id, String email, String password, int maxCredits) {
-		setFirstName(firstName);
-		setLastName(lastName);
-		setId(id);
-		setEmail(email);
-		setPassword(password);
+		super(firstName, lastName, id, email, password);
 		setMaxCredits(maxCredits);
 	}
 	
