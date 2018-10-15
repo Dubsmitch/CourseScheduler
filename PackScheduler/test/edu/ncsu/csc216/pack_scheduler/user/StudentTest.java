@@ -20,16 +20,16 @@ public class StudentTest {
 	 */
 	@Test
 	public void testHashCode() {
-		Student s1 = new Student ("first", "last", "id", "email@ncsu.edu", "hashedpassword");
-		Student s2 = new Student ("first", "last", "id", "email@ncsu.edu", "hashedpassword");
+		User s1 = new Student ("first", "last", "id", "email@ncsu.edu", "hashedpassword");
+		User s2 = new Student ("first", "last", "id", "email@ncsu.edu", "hashedpassword");
 		
 		//different on all states
-		Student s3 = new Student ("firsty", "last", "id", "email@ncsu.edu", "hashedpassword");
-		Student s4 = new Student ("first", "lasty", "id", "email@ncsu.edu", "hashedpassword");
-		Student s5 = new Student ("first", "last", "idy", "email@ncsu.edu", "hashedpassword");
-		Student s6 = new Student ("first", "last", "id", "email@ncsu.eduy", "hashedpassword");
-		Student s7 = new Student ("first", "last", "id", "email@ncsu.edu", "hashedpasswordy");
-		Student s8 = new Student ("first", "last", "id", "email@ncsu.edu", "hashedpassword", 5);
+		User s3 = new Student ("firsty", "last", "id", "email@ncsu.edu", "hashedpassword");
+		User s4 = new Student ("first", "lasty", "id", "email@ncsu.edu", "hashedpassword");
+		User s5 = new Student ("first", "last", "idy", "email@ncsu.edu", "hashedpassword");
+		User s6 = new Student ("first", "last", "id", "email@ncsu.eduy", "hashedpassword");
+		User s7 = new Student ("first", "last", "id", "email@ncsu.edu", "hashedpasswordy");
+		User s8 = new Student ("first", "last", "id", "email@ncsu.edu", "hashedpassword", 5);
 		//test for equality in all fields
 		assertEquals(s1.hashCode(), s2.hashCode());
 		
@@ -457,20 +457,20 @@ public class StudentTest {
 	 */
 	@Test
 	public void testEqualsObject() {
-		Student s1 = new Student ("first", "last", "id", "email@ncsu.edu", "hashedpassword");
-		Student s2 = new Student ("first", "last", "id", "email@ncsu.edu", "hashedpassword");
+		User s1 = new Student ("first", "last", "id", "email@ncsu.edu", "hashedpassword");
+		User s2 = new Student ("first", "last", "id", "email@ncsu.edu", "hashedpassword");
 		
 		
 		//for testing object of a different class, a string is a class
 		String word = "not a student";
 		
 		//different on all states
-		Student s3 = new Student ("firsty", "last", "id", "email@ncsu.edu", "hashedpassword");
-		Student s4 = new Student ("first", "lasty", "id", "email@ncsu.edu", "hashedpassword");
-		Student s5 = new Student ("first", "last", "idy", "email@ncsu.edu", "hashedpassword");
-		Student s6 = new Student ("first", "last", "id", "email@ncsu.eduy", "hashedpassword");
-		Student s7 = new Student ("first", "last", "id", "email@ncsu.edu", "hashedpasswordy");
-		Student s8 = new Student ("first", "last", "id", "email@ncsu.edu", "hashedpassword", 5);
+		User s3 = new Student ("firsty", "last", "id", "email@ncsu.edu", "hashedpassword");
+		User s4 = new Student ("first", "lasty", "id", "email@ncsu.edu", "hashedpassword");
+		User s5 = new Student ("first", "last", "idy", "email@ncsu.edu", "hashedpassword");
+		User s6 = new Student ("first", "last", "id", "email@ncsu.eduy", "hashedpassword");
+		User s7 = new Student ("first", "last", "id", "email@ncsu.edu", "hashedpasswordy");
+		User s8 = new Student ("first", "last", "id", "email@ncsu.edu", "hashedpassword", 5);
 		//test for equality in all fields
 		assertTrue(s1.equals(s2));
 		assertTrue(s1.equals(s1));
@@ -493,11 +493,11 @@ public class StudentTest {
 	 */
 	@Test
 	public void testToString() {
-		Student s1 = new Student ("first", "last", "id", "email@ncsu.edu", "hashedpassword");
+		User s1 = new Student ("first", "last", "id", "email@ncsu.edu", "hashedpassword");
 		String string1 = "first,last,id,email@ncsu.edu,hashedpassword,18";
 		assertEquals(s1.toString(), string1);
 		
-		Student s2 = new Student ("first", "last", "id", "email@ncsu.edu", "hashedpassword", 15);
+		User s2 = new Student ("first", "last", "id", "email@ncsu.edu", "hashedpassword", 15);
 		String string2 = "first,last,id,email@ncsu.edu,hashedpassword,15";
 		assertEquals(s2.toString(), string2);
 		

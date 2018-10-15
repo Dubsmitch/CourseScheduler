@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import edu.ncsu.csc216.collections.list.SortedList;
 import edu.ncsu.csc216.pack_scheduler.user.Student;
+import edu.ncsu.csc216.pack_scheduler.user.User;
 
 /**
 *
@@ -37,7 +38,7 @@ public class StudentRecordIO {
 	            	//}	
 	            	boolean duplicate = false;
 	            	for (int i = 0; i < students.size(); i++) {
-	            		Student s = students.get(i);
+	            		User s = students.get(i);
 	            		//null pointer exception was occuring so I added a null test
 	            		if (student == null) {
 	            			duplicate = true;
