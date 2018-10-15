@@ -305,10 +305,12 @@ abstract public class Activity implements Conflict {
 	}
 
 	/**
-	 * Returns a comma separated value String of all Activity fields.
+	 * Returns if an object is equal to a reference object
 	 * 
-	 * @return String 
-	 * 			A textual representation of an Activity separated by commas
+	 * @param obj
+	 * 			the object to be checked against the reference
+	 * @return boolean 
+	 * 			whether or not two objects are equal
 	 */
 	@Override
 	public boolean equals(Object obj) {

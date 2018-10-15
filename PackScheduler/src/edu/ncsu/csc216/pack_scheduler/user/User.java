@@ -172,4 +172,57 @@ abstract public class User {
 		}
 	}
 
+	/**
+	 * generates a hash code for user fields
+	 * 
+	 * @return int
+	 * 			integer value of hashed fields for the user.		
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + email.hashCode();
+		result = prime * result + firstName.hashCode();
+		result = prime * result + id.hashCode();
+		result = prime * result + lastName.hashCode();
+		result = prime * result + password.hashCode();
+		return result;
+	}
+
+	/**
+	 * checks whether or not two user objects are equal
+	 * 
+	 * @param obj
+	 * 			the object to be checked against the reference
+	 * 
+	 * @return boolean
+	 * 			whether or not the two objects are equal
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+//		user fields cannot be null
+//		if (obj == null)
+//			return false;
+		if (getClass() != obj.getClass())
+			return false;
+//		cast 
+		User other = (User) obj;
+//		email cannot be null		
+//		if (email == null) {
+		if (!email.equals(other.email))
+			return false;
+		if (!firstName.equals(other.firstName))
+			return false;
+		if (!id.equals(other.id))
+			return false;
+		if (!lastName.equals(other.lastName))
+			return false;
+		if (!password.equals(other.password))
+			return false;
+		
+		return true;
+	}
 }
