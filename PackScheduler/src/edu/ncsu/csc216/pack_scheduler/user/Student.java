@@ -83,19 +83,16 @@ public class Student extends User implements Comparable<Student> {
 	}
 
 	/**
-	 * creates the hashcode for the student object
+	 * Creates the hashcode for the student object
 	 *
+	 *	@return int
+	 *			the integer value of the hashed fields
 	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
-		int result = 1;
-		result = prime * result + ( email.hashCode());
-		result = prime * result + (firstName.hashCode());
-		result = prime * result + (id.hashCode());
-		result = prime * result + (lastName.hashCode());
+		int result = super.hashCode();
 		result = prime * result + maxCredits;
-		result = prime * result + (password.hashCode());
 		return result;
 	}
 
@@ -106,20 +103,12 @@ public class Student extends User implements Comparable<Student> {
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
+		if (!super.equals(obj))
+			return false;
 		if (getClass() != obj.getClass())
 			return false;
 		Student other = (Student) obj;
-		if (!email.equals(other.email))
-			return false;
-		if (!firstName.equals(other.firstName))
-			return false;
-		if (!id.equals(other.id))
-			return false;
-		if (!lastName.equals(other.lastName))
-			return false;
 		if (maxCredits != other.maxCredits)
-			return false;
-		if (!password.equals(other.password))
 			return false;
 		return true;
 	}
@@ -132,8 +121,8 @@ public class Student extends User implements Comparable<Student> {
 	 */
 	@Override
 	public String toString() {
-		return firstName + "," + lastName + "," + id + "," + email
-				+ "," + password + "," + maxCredits;
+		return super.getFirstName() + "," + super.getLastName() + "," + super.getId() + "," + super.getEmail()
+				+ "," + super.getPassword() + "," + maxCredits;
 	}
 	/**
 	 * Compares two student's, starting with the last names
