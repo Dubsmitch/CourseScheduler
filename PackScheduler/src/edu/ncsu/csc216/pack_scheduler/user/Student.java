@@ -79,10 +79,10 @@ public class Student extends User implements Comparable<Student> {
 	}
 
 	/**
-	 * Creates the hashcode for the student object
+	 * Creates the hash code for the student object
 	 *
-	 *	@return int
-	 *			the integer value of the hashed fields
+	 *@param int
+	 *		the integer value of the hashed fields
 	 */
 	@Override
 	public int hashCode() {
