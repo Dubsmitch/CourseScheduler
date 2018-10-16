@@ -123,7 +123,8 @@ public class RegistrationManager {
 	}
 	
 	public void clearData() {
-		courseCatalog.newCourseCatalog();
+		courseCatalog = new CourseCatalog();
+		
 		studentDirectory.newStudentDirectory();
 	}
 	
