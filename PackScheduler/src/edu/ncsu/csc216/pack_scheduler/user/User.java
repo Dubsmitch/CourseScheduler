@@ -12,7 +12,19 @@ abstract public class User {
 	private String email;
 	/** Student's password. */
 	private String password;
-
+	/**
+	 * creates a new user
+	 * @param firstName
+	 * 		the first name of the user
+	 * @param lastName
+	 * 		the last name of the user
+	 * @param id
+	 * 		the unity id of the user
+	 * @param email
+	 * 		the email of the user
+	 * @param password
+	 * 		the password of the user
+	 */
 	public User(String firstName, String lastName, String id, String email, String password) {
 		setFirstName(firstName);
 		setLastName(lastName);
