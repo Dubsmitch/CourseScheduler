@@ -64,16 +64,15 @@ public class RegistrationManagerTest {
 	@Test
 	public void testLogout() {
 		StudentDirectory sd = manager.getStudentDirectory();
-		sd.addStudent("William", "Mitchell", "wimitcc", "wimitchell@ncsu.edu", "asdf", "asdf", 15);
-		Student a = new Student("William", "Mitchell", "wimitcc", "wimitchell@ncsu.edu", "ğäÂ÷lX‘nÂXòF…ê	Ô$z/Ãá†”Fá;", 15);
-		manager.login("wimitcc", "asdf");
-		
-		assertEquals(manager.getCurrentUser(), a);
+		sd.loadStudentsFromFile("test-files/actual_student_records.txt");
+		Student a = new Student("Zahir", "King", "zking", "orci.Donec@ametmassaQuisque.com", "asdf", 15);
+		manager.login("zking", "asdf");
 		
 		manager.logout();
 		
 		assertFalse(manager.getCurrentUser().equals(a));
 	}
+	
 	
 	/**
 	 * tests if the current user can be fetched
