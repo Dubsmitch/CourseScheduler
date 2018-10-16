@@ -24,11 +24,11 @@ public class CourseCatalogTest {
 	
 	/** Valid course records */
 	private final String validTestFile = "test-files/course_records.txt";
-	/** Invalid course records */
-	private final String invalidTestFile = "test-files/invalid_course_records.txt";
+	///** Invalid course records */
+	//private final String invalidTestFile = "test-files/invalid_course_records.txt";
 	
-	/** Course name */
-	private static final String NAME = "CSC216";
+	///** Course name */
+	//private static final String NAME = "CSC216";
 	/** Course title */
 	private static final String TITLE = "Programming Concepts - Java";
 	/** Course section */
@@ -75,7 +75,7 @@ public class CourseCatalogTest {
 	 * Tests loadFromFile().
 	 */
 	@Test
-	public void TestLoadCoursesFromFile() {
+	public void TestsLoadCoursesFromFile() {
 		CourseCatalog c1 = new CourseCatalog();
 		c1.loadCoursesFromFile(validTestFile);
 		assertEquals(8, c1.getCourseCatalog().length);

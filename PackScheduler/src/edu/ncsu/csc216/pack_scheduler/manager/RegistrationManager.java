@@ -132,7 +132,7 @@ public class RegistrationManager {
 			} catch (NoSuchAlgorithmException e) {
 				throw new IllegalArgumentException();
 			}
-		}
+		}	
 		
 		Student s = studentDirectory.getStudentById(id);
 		try {
