@@ -140,14 +140,14 @@ public class RegistrationManager {
 			digest.update(password.getBytes());
 			String localHashPW = new String(digest.digest());
 			if(s == null) {
-				throw new IllegalArgumentException ("User doesn't exist");
+				throw new IllegalArgumentException ("User doesn't exist.");
 			}
 			if (s.getPassword().equals(localHashPW)) {
 				currentUser = s;
 				return true;
 			}
 		} catch (NoSuchAlgorithmException e) {
-				throw new IllegalArgumentException("user doesn't exist");
+				throw new IllegalArgumentException("user doesn't exist.");
 		}	
 		
 			
