@@ -75,7 +75,7 @@ public class CourseCatalogTest {
 	 * Tests loadFromFile().
 	 */
 	@Test
-	public void TestsLoadCoursesFromFile() {
+	public void testLoadCoursesFromFile() {
 		CourseCatalog c1 = new CourseCatalog();
 		c1.loadCoursesFromFile(validTestFile);
 		assertEquals(8, c1.getCourseCatalog().length);
