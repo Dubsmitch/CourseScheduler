@@ -16,6 +16,7 @@ public class RegistrationManager {
 	
 	private static RegistrationManager instance;
 	  private CourseCatalog courseCatalog;
+	 
 	private StudentDirectory studentDirectory;
 	  private User registrar;
 	  private User currentUser;
@@ -25,6 +26,9 @@ public class RegistrationManager {
 
 	private RegistrationManager() {
 		createRegistrar();
+		courseCatalog.newCourseCatalog();
+		studentDirectory.newStudentDirectory();
+		
 		//RegistrationManager manager = RegistrationManager.getInstance();
 	}
 	
