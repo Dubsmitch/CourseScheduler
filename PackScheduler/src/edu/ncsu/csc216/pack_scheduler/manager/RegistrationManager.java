@@ -27,8 +27,7 @@ public class RegistrationManager {
 	private RegistrationManager() {
 		createRegistrar();
 		CourseCatalog cc = new CourseCatalog();
-		cc.newCourseCatalog();
-		//loadCoursesFromFile("actual_t39_course_catalog.txt");
+		cc.loadCoursesFromFile("actual_t39_course_catalog.txt");
 		//studentDirectory.newStudentDirectory();
 		//loadStudentsFromFile("actual_t19_student_directory.txt");
 		
