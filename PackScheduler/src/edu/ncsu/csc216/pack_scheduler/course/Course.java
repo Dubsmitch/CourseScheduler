@@ -258,12 +258,7 @@ public class Course extends Activity implements Comparable<Course>{
 		
 		Course other = (Course) activity;
 		
-		if (getName().equals(other.getName()) && getSection() == other.getSection()) {
-			return  true; 
-		} else {
-			return false;
-		}
-		
+		return (getName().equals(other.getName()) && getSection() == other.getSection());
 	}
 	
 	/**
