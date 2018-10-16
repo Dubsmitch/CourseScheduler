@@ -108,7 +108,7 @@ public class CourseCatalogTest {
 		c1.loadCoursesFromFile(validTestFile);
 		
 		//add course
-		c1.addCourseToCatalog("ABCD", TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, 
+		c1.addCourseToCatalog("CSC116", "Introduction to Programming - Java", "006", CREDITS, INSTRUCTOR_ID, MEETING_DAYS, 
 				START_TIME, END_TIME);
 		assertEquals(9, c1.getCourseCatalog().length);
 	

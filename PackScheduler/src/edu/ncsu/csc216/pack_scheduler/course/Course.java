@@ -59,7 +59,6 @@ public class Course extends Activity implements Comparable<Course>{
 			int startTime, int endTime) {
 	    super(title, meetingDays, startTime, endTime);
 		setName(name);
-	    setTitle(title);
 	    setSection(section);
 	    setCredits(credits);
 	    setInstructorId(instructorId);
@@ -83,10 +82,10 @@ public class Course extends Activity implements Comparable<Course>{
 	 */
 	private void setName(String name) {
 	    if (name == null) {
-	        throw new IllegalArgumentException();
+	        throw new IllegalArgumentException("Invalid course name");
 	    }
 	    if (name.length() < MIN_NAME_LENGTH || name.length() > MAX_NAME_LENGTH) {
-	        throw new IllegalArgumentException();
+	        throw new IllegalArgumentException("Invalid course name");
 	    }
 	    this.name = name;
 	}
@@ -111,13 +110,13 @@ public class Course extends Activity implements Comparable<Course>{
 	public void setSection(String section) {
 
 		if (section == null) {
-			throw new IllegalArgumentException ("title cannot be empty or null");		
+			throw new IllegalArgumentException ("Invalid section number");		
 		} 
 		
 		int sectionLength = section.length();
 		
 		if (sectionLength != SECTION_LENGTH) {
-			throw new IllegalArgumentException ("title cannot be empty or null");	
+			throw new IllegalArgumentException ("Invalid section number");	
 		}
 		
 		this.section = section;
@@ -171,7 +170,7 @@ public class Course extends Activity implements Comparable<Course>{
 	public void setInstructorId(String instructorId) {
 		
 		if (instructorId == null || instructorId.equals("")) {
-			throw new IllegalArgumentException ("instructor ID cannot be empty or null");	
+			throw new IllegalArgumentException ("Invalid instructor unity id");	
 		} else {
 			this.instructorId = instructorId;
 		}
@@ -207,7 +206,7 @@ public class Course extends Activity implements Comparable<Course>{
 					meetingDaysChar == 'H' || meetingDaysChar == 'F') {
 				okay = true;
 			} else {
-				throw new IllegalArgumentException ("meeting days invalid");					
+				throw new IllegalArgumentException ("Invalid meeting days");					
 			}
 			
 			if(meetingDaysChar == 'A') {
@@ -217,7 +216,7 @@ public class Course extends Activity implements Comparable<Course>{
 		}
 		// A must be alone 
 		if( meetingDayA && meetingDaysLength > 1) {
-			throw new IllegalArgumentException ("meeting days invalid");
+			throw new IllegalArgumentException ("Invalid meeting days");
 		}
 		if(okay) {	
 			super.setMeetingDays(meetingDays);
@@ -241,12 +240,15 @@ public class Course extends Activity implements Comparable<Course>{
 	 * Tests to see if a course is a duplicate activity. Tests
 	 * if the provided object is a Course object
 	 * and if that course object has the same name.
+	 * then if the course object has the same section.
 	 * 
 	 * @param activity
 	 * 			the object provided; will be casted as a
 	 * 			a Course object
 	 * @return boolean
-	 * 			returns true if the Course object is not unique or false if it is  	
+	 * 			returns true if the Course object is not unique or false if it is
+	 * 			true if the course is unique
+	 * 			false if it already exists  	
 	 */
 	public boolean isDuplicate(Activity activity) {
 		
@@ -254,11 +256,13 @@ public class Course extends Activity implements Comparable<Course>{
 			return false;
 		}
 		
-	
 		Course other = (Course) activity;
 		
-		
-		return (getName().equals(other.getName()));
+		if (getName().equals(other.getName()) && getSection() == other.getSection()) {
+			return  true; 
+		} else {
+			return false;
+		}
 		
 	}
 	

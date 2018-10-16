@@ -35,7 +35,15 @@ public class CourseCatalog {
 	public void newCourseCatalog() {
 		catalog = new SortedList<Course>();
 	}
-	
+	/**
+	 * loads a course catalog from a file
+	 * 
+	 * @param fileName
+	 * 			the name of the file to be loaded
+	 * 
+	 * @throws IllegalArgumentException
+	 * 			throws an IAE if the compiler is not able to read the file
+	 */
 	public void loadCoursesFromFile(String fileName) {
 		try {
 			catalog = CourseRecordIO.readCourseRecords(fileName);
@@ -43,7 +51,28 @@ public class CourseCatalog {
 			throw new IllegalArgumentException("Unable to read file " + fileName);
 		}
 	}
-	
+	/**
+	 * adds a course to the catalog if it is not a duplicate
+	 * 
+	 * @param name
+	 * 			the name of the course
+	 * @param title
+	 * 			the title of the course
+	 * @param section
+	 * 			the section of the course
+	 * @param credits
+	 * 			the number of credits of the course
+	 * @param instructorId
+	 * 			the instructor of the course
+	 * @param meetingDays
+	 * 			the days the course meets
+	 * @param startTime
+	 * 			the start time of the course
+	 * @param endTime
+	 * 			the end time of the course
+	 * @return boolean
+	 * 		if a course can be added or not
+	 */
 	public boolean addCourseToCatalog(String name, String title, String section, int credits, String instructorId,
 			String meetingDays, int startTime, int endTime) {
 		//need to create the course that will be added; 
@@ -56,7 +85,7 @@ public class CourseCatalog {
 		//find out if the course is already in the catalog
 		
 		for (int i = 0; i < catalog.size(); i++) {
-			Activity a = catalog.get(i);
+			Course a = catalog.get(i);
 
 			if (c.isDuplicate(a)) {
 				inCatalog = true;
@@ -73,7 +102,16 @@ public class CourseCatalog {
 			return true;
 		}
 	}
-	
+	/**
+	 * returns whether or not a corse can be removed, if it can it is
+	 * if it cannot then false is returned
+	 * @param name
+	 * 			the name of the course the be removed
+	 * @param section
+	 * 			the section of the course to be removed
+	 * @return boolean
+	 * 			if the course was removed or not
+	 */
 	public boolean removeCourseFromCatalog(String name, String section) {
 		
 		for (int i = 0; i < catalog.size(); i++) {
@@ -89,6 +127,15 @@ public class CourseCatalog {
 		return false;
 	}
 	
+	/**
+	 * gets a course from the catalog
+	 * @param name
+	 * 			the name of the course
+	 * @param section
+	 * 			the section of the course
+	 * @return Course
+	 * 			the course to be fetched
+	 */
 	public Course getCourseFromCatalog(String name, String section) {
 
 
@@ -103,7 +150,11 @@ public class CourseCatalog {
         }
 		return null;
 	}
-	
+	/**
+	 * provides a string representation of the course catalog
+	 * @return String [][]
+	 * 			the String array of the course fields
+	 */
 	public String [][] getCourseCatalog() {
 		//if catalog size is greater than zero
 		if (catalog.size() > 0) {
@@ -150,6 +201,15 @@ public class CourseCatalog {
 			return courseArray;
 		}
 	}
+	
+	/**
+	 * saves a course catalog to a file
+	 * @param fileName
+	 * 			the file to be saved to
+	 * 
+	 * @throws IllegalArgumentException
+	 * 			throws IAE if the file cannot be saved
+	 */
 	public void saveCourseCatalog(String fileName) {
 		try {
 			CourseRecordIO.writeCourseRecords(fileName, catalog);

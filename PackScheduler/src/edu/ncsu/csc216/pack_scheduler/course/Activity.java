@@ -137,7 +137,7 @@ abstract public class Activity implements Conflict {
 	public void setTitle(String title) {
 		
 		if (title == null || title.equals("")) {
-			throw new IllegalArgumentException ("title cannot be empty or null");	
+			throw new IllegalArgumentException ("Invalid course title");	
 		} else {
 			this.title = title;
 		}
@@ -193,11 +193,11 @@ abstract public class Activity implements Conflict {
 	public void setActivityTime(int startTime, int endTime) {
 		
 		if (endTime > (UPPER_TIME - 1) || endTime < 0000) {
-			throw new IllegalArgumentException ("end-time must be between 23:59 and 00:00"); 
+			throw new IllegalArgumentException ("Invalid course times"); 
 		}
 		
 		if (startTime > (UPPER_TIME - 1) || startTime < 0000) {
-			throw new IllegalArgumentException ("start-time must be between 23:59 and 00:00"); 
+			throw new IllegalArgumentException ("Invalid course times"); 
 		}
 		
 		int timeCorrection = 100;
@@ -207,11 +207,11 @@ abstract public class Activity implements Conflict {
 		correctedEnd = correctedEnd - UPPER_HOUR;
 		
 		if (correctedStart >= 0 || correctedEnd >= 0) {
-			throw new IllegalArgumentException ("Minutes cannot be above 59"); 
+			throw new IllegalArgumentException ("Invalid course times"); 
 		}
 	
 		if (endTime < startTime) {
-			throw new IllegalArgumentException ("end-time must be before start-time"); 
+			throw new IllegalArgumentException ("Invalid course times"); 
 		}
 		
 		this.startTime = startTime;

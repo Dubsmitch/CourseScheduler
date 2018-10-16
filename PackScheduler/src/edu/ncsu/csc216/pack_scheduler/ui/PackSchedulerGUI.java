@@ -191,7 +191,7 @@ public class PackSchedulerGUI {
 				RegistrationManager manager = RegistrationManager.getInstance();
 				try {
 				if (manager.login(id, password)) {
-					txtId.setText("");
+					txtId.setText("");	
 					txtPassword.setText("");
 					if (manager.getCurrentUser() instanceof Student) {
 						cardLayout.show(panel, STUDENT_PANEL);

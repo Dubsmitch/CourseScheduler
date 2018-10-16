@@ -7,6 +7,8 @@ import org.junit.Test;
 
 import edu.ncsu.csc216.pack_scheduler.catalog.CourseCatalog;
 import edu.ncsu.csc216.pack_scheduler.directory.StudentDirectory;
+import edu.ncsu.csc216.pack_scheduler.user.Student;
+import edu.ncsu.csc216.pack_scheduler.user.User;
 
 
 public class RegistrationManagerTest {
@@ -32,6 +34,9 @@ public class RegistrationManagerTest {
 		
 		CourseCatalog ca = manager.getCourseCatalog();
 		assertEquals(ca.getCourseCatalog().length, 0);
+		
+		//CourseCatalog cb = RegistrationManager();
+		
 	}
 	
 	/**
@@ -43,21 +48,45 @@ public class RegistrationManagerTest {
 		StudentDirectory sd = manager.getStudentDirectory();
 		assertEquals(sd.getStudentDirectory().length, 0);
 	}
-
-//	@Test
-//	public void testLogin() {
-//		fail("Not yet implemented");
-//	}
-
-//	@Test
-//	public void testLogout() {
-//		fail("Not yet implemented");
-//	}
-
-//	@Test
-//	public void testGetCurrentUser() {
-//		fail("Not yet implemented");
-//	}
+	/**
+	 * tests the login functionality
+	 */
+	@Test
+	public void testLogin() {
+//		the manager has already been set up so the registrar should already exist
+		
+		assertTrue(manager.login("wimitch", "asdf"));
+		
+	}
+	/**
+	 * tests the logout method
+	 */
+	@Test
+	public void testLogout() {
+		StudentDirectory sd = manager.getStudentDirectory();
+		sd.addStudent("William", "Mitchell", "wimitcc", "wimitchell@ncsu.edu", "asdf", "asdf", 15);
+		Student a = new Student("William", "Mitchell", "wimitcc", "wimitchell@ncsu.edu", "ðäÂ÷lX‘nÂXòF…ê	Ô$z/Ãá†”Fá;", 15);
+		manager.login("wimitcc", "asdf");
+		
+		assertEquals(manager.getCurrentUser(), a);
+		
+		manager.logout();
+		
+		assertFalse(manager.getCurrentUser().equals(a));
+	}
+	
+	/**
+	 * tests if the current user can be fetched
+	 */
+	@Test
+	public void testGetCurrentUser() {
+		StudentDirectory sd = manager.getStudentDirectory();
+		sd.addStudent("William", "Mitchell", "wimitcc", "wimitchell@ncsu.edu", "asdf", "asdf", 15);
+		Student a = new Student("William", "Mitchell", "wimitcc", "wimitchell@ncsu.edu", "ðäÂ÷lX‘nÂXòF…ê	Ô$z/Ãá†”Fá;", 15);
+		manager.login("wimitcc", "asdf");
+		
+		assertEquals(manager.getCurrentUser(), a);
+	}
 
 }
 
