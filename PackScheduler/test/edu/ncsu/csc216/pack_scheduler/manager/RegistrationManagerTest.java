@@ -8,7 +8,6 @@ import org.junit.Test;
 import edu.ncsu.csc216.pack_scheduler.catalog.CourseCatalog;
 import edu.ncsu.csc216.pack_scheduler.directory.StudentDirectory;
 import edu.ncsu.csc216.pack_scheduler.user.Student;
-import edu.ncsu.csc216.pack_scheduler.user.User;
 
 
 public class RegistrationManagerTest {

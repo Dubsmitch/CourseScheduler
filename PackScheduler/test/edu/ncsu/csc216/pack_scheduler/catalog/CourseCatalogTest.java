@@ -139,7 +139,7 @@ public class CourseCatalogTest {
 	@Test
 	public void testGetCourseFromCatalog() {
 		//create course that will be added
-		Course a= new Course ("ABCD", TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, 
+		Course a = new Course ("ABCD", TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, 
 				START_TIME, END_TIME);
 		//load a catalog
 		CourseCatalog c1 = new CourseCatalog();
