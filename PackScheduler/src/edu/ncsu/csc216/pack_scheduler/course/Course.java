@@ -10,7 +10,7 @@ package edu.ncsu.csc216.pack_scheduler.course;
  * @author William
  *
  */
-public class Course extends Activity implements Comparable<Course>{
+public class Course extends Activity implements Comparable<Course> {
 	
 	/** constant for section length */
 	private static final int SECTION_LENGTH = 3;
