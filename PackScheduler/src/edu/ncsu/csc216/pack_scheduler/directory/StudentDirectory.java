@@ -145,5 +145,9 @@ public class StudentDirectory {
 			throw new IllegalArgumentException("Unable to write to file " + fileName);
 		}
 	}
+	
+	public Student getStudentById(String id) {
+		return null;
+	}
 
 }
