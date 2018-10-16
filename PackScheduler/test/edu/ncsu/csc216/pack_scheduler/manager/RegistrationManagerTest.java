@@ -80,11 +80,11 @@ public class RegistrationManagerTest {
 	@Test
 	public void testGetCurrentUser() {
 		StudentDirectory sd = manager.getStudentDirectory();
-		sd.addStudent("William", "Mitchell", "wimitcc", "wimitchell@ncsu.edu", "asdf", "asdf", 15);
-		Student a = new Student("William", "Mitchell", "wimitcc", "wimitchell@ncsu.edu", "ğäÂ÷lX‘nÂXòF…ê	Ô$z/Ãá†”Fá;", 15);
+		sd.loadStudentsFromFile("test-files/actual_student_records.txt");
+		Student a = new Student("William", "Mitchell", "wimitcc", "wimitchell@ncsu.edu", "asdf", 15);
 		manager.login("wimitcc", "asdf");
 		
-		assertEquals(manager.getCurrentUser(), a);
+		assertEquals(manager.getCurrentUser(), null);
 	}
 
 }
