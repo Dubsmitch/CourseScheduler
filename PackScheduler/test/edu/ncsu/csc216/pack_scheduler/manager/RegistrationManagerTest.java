@@ -10,7 +10,8 @@ import edu.ncsu.csc216.pack_scheduler.directory.StudentDirectory;
 import edu.ncsu.csc216.pack_scheduler.user.Student;
 
 /**
- * tests registration manager.
+ * tests registration manager. why
+ * wont my new javadocs appear??
  * 
  * @author William
  *
