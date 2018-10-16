@@ -7,7 +7,6 @@ import java.io.IOException;
 import edu.ncsu.csc216.collections.list.SortedList;
 
 import edu.ncsu.csc216.pack_scheduler.course.Course;
-import edu.ncsu.csc216.pack_scheduler.course.Activity;
 import edu.ncsu.csc216.pack_scheduler.io.CourseRecordIO;
 /**
  * This class creates a catalog of courses
