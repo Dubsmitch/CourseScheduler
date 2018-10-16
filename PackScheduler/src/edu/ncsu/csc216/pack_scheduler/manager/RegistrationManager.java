@@ -26,8 +26,8 @@ public class RegistrationManager {
 
 	private RegistrationManager() {
 		createRegistrar();
-		//CourseCatalog cc = new CourseCatalog();
-		//cc.loadCoursesFromFile("test-files/actual_t39_course_catalog.txt");
+		CourseCatalog cc = new CourseCatalog();
+		cc.loadCoursesFromFile("test-files/actual_t39_course_catalog.txt");
 		//studentDirectory.newStudentDirectory();
 		//loadStudentsFromFile("actual_t19_student_directory.txt");
 		
@@ -37,9 +37,6 @@ public class RegistrationManager {
 	
 	private void createRegistrar() {
 		Properties prop = new Properties();
-		
-		CourseCatalog cc = new CourseCatalog();
-		cc.loadCoursesFromFile("test-files/actual_t39_course_catalog.txt");
 		
 		try (InputStream input = new FileInputStream(PROP_FILE)) {
 			prop.load(input);
@@ -65,7 +62,8 @@ public class RegistrationManager {
 	public static RegistrationManager getInstance() {
 		  if (instance == null) {
 			instance = new RegistrationManager();
-			//courseCatalog.newCourseCatalog();
+			CourseCatalog cc = new CourseCatalog();
+			cc.loadCoursesFromFile("test-files/actual_t39_course_catalog.txt");
 			//studentDirectory.newStudentDirectory();
 			
 		}
