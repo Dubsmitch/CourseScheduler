@@ -157,8 +157,9 @@ public class StudentDirectory {
 		for (int i = 0; i < studentDirectory.size(); i++) {
 			Student s = studentDirectory.get(i);
 			idCheck = s.getId();
-			if (idCheck.equals(id));
+			if (idCheck.equals(id)) {
 				return s;
+			}
 		}
 		return null;
 	}
