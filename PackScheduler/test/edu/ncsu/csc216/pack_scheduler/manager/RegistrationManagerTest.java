@@ -20,30 +20,30 @@ public class RegistrationManagerTest {
 		manager.clearData();
 	}
 
-	@Test
-	public void testGetCourseCatalog() {
-		fail("Not yet implemented");
-	}
+//	@Test
+//	public void testGetCourseCatalog() {
+//		fail("Not yet implemented");
+//	}
 
-	@Test
-	public void testGetStudentDirectory() {
-		fail("Not yet implemented");
-	}
+//	@Test
+//	public void testGetStudentDirectory() {
+//		fail("Not yet implemented");
+//	}
 
-	@Test
-	public void testLogin() {
-		fail("Not yet implemented");
-	}
+//	@Test
+//	public void testLogin() {
+//		fail("Not yet implemented");
+//	}
 
-	@Test
-	public void testLogout() {
-		fail("Not yet implemented");
-	}
+//	@Test
+//	public void testLogout() {
+//		fail("Not yet implemented");
+//	}
 
-	@Test
-	public void testGetCurrentUser() {
-		fail("Not yet implemented");
-	}
+//	@Test
+//	public void testGetCurrentUser() {
+//		fail("Not yet implemented");
+//	}
 
 }
 
