@@ -26,8 +26,9 @@ public class RegistrationManager {
 
 	private RegistrationManager() {
 		createRegistrar();
-		courseCatalog.newCourseCatalog();
-		studentDirectory.newStudentDirectory();
+		courseCatalog.loadCoursesFromFile("actual_t39_course_catalog.txt");
+		studentDirectory.loadStudentsFromFile("actual_t19_student_directory.txt");
+		
 		
 		//RegistrationManager manager = RegistrationManager.getInstance();
 	}
@@ -59,6 +60,9 @@ public class RegistrationManager {
 	public static RegistrationManager getInstance() {
 		  if (instance == null) {
 			instance = new RegistrationManager();
+			courseCatalog.newCourseCatalog();
+			studentDirectory.newStudentDirectory();
+			
 		}
 		return instance;
 	}
