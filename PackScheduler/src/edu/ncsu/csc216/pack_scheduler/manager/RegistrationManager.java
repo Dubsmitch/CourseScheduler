@@ -40,7 +40,8 @@ public class RegistrationManager {
 			
 			String hashPW = hashPW(prop.getProperty("pw"));
 			
-			registrar = new Registrar(prop.getProperty("first"), prop.getProperty("last"), prop.getProperty("id"), prop.getProperty("email"), hashPW);
+			registrar = new Registrar(prop.getProperty("first"), prop.getProperty("last"), 
+					prop.getProperty("id"), prop.getProperty("email"), hashPW);
 		} catch (IOException e) {
 			throw new IllegalArgumentException("Cannot create registrar.");
 		}
@@ -112,8 +113,7 @@ public class RegistrationManager {
 	 * @return 
 	 */
 	public User getCurrentUser() {
-		//TODO implement method
-		return null;
+		return registrar; 
 	}
 	
 	public void clearData() {

@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import edu.ncsu.csc216.pack_scheduler.catalog.CourseCatalog;
+import edu.ncsu.csc216.pack_scheduler.directory.StudentDirectory;
 
 
 public class RegistrationManagerTest {
@@ -32,11 +33,16 @@ public class RegistrationManagerTest {
 		CourseCatalog ca = manager.getCourseCatalog();
 		assertEquals(ca.getCourseCatalog().length, 0);
 	}
-
-//	@Test
-//	public void testGetStudentDirectory() {
-//		fail("Not yet implemented");
-//	}
+	
+	/**
+	 * should return an empty directory from the manager
+	 * (because it was cleared)
+	 */
+	@Test
+	public void testGetStudentDirectory() {
+		StudentDirectory sd = manager.getStudentDirectory();
+		assertEquals(sd.getStudentDirectory().length, 0);
+	}
 
 //	@Test
 //	public void testLogin() {
