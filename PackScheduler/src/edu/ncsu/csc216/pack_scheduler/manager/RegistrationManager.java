@@ -26,8 +26,10 @@ public class RegistrationManager {
 
 	private RegistrationManager() {
 		createRegistrar();
-		courseCatalog.loadCoursesFromFile("actual_t39_course_catalog.txt");
-		studentDirectory.loadStudentsFromFile("actual_t19_student_directory.txt");
+		courseCatalog.newCourseCatalog();
+		//loadCoursesFromFile("actual_t39_course_catalog.txt");
+		studentDirectory.newStudentDirectory();
+		//loadStudentsFromFile("actual_t19_student_directory.txt");
 		
 		
 		//RegistrationManager manager = RegistrationManager.getInstance();
