@@ -1,5 +1,11 @@
 package edu.ncsu.csc216.pack_scheduler.user;
 
+/**
+ * abstract class for user types
+ * 
+ * @author William
+ *
+ */
 abstract public class User {
 
 	/** Student's first name. */
