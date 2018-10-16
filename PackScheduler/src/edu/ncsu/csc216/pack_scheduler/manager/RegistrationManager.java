@@ -25,6 +25,7 @@ public class RegistrationManager {
 
 	private RegistrationManager() {
 		createRegistrar();
+		//RegistrationManager manager = RegistrationManager.getInstance();
 	}
 	
 	private void createRegistrar() {
