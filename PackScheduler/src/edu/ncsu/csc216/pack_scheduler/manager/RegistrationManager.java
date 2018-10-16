@@ -125,7 +125,7 @@ public class RegistrationManager {
 	public void clearData() {
 		courseCatalog = new CourseCatalog();
 		
-		studentDirectory.newStudentDirectory();
+		studentDirectory = new StudentDirectory();
 	}
 	
 	private static class Registrar extends User {
