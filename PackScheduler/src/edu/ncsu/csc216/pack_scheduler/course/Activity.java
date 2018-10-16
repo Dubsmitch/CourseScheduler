@@ -25,7 +25,13 @@ abstract public class Activity implements Conflict {
 	private int endTime;
 	
 	
-
+	/**
+	 * compares two courses
+	 * @param c
+	 * 		the course to be compared to
+	 * @return int
+	 * 		if the comparison is greater, less than or equal to
+	 */
 	public abstract int compareTo(Course c);
 	
 	/**
