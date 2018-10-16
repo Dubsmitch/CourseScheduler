@@ -5,6 +5,8 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import edu.ncsu.csc216.pack_scheduler.catalog.CourseCatalog;
+
 
 public class RegistrationManagerTest {
 	
@@ -19,11 +21,17 @@ public class RegistrationManagerTest {
 		manager = RegistrationManager.getInstance();
 		manager.clearData();
 	}
-
-//	@Test
-//	public void testGetCourseCatalog() {
-//		fail("Not yet implemented");
-//	}
+	
+	/**
+	 * this test should return a course catalog that matches the
+	 * current course catalog
+	 */
+	@Test
+	public void testGetCourseCatalog() {
+		
+		CourseCatalog ca = manager.getCourseCatalog();
+		assertEquals(ca.getCourseCatalog().length, 0);
+	}
 
 //	@Test
 //	public void testGetStudentDirectory() {

@@ -26,11 +26,8 @@ public class RegistrationManager {
 
 	private RegistrationManager() {
 		createRegistrar();
-		CourseCatalog cc = new CourseCatalog();
-		cc.loadCoursesFromFile("test-files/actual_t39_course_catalog.txt");
-		//studentDirectory.newStudentDirectory();
-		//loadStudentsFromFile("actual_t19_student_directory.txt");
-		
+		courseCatalog = new CourseCatalog();
+		studentDirectory = new StudentDirectory();
 		
 		//RegistrationManager manager = RegistrationManager.getInstance();
 	}
@@ -62,9 +59,6 @@ public class RegistrationManager {
 	public static RegistrationManager getInstance() {
 		  if (instance == null) {
 			instance = new RegistrationManager();
-			CourseCatalog cc = new CourseCatalog();
-			cc.loadCoursesFromFile("test-files/actual_t39_course_catalog.txt");
-			//studentDirectory.newStudentDirectory();
 			
 		}
 		return instance;
