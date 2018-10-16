@@ -60,8 +60,8 @@ public class RegistrationManager {
 	public static RegistrationManager getInstance() {
 		  if (instance == null) {
 			instance = new RegistrationManager();
-			courseCatalog.newCourseCatalog();
-			studentDirectory.newStudentDirectory();
+			//courseCatalog.newCourseCatalog();
+			//studentDirectory.newStudentDirectory();
 			
 		}
 		return instance;
