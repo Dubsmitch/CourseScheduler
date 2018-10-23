@@ -3,6 +3,9 @@
  */
 package edu.ncsu.csc216.pack_scheduler.course;
 
+import edu.ncsu.csc216.pack_scheduler.course.validator.CourseNameValidator;
+import edu.ncsu.csc216.pack_scheduler.course.validator.InvalidTransitionException;
+
 /**
  * Extends Activity to create specific course objects. maintains information about
  * courses that a student can pick
@@ -30,6 +33,9 @@ public class Course extends Activity implements Comparable<Course> {
 	private int credits;
 	/** Course's instructor */
 	private String instructorId;
+	/** validator **/
+	private CourseNameValidator validator;
+	
 	/**
 	 * Creates a Course with the given name, title, section, credits, instructorId, and meetingDays for 
 	 * courses that are arranged.
@@ -39,8 +45,9 @@ public class Course extends Activity implements Comparable<Course> {
 	 * @param credits credit hours for Course
 	 * @param instructorId instructor's unity id
 	 * @param meetingDays meeting days for Course as series of chars
+	 * @throws InvalidTransitionException 
 	 */
-	public Course(String name, String title, String section, int credits, String instructorId, String meetingDays) {
+	public Course(String name, String title, String section, int credits, String instructorId, String meetingDays) throws InvalidTransitionException {
 	    this(name, title, section, credits, instructorId, meetingDays, 0, 0);
 	}
 
@@ -54,9 +61,10 @@ public class Course extends Activity implements Comparable<Course> {
 	 * @param meetingDays days in which the course is meeting
 	 * @param startTime time that the course starts
 	 * @param endTime time that the course ends
+	 * @throws InvalidTransitionException 
 	 */
 	public Course(String name, String title, String section, int credits, String instructorId, String meetingDays,
-			int startTime, int endTime) {
+			int startTime, int endTime) throws InvalidTransitionException {
 	    super(title, meetingDays, startTime, endTime);
 		setName(name);
 	    setSection(section);
@@ -77,11 +85,16 @@ public class Course extends Activity implements Comparable<Course> {
 	 * greater than 6, an IllegalArgumentException is thrown.
 	 * @param name 
 	 * 		the name of the course to be set
+	 * @throws InvalidTransitionException 
 	 * @throws IllegalArgumentException if name is null or length is less than 4 or 
 	 * greater than 6
 	 */
-	private void setName(String name) {
-	    if (name == null) {
+	private void setName(String name) throws InvalidTransitionException {
+	    validator = new CourseNameValidator();
+	    
+	    validator.isValid(name);
+	    
+		if (name == null) {
 	        throw new IllegalArgumentException("Invalid course name");
 	    }
 	    if (name.length() < MIN_NAME_LENGTH || name.length() > MAX_NAME_LENGTH) {
