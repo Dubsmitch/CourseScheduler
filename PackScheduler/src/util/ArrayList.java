@@ -51,19 +51,43 @@ public class ArrayList<E> extends AbstractList<E> {
     		//then add object to the index to add
     		list2[i] = e;
     		
+    		//add one to size because the array will have to be
+    		//one larger to accomedate the new addition
+        	size = size + 1;
+        	
     		//then add the rest of the items
-    		for (int k = i + 1; k < size - 1; k++) {
+    		for (int k = i + 1; k < size; k++) {
     			list2[k] = list[k];
     		}
-    		
-    		for (int j = 0; j < list2.length; j++) {
+    		//then add all elements back to original list
+    		for (int j = 0; j < size; j++) {
     			list[j] = list2[j];
     		}
     		
-    	//update size
-    	size = size + 1;
     	
     	} else if (size < list.length && i == 0) {
+    		//create a second list to hold the original list (with the same length)
+    		@SuppressWarnings("unchecked")
+    		E[] list2 = (E[])new Object[list.length];
+    		
+    		//add element to the beginning of the empty list
+    		list2[i] = e;
+    		
+    		//add one to size because the array will have to be
+    		//one larger to accomedate the new addition
+    		size = size + 1;
+    		
+    		//add all of the orginal list's elements to the new list
+    		//in order +1 of original index
+    		for (int j = 1; j < size; j++) {
+    			list2[j] = list[j-1];
+    		}
+    		
+    		//then add all elements back to original list
+    		for (int j = 0; j < size; j++) {
+    			list[j] = list2[j];
+    		}
+    		
     		
     		
     		
