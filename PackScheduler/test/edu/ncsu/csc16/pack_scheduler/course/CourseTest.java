@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import edu.ncsu.csc216.pack_scheduler.course.Activity;
 import edu.ncsu.csc216.pack_scheduler.course.Course;
+import edu.ncsu.csc216.pack_scheduler.course.validator.InvalidTransitionException;
 
 /**
  * Tests the Course class.
@@ -36,9 +37,10 @@ public class CourseTest {
 
 	/**
 	 * Tests the Course constructor with all field parameters.
+	 * @throws InvalidTransitionException 
 	 */
 	@Test
-	public void testCourseStringStringStringIntStringStringIntInt() {
+	public void testCourseStringStringStringIntStringStringIntInt() throws InvalidTransitionException {
 		//Setting name can only be tested through the constructor
 		
 		//Testing for null name
@@ -96,9 +98,10 @@ public class CourseTest {
 
 	/**
 	 * Tests the Course constructor with 4 parameters.
+	 * @throws InvalidTransitionException 
 	 */
 	@Test
-	public void testCourseStringStringStringIntStringString() {
+	public void testCourseStringStringStringIntStringString() throws InvalidTransitionException {
 		//Test a valid construction and make sure values are correct
 		Course c = null;
 		try {
@@ -118,9 +121,10 @@ public class CourseTest {
 
 	/**
 	 * Tests setTitle().
+	 * @throws InvalidTransitionException 
 	 */
 	@Test
-	public void testSetTitle() {
+	public void testSetTitle() throws InvalidTransitionException {
 		Course c = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
 		assertEquals(NAME, c.getName());
 		assertEquals(TITLE, c.getTitle());
@@ -175,9 +179,10 @@ public class CourseTest {
 
 	/**
 	 * Tests setSection().
+	 * @throws InvalidTransitionException 
 	 */
 	@Test
-	public void testSetSection() {
+	public void testSetSection() throws InvalidTransitionException {
 		Course c = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
 		assertEquals(NAME, c.getName());
 		assertEquals(TITLE, c.getTitle());
@@ -262,9 +267,10 @@ public class CourseTest {
 
 	/**
 	 * Tests that the credits are set correctly.
+	 * @throws InvalidTransitionException 
 	 */
 	@Test
-	public void testSetCredits() {
+	public void testSetCredits() throws InvalidTransitionException {
 		Course c = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
 		assertEquals(NAME, c.getName());
 		assertEquals(TITLE, c.getTitle());
@@ -319,9 +325,10 @@ public class CourseTest {
 
 	/**
 	 * Tests that the instructor id is set correctly.
+	 * @throws InvalidTransitionException 
 	 */
 	@Test
-	public void testSetInstructorId() {
+	public void testSetInstructorId() throws InvalidTransitionException {
 		Course c = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
 		assertEquals(NAME, c.getName());
 		assertEquals(TITLE, c.getTitle());
@@ -376,9 +383,10 @@ public class CourseTest {
 
 	/**
 	 * Tests that the meeting days are set correctly.
+	 * @throws InvalidTransitionException 
 	 */
 	@Test
-	public void testSetMeetingDays() {
+	public void testSetMeetingDays() throws InvalidTransitionException {
 		Course c = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
 		assertEquals(NAME, c.getName());
 		assertEquals(TITLE, c.getTitle());
@@ -463,9 +471,10 @@ public class CourseTest {
 
 	/**
 	 * Tests that the course times are set correctly.
+	 * @throws InvalidTransitionException 
 	 */
 	@Test
-	public void testsetActivityTime() {
+	public void testsetActivityTime() throws InvalidTransitionException {
 		//The code below is commented out until you make some changes to Course.
 		//Once those are made, remove the line of code fail() and uncomment the provided tests.
 
@@ -610,9 +619,10 @@ public class CourseTest {
 	
 	/**
 	 * Tests that getMeetingString() works correctly
+	 * @throws InvalidTransitionException 
 	 */
 	@Test
-	public void testGetMeetingString() {
+	public void testGetMeetingString() throws InvalidTransitionException {
 		//The code below is commented out until you make some changes to Course.
 		//Once those are made, remove the line of code fail() and uncomment the provided tests.
 
@@ -629,9 +639,10 @@ public class CourseTest {
 
 	/**
 	 * Tests that the equals method works for all Course fields.
+	 * @throws InvalidTransitionException 
 	 */
 	@Test
-	public void testEqualsObject() {
+	public void testEqualsObject() throws InvalidTransitionException {
 		Activity c1 = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
 		Activity c2 = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
 		Activity c3 = new Course(NAME, "Different", SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
@@ -663,9 +674,10 @@ public class CourseTest {
 	
 	/**
 	 * Tests that hashCode works correctly.
+	 * @throws InvalidTransitionException 
 	 */
 	@Test
-	public void testHashCode() {
+	public void testHashCode() throws InvalidTransitionException {
 		Activity c1 = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
 		Activity c2 = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
 		Activity c3 = new Course(NAME, "Different", SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
@@ -691,9 +703,10 @@ public class CourseTest {
 
 	/**
 	 * Tests that toString returns the correct comma-separated value.
+	 * @throws InvalidTransitionException 
 	 */
 	@Test
-	public void testToString() {
+	public void testToString() throws InvalidTransitionException {
 		Activity c1 = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
 		String s1 = "CSC216,Programming Concepts - Java,001,4,sesmith5,MW,1330,1445";
 		assertEquals(s1, c1.toString());
@@ -706,9 +719,10 @@ public class CourseTest {
 	/**
 	 * tests that the compareTo() functions correctly
 	 * testing ordering by last name, then first name, then id
+	 * @throws InvalidTransitionException 
 	 */
 	@Test
-	public void testCompareTo() {
+	public void testCompareTo() throws InvalidTransitionException {
 		
 		Course c1 = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
 		Course c2 = new Course ("abcd", TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
@@ -728,9 +742,10 @@ public class CourseTest {
 	
 	/**
 	 * Tests Course.getLongDisplayArray().
+	 * @throws InvalidTransitionException 
 	 */
 	@Test
-	public void testGetLongDisplayArray() {
+	public void testGetLongDisplayArray() throws InvalidTransitionException {
 		Course c = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
 		assertEquals(NAME, c.getName());
 		assertEquals(TITLE, c.getTitle());
@@ -752,9 +767,10 @@ public class CourseTest {
 
 	/**
 	 * Tests Course.getShortDisplayArray().
+	 * @throws InvalidTransitionException 
 	 */
 	@Test
-	public void testGetShortDisplayArray() {
+	public void testGetShortDisplayArray() throws InvalidTransitionException {
 		Course c = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, START_TIME, END_TIME);
 		assertEquals(NAME, c.getName());
 		assertEquals(TITLE, c.getTitle());

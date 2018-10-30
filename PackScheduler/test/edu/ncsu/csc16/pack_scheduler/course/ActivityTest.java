@@ -7,6 +7,7 @@ import org.junit.Test;
 import edu.ncsu.csc216.pack_scheduler.course.Activity;
 import edu.ncsu.csc216.pack_scheduler.course.ConflictException;
 import edu.ncsu.csc216.pack_scheduler.course.Course;
+import edu.ncsu.csc216.pack_scheduler.course.validator.InvalidTransitionException;
 /**
  * Tests the Activity class.
  * 
@@ -18,9 +19,10 @@ public class ActivityTest {
 	 * 
 	 * an activity with overlapping days and times should
 	 * throw a conflict exception
+	 * @throws InvalidTransitionException 
 	 */
 	@Test
-	public void testCheckConflict() {
+	public void testCheckConflict() throws InvalidTransitionException {
 		Activity a1 = new Course("CSC216", "Programming Concepts - Java", "001", 4,
 				"sesmith5", "MW", 1330, 1445);
 		Activity a2 = new Course("CSC216", "Programming Concepts - Java", "001", 4,
@@ -126,9 +128,10 @@ public class ActivityTest {
 	 * tests the functioning of setTitle() method
 	 * 
 	 * should allow a title to be set unless name is null or empty
+	 * @throws InvalidTransitionException 
 	 */
 	@Test
-	public void testSetTitle() {
+	public void testSetTitle() throws InvalidTransitionException {
 		Activity a1 = new Course("CSC216", "Programming Concepts - Java", "001", 4,
 				"sesmith5", "MW", 1330, 1445);
 		//set title to empty
@@ -152,9 +155,10 @@ public class ActivityTest {
 	 * tests the functioning of setActivityTime() method
 	 * 
 	 * should allow a title to be set unless name is null or empty
+	 * @throws InvalidTransitionException 
 	 */
 	@Test
-	public void testSetActivityTime() {
+	public void testSetActivityTime() throws InvalidTransitionException {
 		Activity a1 = new Course("CSC216", "Programming Concepts - Java", "001", 4,
 				"sesmith5", "MW", 1330, 1445);
 		
@@ -220,9 +224,10 @@ public class ActivityTest {
 	 * tests the functioning of hashCode() method
 	 * 
 	 * should set hash code to reliable values
+	 * @throws InvalidTransitionException 
 	 */
 	@Test
-	public void testHashCode() {
+	public void testHashCode() throws InvalidTransitionException {
 		
 		//create to equal activities
 		Activity a1 = new Course("CSC216", "Programming Concepts - Java", "001", 4,
@@ -253,9 +258,10 @@ public class ActivityTest {
 	 * tests the functioning of toEquals() method
 	 * 
 	 * should set hash code to reliable values
+	 * @throws InvalidTransitionException 
 	 */
 	@Test
-	public void testToEquals() {
+	public void testToEquals() throws InvalidTransitionException {
 		
 		//create two equal activities
 		Activity a1 = new Course("CSC216", "Programming Concepts - Java", "001", 4,

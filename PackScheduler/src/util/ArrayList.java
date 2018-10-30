@@ -1,7 +1,13 @@
 package util;
 
 import java.util.AbstractList;
-
+/**
+ * Creates a custom ArrayList and provides methods to
+ * manipulate and maintain them.
+ *  
+ * @author William
+ *
+ */
 public class ArrayList<E> extends AbstractList<E> {
     /** initial size of the list **/
     private static final int INIT_SIZE = 10;
@@ -10,6 +16,14 @@ public class ArrayList<E> extends AbstractList<E> {
     /** size of list **/
     private int size;
     
+    /**
+     * Constructor for Array List
+     * 
+     * @param c
+     * 		the arraylist
+     * @param INIT_SIZE
+     * 		the initial size of the basic array
+     */
     public ArrayList (Class<E> c, int INIT_SIZE) {
         @SuppressWarnings("unchecked")
         E[] list = (E[])new Object[INIT_SIZE];
@@ -17,6 +31,14 @@ public class ArrayList<E> extends AbstractList<E> {
         size = 0;
     }
 
+    /**
+     * adds an element to the arraylist
+     * 
+     * @param i
+     * 		i is the index where the element will be added
+     * @param e
+     * 		e is the element to be added
+     */
     @Override
     public void add(int i, E e) {
     	//check if e is a null object
@@ -143,7 +165,14 @@ public class ArrayList<E> extends AbstractList<E> {
     	}
     }
 
-
+    /**
+     * removes an element and returns the removed element
+     * 
+     * @param index
+     * 		index where the element will be removed
+     * @return E
+     * 		returns the element that was removed
+     */
     @Override
     public E remove (int index) {
     	if (index < 0 || index >= size()) {
@@ -234,7 +263,12 @@ public class ArrayList<E> extends AbstractList<E> {
     }
     
     
-    
+    /**
+     * returns the size of the arrayList
+     * 
+     * @return int
+     * 			the size of the arrayList
+     */
 	@Override
 	public int size() {
 		int sizeThis = 0;
@@ -247,8 +281,22 @@ public class ArrayList<E> extends AbstractList<E> {
 		return sizeThis;
 	}
 	
+	/**
+	 * changes an element at a specified index
+	 * 
+	 * @param index
+	 * 			the index that will be changed
+	 * @param e
+	 * 			the object that will be changed
+	 * 
+	 * @return e
+	 * 			the old object that was changed	
+	 */
 	@Override
 	public E set (int index, E e) {
+		if (index < 0 || index >= size()) {
+			throw new IndexOutOfBoundsException ("out of range");
+		}
 		@SuppressWarnings("unchecked")
 		E[] list3 = (E[])new Object[list.length];
 		list3 = list;
@@ -257,6 +305,16 @@ public class ArrayList<E> extends AbstractList<E> {
 		
 		return list3[index];
 	}
+	
+	/**
+	 * returns the element at the given index
+	 * 
+	 * @param index
+	 * 			the index to get the element from
+	 * 
+	 * @return E
+	 * 			the object at the given index
+	 */
 	@Override
 	public E get(int index) {
 		if  (index < 0 || index >= size()) {
