@@ -14,6 +14,7 @@ public class ArrayList<E> extends AbstractList<E> {
         @SuppressWarnings("unchecked")
         E[] list = (E[])new Object[INIT_SIZE];
         this.list = list;
+        size = 0;
     }
 
     @Override
@@ -27,6 +28,9 @@ public class ArrayList<E> extends AbstractList<E> {
     			throw new IllegalArgumentException ("Duplicate object cannot be added");
     		}
     	}
+    	
+    	//update size
+    	size = size + 1;
     	
     	
     	if (list.length < INIT_SIZE && i != 0) {
@@ -59,8 +63,14 @@ public class ArrayList<E> extends AbstractList<E> {
 
 	@Override
 	public int size() {
-		// TODO Auto-generated method stub
-		return 0;
+		int sizeThis = 0;
+		for (int i = 0; i < list.length; i++) {
+			if (list[i] != null) {
+				sizeThis++;
+			}
+		}
+		
+		return sizeThis;
 	}
 
 	@Override
