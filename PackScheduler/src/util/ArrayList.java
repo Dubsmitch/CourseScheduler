@@ -55,9 +55,10 @@ public class ArrayList<E> extends AbstractList<E> {
     		//one larger to accomedate the new addition
         	size = size + 1;
         	
-    		//then add the rest of the items
-    		for (int k = i + 1; k < size; k++) {
-    			list2[k] = list[k];
+    		//then add the rest of the items, adding one to the index for the
+        	//location in the new list
+    		for (int k = i; k < size; k++) {
+    			list2[k + 1] = list[k];
     		}
     		//then add all elements back to original list
     		for (int j = 0; j < size; j++) {
@@ -88,23 +89,152 @@ public class ArrayList<E> extends AbstractList<E> {
     			list[j] = list2[j];
     		}
     		
-    		
-    		
-    		
-    		size = size + 1;
+    		// if size is equal to length
     	} else {
     		
     		int sizeCurrentArray = size;
     		
     		@SuppressWarnings("unchecked")
     		E[] list2 = (E[])new Object[sizeCurrentArray * 2];
-    		
-        	//update size
-        	size = size + 1;
+
+    		if (i != 0) {
+    			//go through all the elements and add them to the second list
+        		//until the index to add is reached.
+        		for (int j = 0; j < i - 1; j++) {
+        			list2[j] = list[j];
+        		}
+        		//then add object to the index to add
+        		list2[i] = e;
+        		
+        		//add one to size because the array will have to be
+        		//one larger to acommadate the new addition
+            	size = size + 1;
+            	
+        		//then add the rest of the items, adding one to the index for the
+            	//location in the new list
+        		for (int k = i; k < size; k++) {
+        			list2[k + 1] = list[k];
+        		}
+        		
+        		//then add all elements back to original list
+        		for (int j = 0; j < size; j++) {
+        			list[j] = list2[j];
+        		}
+        		
+    		} else {
+    			//add element to the beginning of the empty list
+        		list2[i] = e;
+        		
+        		//add one to size because the array will have to be
+        		//one larger to accomedate the new addition
+        		size = size + 1;
+        		
+        		//add all of the orginal list's elements to the new list
+        		//in order +1 of original index
+        		for (int j = 1; j < size; j++) {
+        			list2[j] = list[j-1];
+        		}
+        		
+        		//then add all elements back to original list
+        		for (int j = 0; j < size; j++) {
+        			list[j] = list2[j];
+        		}
+    		}
     	}
     }
 
 
+    @Override
+    public E remove (int index) {
+    	if (index < 0 || index >= size()) {
+    		throw new IndexOutOfBoundsException ("index is out of range");
+    	}
+    	
+    	//if the index is not zero and less than the size
+    	if (index != 0 && index != size) {
+    	//create new list to hold
+		@SuppressWarnings("unchecked")
+		E[] list2 = (E[])new Object[list.length];
+		
+    	//create new list to hold entire first list to return removed item
+		@SuppressWarnings("unchecked")
+		E[] list3 = (E[])new Object[list.length];
+		list3 = list;
+		
+		//before the index of removal the list is the same
+		for (int i = 0; i < index; i++) {
+			list2[i] = list[i];
+		}
+		
+		//not sure if size should be one smaller or not here..
+		for (int i = index; i < size; i++) {
+			list2[i] = list[i + 1];
+		}
+		
+		//now switch again
+		for (int i = 0; i < size; i++) {
+			list[i]=list2[i];
+		}
+		list[size - 1] = null;
+			
+		size = size - 1;
+		
+    	return list3[index];
+    	
+    	//if the index is zero
+    	} else if (index == 0) {
+        	//create new list to hold
+    		@SuppressWarnings("unchecked")
+    		E[] list2 = (E[])new Object[list.length];
+    		
+        	//create new list to hold entire first list to return removed item
+    		@SuppressWarnings("unchecked")
+    		E[] list3 = (E[])new Object[list.length];
+    		list3 = list;
+    		//before the index of removal the list is the same
+    		for (int i = 0; i < size; i++) {
+    			list2[i] = list[i + 1];
+    		}
+    		
+    		//now switch again
+    		for (int i = 0; i < size; i++) {
+    			list[i]=list2[i];
+    		}
+    		list[size - 1] = null;
+    			
+    		size = size - 1;
+    		
+        	return list3[index];
+        //if it is removed from the end
+    	} else {
+        	//create new list to hold
+    		@SuppressWarnings("unchecked")
+    		E[] list2 = (E[])new Object[list.length];
+    		
+        	//create new list to hold entire first list to return removed item
+    		@SuppressWarnings("unchecked")
+    		E[] list3 = (E[])new Object[list.length];
+    		list3 = list;
+    		
+    		//before the index of removal the list is the same
+    		for (int i = 0; i < index; i++) {
+    			list2[i] = list[i];
+    		}
+    		
+    		//now switch again
+    		for (int i = 0; i < size; i++) {
+    			list[i]=list2[i];
+    		}
+    		list[size - 1] = null;
+    			
+    		size = size - 1;
+    		
+        	return list3[index];
+    	}
+    }
+    
+    
+    
 	@Override
 	public int size() {
 		int sizeThis = 0;
@@ -116,11 +246,24 @@ public class ArrayList<E> extends AbstractList<E> {
 		
 		return sizeThis;
 	}
-
+	
+	@Override
+	public E set (int index, E e) {
+		@SuppressWarnings("unchecked")
+		E[] list3 = (E[])new Object[list.length];
+		list3 = list;
+		
+		list[index] = e;
+		
+		return list3[index];
+	}
 	@Override
 	public E get(int index) {
-		// TODO Auto-generated method stub
-		return null;
+		if  (index < 0 || index >= size()) {
+			throw new IndexOutOfBoundsException ("out of range");
+		}
+		
+		return list[index];
 	}
     
 
