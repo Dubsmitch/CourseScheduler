@@ -13,6 +13,7 @@ import java.util.Scanner;
 import org.junit.Before;
 import org.junit.Test;
 import edu.ncsu.csc216.pack_scheduler.course.Course;
+import edu.ncsu.csc216.pack_scheduler.course.validator.InvalidTransitionException;
 
 
 /**
@@ -73,9 +74,10 @@ public class CourseCatalogTest {
 	
 	/**
 	 * Tests loadFromFile().
+	 * @throws InvalidTransitionException 
 	 */
 	@Test
-	public void testLoadCoursesFromFile() {
+	public void testLoadCoursesFromFile() throws InvalidTransitionException {
 		CourseCatalog c1 = new CourseCatalog();
 		c1.loadCoursesFromFile(validTestFile);
 		assertEquals(8, c1.getCourseCatalog().length);
@@ -83,9 +85,10 @@ public class CourseCatalogTest {
 	
 	/**
 	 * Tests newCourseCatalog().
+	 * @throws InvalidTransitionException 
 	 */
 	@Test
-	public void testNewCourseCatalog() {
+	public void testNewCourseCatalog() throws InvalidTransitionException {
 		//load a catalog
 		CourseCatalog c1 = new CourseCatalog();
 		c1.loadCoursesFromFile(validTestFile);
@@ -100,9 +103,10 @@ public class CourseCatalogTest {
 	
 	/**
 	 * Tests addCourseToCatalog().
+	 * @throws InvalidTransitionException 
 	 */
 	@Test
-	public void testAddCourseToCatalog() {
+	public void testAddCourseToCatalog() throws InvalidTransitionException {
 		//load a catalog
 		CourseCatalog c1 = new CourseCatalog();
 		c1.loadCoursesFromFile(validTestFile);
@@ -116,9 +120,10 @@ public class CourseCatalogTest {
 	
 	/**
 	 * Tests removing a course
+	 * @throws InvalidTransitionException 
 	 */
 	@Test
-	public void testRemoveCourseFromCatalog() {
+	public void testRemoveCourseFromCatalog() throws InvalidTransitionException {
 		//load a catalog
 		CourseCatalog c1 = new CourseCatalog();
 		c1.loadCoursesFromFile(validTestFile);
@@ -135,9 +140,10 @@ public class CourseCatalogTest {
 	
 	/**
 	 * Test getting a course from the catalog
+	 * @throws InvalidTransitionException 
 	 */
 	@Test
-	public void testGetCourseFromCatalog() {
+	public void testGetCourseFromCatalog() throws InvalidTransitionException {
 		//create course that will be added
 		Course a = new Course ("ABCD", TITLE, SECTION, CREDITS, INSTRUCTOR_ID, MEETING_DAYS, 
 				START_TIME, END_TIME);
@@ -156,9 +162,10 @@ public class CourseCatalogTest {
 	
 	/**
 	 * tests retrieving a string of the course catalog
+	 * @throws InvalidTransitionException 
 	 */
 	@Test
-	public void testGetCourseCatalog() {
+	public void testGetCourseCatalog() throws InvalidTransitionException {
 		CourseCatalog ws = new CourseCatalog();
 		ws.loadCoursesFromFile(validTestFile);
 		
@@ -209,9 +216,10 @@ public class CourseCatalogTest {
 	
 	/**
 	 * Test saveCourseCatalog().
+	 * @throws InvalidTransitionException 
 	 */
 	@Test
-	public void testExportSchedule() {
+	public void testExportSchedule() throws InvalidTransitionException {
 		//Test that empty schedule exports correctly
 		CourseCatalog ws = new CourseCatalog();
 		ws.saveCourseCatalog("test-files/actual_empty_export.txt");

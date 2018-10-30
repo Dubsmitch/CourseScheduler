@@ -24,7 +24,7 @@ public class ArrayList<E> extends AbstractList<E> {
      * @param INIT_SIZE
      * 		the initial size of the basic array
      */
-    public ArrayList (Class<E> c, int INIT_SIZE) {
+    public ArrayList () {
         @SuppressWarnings("unchecked")
         E[] list = (E[])new Object[INIT_SIZE];
         this.list = list;
@@ -46,9 +46,11 @@ public class ArrayList<E> extends AbstractList<E> {
     		throw new NullPointerException ("can't do this");
     	}
     	//check if e is a duplicate
-    	for (int j = i + 1; j < list.length; j++) {
-    		if (list[j].equals(e)) {
-    			throw new IllegalArgumentException ("Duplicate object cannot be added");
+    	if (size > 0) {
+    		for (int j = 0 ; j < size; j++) {
+    			if (list[j].equals(e)) {
+    				throw new IllegalArgumentException ("Duplicate object cannot be added");
+    			}
     		}
     	}
     	
@@ -57,17 +59,33 @@ public class ArrayList<E> extends AbstractList<E> {
     		throw new IndexOutOfBoundsException ("the index is out of range"); 
     	}
     	
+    	//check to see if the array size is equal to length
+    	//if so double the size
+    	if (size + 1 == list.length) {
+    		int sizeCurrentArray = list.length;
+		
+    		@SuppressWarnings("unchecked")
+    		E[] list2 = (E[])new Object[sizeCurrentArray * 2];
+    		
+    		for (int j = 0 ; j < size; j++) {
+    			list2[j] = list[j];
+    		}
+    		
+    		this.list = list2;
+    	}
     	//size is the number of items the list currently holds
     	//length is the capacity (initialized to 10)
-    	//if the size is lest than the capacity then add the element
-    	if (size < list.length && i != 0) {
+    	//if the element is not added at the beginning or the end (end would be size-1 = index)
+    	if (i != 0 && i != (size)) {
+    		System.out.println("tried to add to the middle");
+    		System.out.println("length is" + " " + list.length + " size is " + size);
     		//create a second list to hold the original list (with the same length)
     		@SuppressWarnings("unchecked")
     		E[] list2 = (E[])new Object[list.length];
     		
     		//go through all the elements and add them to the second list
     		//until the index to add is reached.
-    		for (int j = 0; j < i - 1; j++) {
+    		for (int j = 0; j < i; j++) {
     			list2[j] = list[j];
     		}
     		//then add object to the index to add
@@ -87,8 +105,9 @@ public class ArrayList<E> extends AbstractList<E> {
     			list[j] = list2[j];
     		}
     		
-    	
-    	} else if (size < list.length && i == 0) {
+    	// if tried to add to the beginning
+    	} else if (i == 0 && i != (size)) {
+    		System.out.println("tried to add to beginning");
     		//create a second list to hold the original list (with the same length)
     		@SuppressWarnings("unchecked")
     		E[] list2 = (E[])new Object[list.length];
@@ -113,16 +132,17 @@ public class ArrayList<E> extends AbstractList<E> {
     		
     		// if size is equal to length
     	} else {
+    		System.out.println("added to end");
     		
-    		int sizeCurrentArray = size;
-    		
+    		//create a second list to hold the original list (with the same length)
     		@SuppressWarnings("unchecked")
-    		E[] list2 = (E[])new Object[sizeCurrentArray * 2];
+    		E[] list2 = (E[])new Object[list.length];
 
     		if (i != 0) {
+    			System.out.println("i isnt zero");
     			//go through all the elements and add them to the second list
         		//until the index to add is reached.
-        		for (int j = 0; j < i - 1; j++) {
+        		for (int j = 0; j < size; j++) {
         			list2[j] = list[j];
         		}
         		//then add object to the index to add
@@ -131,12 +151,6 @@ public class ArrayList<E> extends AbstractList<E> {
         		//add one to size because the array will have to be
         		//one larger to acommadate the new addition
             	size = size + 1;
-            	
-        		//then add the rest of the items, adding one to the index for the
-            	//location in the new list
-        		for (int k = i; k < size; k++) {
-        			list2[k + 1] = list[k];
-        		}
         		
         		//then add all elements back to original list
         		for (int j = 0; j < size; j++) {
@@ -144,6 +158,7 @@ public class ArrayList<E> extends AbstractList<E> {
         		}
         		
     		} else {
+    			System.out.println("i is zero");
     			//add element to the beginning of the empty list
         		list2[i] = e;
         		
@@ -181,84 +196,62 @@ public class ArrayList<E> extends AbstractList<E> {
     	
     	//if the index is not zero and less than the size
     	if (index != 0 && index != size) {
-    	//create new list to hold
-		@SuppressWarnings("unchecked")
-		E[] list2 = (E[])new Object[list.length];
-		
-    	//create new list to hold entire first list to return removed item
-		@SuppressWarnings("unchecked")
-		E[] list3 = (E[])new Object[list.length];
-		list3 = list;
-		
-		//before the index of removal the list is the same
-		for (int i = 0; i < index; i++) {
-			list2[i] = list[i];
-		}
-		
-		//not sure if size should be one smaller or not here..
-		for (int i = index; i < size; i++) {
-			list2[i] = list[i + 1];
-		}
-		
-		//now switch again
-		for (int i = 0; i < size; i++) {
-			list[i]=list2[i];
-		}
-		list[size - 1] = null;
-			
-		size = size - 1;
-		
-    	return list3[index];
-    	
-    	//if the index is zero
-    	} else if (index == 0) {
-        	//create new list to hold
+    		
+    		@SuppressWarnings("unchecked")
+			E ee = (E)new Object();
+    		ee = list[index];
+    		
+    		System.out.println("execute path 1 remove");
+    		//create new list to hold
     		@SuppressWarnings("unchecked")
     		E[] list2 = (E[])new Object[list.length];
-    		
-        	//create new list to hold entire first list to return removed item
-    		@SuppressWarnings("unchecked")
-    		E[] list3 = (E[])new Object[list.length];
-    		list3 = list;
-    		//before the index of removal the list is the same
-    		for (int i = 0; i < size; i++) {
-    			list2[i] = list[i + 1];
-    		}
-    		
-    		//now switch again
-    		for (int i = 0; i < size; i++) {
-    			list[i]=list2[i];
-    		}
-    		list[size - 1] = null;
-    			
-    		size = size - 1;
-    		
-        	return list3[index];
-        //if it is removed from the end
-    	} else {
-        	//create new list to hold
-    		@SuppressWarnings("unchecked")
-    		E[] list2 = (E[])new Object[list.length];
-    		
-        	//create new list to hold entire first list to return removed item
-    		@SuppressWarnings("unchecked")
-    		E[] list3 = (E[])new Object[list.length];
-    		list3 = list;
-    		
+		
     		//before the index of removal the list is the same
     		for (int i = 0; i < index; i++) {
     			list2[i] = list[i];
     		}
-    		
-    		//now switch again
+		
+    		//not sure if size should be one smaller or not here..
+    		for (int i = index; i < size; i++) {
+    			list2[i] = list[i + 1];
+    		}
+		
+    		//	now switch again
     		for (int i = 0; i < size; i++) {
     			list[i]=list2[i];
     		}
     		list[size - 1] = null;
-    			
+    		
     		size = size - 1;
     		
-        	return list3[index];
+    		return ee;
+    		
+    	//	if the index is zero
+    	} else {
+    		System.out.println("execute path 2 remove");
+        	//create new list to hold
+    		@SuppressWarnings("unchecked")
+    		E[] list2 = (E[])new Object[list.length];
+    			
+
+    		@SuppressWarnings("unchecked")
+			E ee = (E)new Object();
+    		ee = list[index];
+    		
+    	//	before the index of removal the list is the same
+   			for (int i = 0; i < size; i++) {
+   				list2[i] = list[i + 1];
+   			}
+   			
+   		//	now switch again
+    		for (int i = 0; i < size; i++) {
+    			list[i]=list2[i];
+    		}
+   			list[size - 1] = null;
+   			
+   			size = size - 1;
+    			
+    		return ee;
     	}
     }
     

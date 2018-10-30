@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -26,6 +27,7 @@ import javax.swing.border.TitledBorder;
 import javax.swing.table.AbstractTableModel;
 
 import edu.ncsu.csc216.pack_scheduler.catalog.CourseCatalog;
+import edu.ncsu.csc216.pack_scheduler.course.validator.InvalidTransitionException;
 import edu.ncsu.csc216.pack_scheduler.manager.RegistrationManager;
 
 /**
@@ -346,6 +348,9 @@ public class CourseCatalogPanel extends JPanel implements ActionListener {
 				courseCatalogTableModel.fireTableDataChanged();
 			} catch (IllegalArgumentException iae) {
 				JOptionPane.showMessageDialog(this, iae.getMessage());
+			} catch (InvalidTransitionException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
 		} else if (e.getSource() == btnSaveCourseCatalog) {
 			String fileName = getFileName(false);
@@ -447,6 +452,12 @@ public class CourseCatalogPanel extends JPanel implements ActionListener {
 				}
 			} catch (IllegalArgumentException iae) {
 				JOptionPane.showMessageDialog(this, iae.getMessage());
+			} catch (HeadlessException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (InvalidTransitionException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
 			courseCatalogTableModel.updateData();
 		} else if (e.getSource() == btnRemoveCourse) {

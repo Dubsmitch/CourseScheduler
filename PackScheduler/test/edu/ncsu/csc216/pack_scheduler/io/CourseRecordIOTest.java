@@ -15,6 +15,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import edu.ncsu.csc216.pack_scheduler.course.Course;
+import edu.ncsu.csc216.pack_scheduler.course.validator.InvalidTransitionException;
 import edu.ncsu.csc216.pack_scheduler.io.CourseRecordIO;
 
 /**
@@ -62,9 +63,10 @@ public class CourseRecordIOTest {
 	
 	/**
 	 * Tests readValidCourseRecords().
+	 * @throws InvalidTransitionException 
 	 */
 	@Test
-	public void testReadValidCourseRecords() {
+	public void testReadValidCourseRecords() throws InvalidTransitionException {
 		try {
 			SortedList<Course> courses = CourseRecordIO.readCourseRecords(validTestFile);
 			assertEquals(8, courses.size());
@@ -79,9 +81,10 @@ public class CourseRecordIOTest {
 
 	/**
 	 * Tests readInvalidCourseRecords().
+	 * @throws InvalidTransitionException 
 	 */
 	@Test
-	public void testReadInvalidCourseRecords() {
+	public void testReadInvalidCourseRecords() throws InvalidTransitionException {
 		SortedList<Course> courses;
 		try {
 			courses = CourseRecordIO.readCourseRecords(invalidTestFile);
@@ -93,9 +96,10 @@ public class CourseRecordIOTest {
 	
 	/**
 	 * Tests writeCourseRecords()
+	 * @throws InvalidTransitionException 
 	 */
 	@Test
-	public void testWriteCourseRecords() {
+	public void testWriteCourseRecords() throws InvalidTransitionException {
 		SortedList<Course> courses = new SortedList<Course>();
 		courses.add(new Course("CSC116", "Intro to Programming - Java", "003", 3, "spbalik", "MW", 1250, 1440));
 		courses.add(new Course("CSC216", "Programming Concepts - Java", "001", 4, "sesmith5", "MW", 1330, 1445));
