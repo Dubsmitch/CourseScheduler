@@ -77,8 +77,6 @@ public class ArrayList<E> extends AbstractList<E> {
     	//length is the capacity (initialized to 10)
     	//if the element is not added at the beginning or the end (end would be size-1 = index)
     	if (i != 0 && i != (size)) {
-    		System.out.println("tried to add to the middle");
-    		System.out.println("length is" + " " + list.length + " size is " + size);
     		//create a second list to hold the original list (with the same length)
     		@SuppressWarnings("unchecked")
     		E[] list2 = (E[])new Object[list.length];
@@ -107,7 +105,6 @@ public class ArrayList<E> extends AbstractList<E> {
     		
     	// if tried to add to the beginning
     	} else if (i == 0 && i != (size)) {
-    		System.out.println("tried to add to beginning");
     		//create a second list to hold the original list (with the same length)
     		@SuppressWarnings("unchecked")
     		E[] list2 = (E[])new Object[list.length];
@@ -132,14 +129,12 @@ public class ArrayList<E> extends AbstractList<E> {
     		
     		// if size is equal to length
     	} else {
-    		System.out.println("added to end");
     		
     		//create a second list to hold the original list (with the same length)
     		@SuppressWarnings("unchecked")
     		E[] list2 = (E[])new Object[list.length];
 
     		if (i != 0) {
-    			System.out.println("i isnt zero");
     			//go through all the elements and add them to the second list
         		//until the index to add is reached.
         		for (int j = 0; j < size; j++) {
@@ -158,7 +153,6 @@ public class ArrayList<E> extends AbstractList<E> {
         		}
         		
     		} else {
-    			System.out.println("i is zero");
     			//add element to the beginning of the empty list
         		list2[i] = e;
         		
@@ -201,7 +195,6 @@ public class ArrayList<E> extends AbstractList<E> {
 			E ee = (E)new Object();
     		ee = list[index];
     		
-    		System.out.println("execute path 1 remove");
     		//create new list to hold
     		@SuppressWarnings("unchecked")
     		E[] list2 = (E[])new Object[list.length];
@@ -228,7 +221,6 @@ public class ArrayList<E> extends AbstractList<E> {
     		
     	//	if the index is zero
     	} else {
-    		System.out.println("execute path 2 remove");
         	//create new list to hold
     		@SuppressWarnings("unchecked")
     		E[] list2 = (E[])new Object[list.length];
