@@ -199,11 +199,11 @@ abstract public class Activity implements Conflict {
 	public void setActivityTime(int startTime, int endTime) {
 		
 		if (endTime > (UPPER_TIME - 1) || endTime < 0000) {
-			throw new IllegalArgumentException ("Invalid course times"); 
+			throw new IllegalArgumentException ("Invalid meeting times"); 
 		}
 		
 		if (startTime > (UPPER_TIME - 1) || startTime < 0000) {
-			throw new IllegalArgumentException ("Invalid course times"); 
+			throw new IllegalArgumentException ("Invalid meeting times"); 
 		}
 		
 		int timeCorrection = 100;
@@ -213,11 +213,11 @@ abstract public class Activity implements Conflict {
 		correctedEnd = correctedEnd - UPPER_HOUR;
 		
 		if (correctedStart >= 0 || correctedEnd >= 0) {
-			throw new IllegalArgumentException ("Invalid course times"); 
+			throw new IllegalArgumentException ("Invalid meeting times"); 
 		}
 	
 		if (endTime < startTime) {
-			throw new IllegalArgumentException ("Invalid course times"); 
+			throw new IllegalArgumentException ("Invalid meeting times"); 
 		}
 		
 		this.startTime = startTime;

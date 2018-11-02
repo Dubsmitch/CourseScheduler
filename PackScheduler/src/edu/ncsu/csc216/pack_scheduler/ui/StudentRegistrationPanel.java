@@ -132,7 +132,6 @@ public class StudentRegistrationPanel  extends JPanel implements ActionListener 
 		JPanel pnlResetDisplay = new JPanel();
 		pnlResetDisplay.setLayout(new GridLayout(1, 2));
 		pnlResetDisplay.add(btnReset);
-		pnlResetDisplay.add(btnDisplay);
 		JPanel pnlScheduleTitle = new JPanel();
 		pnlScheduleTitle.setLayout(new GridLayout(1, 3));
 		pnlScheduleTitle.add(lblScheduleTitle);

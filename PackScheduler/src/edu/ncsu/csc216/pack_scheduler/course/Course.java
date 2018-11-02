@@ -203,7 +203,7 @@ public class Course extends Activity implements Comparable<Course> {
 	@Override
 	public void setMeetingDays(String meetingDays) {
 		if (meetingDays == null || meetingDays.equals("")) {
-			throw new IllegalArgumentException ("meeting days invalid");	
+			throw new IllegalArgumentException ("Invalid meeting days");	
 		}
 		boolean okay = false;
 		boolean meetingDayA = false;

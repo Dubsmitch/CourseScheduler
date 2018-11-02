@@ -198,9 +198,9 @@ public class CourseCatalog {
 			return courseArray;
 		//if catalog is size zero
 		} else {
-			String [][] courseArray;
-			courseArray = new String [0][0];
-			return courseArray;
+			//String [][] courseArray;
+			//courseArray = new String [0][0];
+			return null;
 		}
 	}
 	
