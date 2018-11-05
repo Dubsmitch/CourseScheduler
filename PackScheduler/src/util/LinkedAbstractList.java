@@ -75,6 +75,7 @@ public class LinkedAbstractList<E> extends AbstractList {
 			//finds the index, then sets the first node equal to old
 			//sets the trailing equal to #4
 			trailing.next = new ListNode(e, leading);
+			size = size + 1;
 			
 			//not sure if this is correct 
 		}
@@ -95,10 +96,49 @@ public class LinkedAbstractList<E> extends AbstractList {
 				front = front.next;
 			} else {
 				trailing.next = leading.next;
-			} return leading.data;
-		} return null;
+			} 
+			size = size - 1;
+			return leading.data;
+		}
+		return null;
 	}
 	
+	@Override
+	public E set (int index, E e) {
+		if (e == null) {
+			throw new NullPointerException ("element to be added cant be null");
+		}
+		
+		for (ListNode comp = front; comp != null; comp = front.next) {
+			if (comp.data.equals(e)) {
+				throw new IllegalArgumentException ("cannot have duplicate elements");
+			}
+		}
+		
+		if (index < 0 || index >= size) {
+			throw new IndexOutOfBoundsException ("index was out of range");
+		}
+		
+		ListNode leading = front;
+		ListNode trailing = null;
+		
+		while (leading != null && index > 0) {
+			trailing = leading;
+			leading = leading.next;
+			
+			index--;
+		}
+		
+		E datum = leading.data;
+		
+		// the leading equal to e, leading.next
+		leading = new ListNode(e, leading);
+		//set the trailing equal to itself plus the new item
+		trailing.next = leading;
+		
+		return datum;
+		
+	}
 	/**
 	 * inner class of LinkedAbstractList 
 	 * 
