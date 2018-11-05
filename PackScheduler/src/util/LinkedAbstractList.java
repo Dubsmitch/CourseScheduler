@@ -30,6 +30,11 @@ public class LinkedAbstractList<E> extends AbstractList {
 		
 	}
 	
+	public ListNode get(int index) {
+		
+		return null;
+	}
+	
 	@Override
 	public void add (int index, E e) {
 		if (e.equals(null)) {
@@ -39,6 +44,23 @@ public class LinkedAbstractList<E> extends AbstractList {
 		if (capacity == size) {
 			throw new IllegalArgumentException ("The list is full");
 		}
+		//if empty then add a new listnode with a null tail link
+		if (size == 0) {
+			front = new ListNode(e);
+			
+		//if the size isn't 0 and the index is
+		//not equal to the size (adding to second index)
+		} else if (size > 0 && index == 1) {
+			//make first node reference the second node
+			ListNode current = front;
+			ListNode Temp = new ListNode(e);
+			
+//			for (int i = 0; i < index; i++) {
+//				current = current.getNext();
+//			}
+			 	
+		}
+		
 		
 		
 	}
@@ -56,10 +78,12 @@ public class LinkedAbstractList<E> extends AbstractList {
 		private ListNode next;
 		
 		public ListNode (E data) {
-			//to-do
+			this.data = data;
+			next = null;
 		}
 		public ListNode (E data, ListNode next) {
-			//to-do
+			this.data = data;
+			this.next = next;
 		}
 	}
 }
