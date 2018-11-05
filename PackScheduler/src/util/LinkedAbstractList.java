@@ -80,6 +80,25 @@ public class LinkedAbstractList<E> extends AbstractList {
 		}
 	}
 	
+	public E remove (int idx) {
+		ListNode leading = front;
+		ListNode trailing = null;
+		
+		while (leading != null && idx > 0) {
+			trailing = leading;
+			leading = leading.next;
+			
+			idx--;
+		}
+		if (leading != null ) {
+			if (leading == front ) {
+				front = front.next;
+			} else {
+				trailing.next = leading.next;
+			} return leading.data;
+		} return null;
+	}
+	
 	/**
 	 * inner class of LinkedAbstractList 
 	 * 
