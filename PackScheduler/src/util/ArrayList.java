@@ -6,7 +6,8 @@ import java.util.AbstractList;
  * manipulate and maintain them.
  *  
  * @author William
- *
+ * 
+ * @param <E>
  */
 public class ArrayList<E> extends AbstractList<E> {
     /** initial size of the list **/

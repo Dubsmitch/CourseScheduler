@@ -13,6 +13,9 @@ import java.util.AbstractList;
 public class LinkedAbstractList<E> extends AbstractList {
 	private ListNode front;
 	
+	/** I guess I need a list of some kind? not in the UML **/
+	private E[] list;
+	
 	private int size;
 	
 	private int capacity;
@@ -22,17 +25,17 @@ public class LinkedAbstractList<E> extends AbstractList {
 			throw new IllegalArgumentException ("Capacity cannot be less "
 					+ "than size.");
 		}
-		
 		front = null;
 		size = 0;
 		capacity = cap;
 		
-		
+		@SuppressWarnings({ "unused", "unchecked" })
+		E[] list = (E[]) new LinkedAbstractList[size];
 	}
 	
-	public ListNode get(int index) {
+	public E get(int index) {
 		
-		return null;
+		return list[index];
 	}
 	
 	@Override
