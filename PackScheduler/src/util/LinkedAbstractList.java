@@ -11,10 +11,8 @@ import java.util.AbstractList;
  * 		generic type parameter
  */
 public class LinkedAbstractList<E> extends AbstractList {
+	/** reference to the first element **/
 	private ListNode front;
-	
-	/** I guess I need a list of some kind? not in the UML **/
-	private E[] list;
 	
 	private int size;
 	
@@ -28,14 +26,17 @@ public class LinkedAbstractList<E> extends AbstractList {
 		front = null;
 		size = 0;
 		capacity = cap;
-		
-		@SuppressWarnings({ "unused", "unchecked" })
-		E[] list = (E[]) new LinkedAbstractList[size];
 	}
 	
 	public E get(int index) {
-		
-		return list[index];
+		int idx = 0;
+		E datum = null; 
+		for (ListNode p = front; p != null; p = p.next) {
+			if (idx == index) {
+				datum = p.data;
+			}
+		}
+		return datum;
 	}
 	
 	@Override
