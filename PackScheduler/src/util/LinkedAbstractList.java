@@ -51,22 +51,33 @@ public class LinkedAbstractList<E> extends AbstractList {
 		//if empty then add a new listnode with a null tail link
 		if (size == 0) {
 			front = new ListNode(e);
-			
-		//if the size isn't 0 and the index is
+			size = size + 1;
+		//if the size isn't 0 and the index is 1
 		//not equal to the size (adding to second index)
 		} else if (size > 0 && index == 1) {
 			//make first node reference the second node
-			ListNode current = front;
-			ListNode Temp = new ListNode(e);
+			ListNode newFront = front;
+			front = new ListNode(e, front);
+			size = size + 1;
+		//add to middle
+		} else if (size > 1 && index > 1) {
+			ListNode leading = front;
+			ListNode trailing = null;
+			int idx = 0;
+			//theoretical: size 8, index to insert: 5
+			//need to change the reference of index 4 to the new obj
+			//need to insert at # 5 and make a reference to old 5
+			while (leading != null && idx < index ) {
+				trailing = leading;
+				leading = leading.next;
+			}
+			//search for the insertion position. Stop when it
+			//finds the index, then sets the first node equal to old
+			//sets the trailing equal to #4
+			trailing.next = new ListNode(e, leading);
 			
-//			for (int i = 0; i < index; i++) {
-//				current = current.getNext();
-//			}
-			 	
+			//not sure if this is correct 
 		}
-		
-		
-		
 	}
 	
 	/**
