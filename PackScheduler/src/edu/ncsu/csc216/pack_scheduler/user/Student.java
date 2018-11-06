@@ -36,7 +36,8 @@ public class Student extends User implements Comparable<Student> {
 	 * @param password the password of the student
 	 * @param maxCredits the maximum number of credits a student can get
 	 */
-	public Student(String firstName, String lastName, String id, String email, String password, int maxCredits) {
+	public Student(String firstName, String lastName, String id, String email,
+			String password, int maxCredits) {
 		super(firstName, lastName, id, email, password);
 		setMaxCredits(maxCredits);
 		
@@ -105,8 +106,11 @@ public class Student extends User implements Comparable<Student> {
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (!super.equals(obj))
+
+		if (!super.equals(obj)) {
+
 			return false;
+		}
 		if (getClass() != obj.getClass())
 			return false;
 		Student other = (Student) obj;

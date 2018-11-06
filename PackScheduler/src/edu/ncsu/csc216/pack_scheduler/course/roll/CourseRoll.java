@@ -62,8 +62,6 @@ public class CourseRoll {
 				throw new IllegalArgumentException ("student is already enrolled");
 			}
 		}
-		
-		
 		this.roll.add(0, s);
 	}
 	
@@ -102,4 +100,5 @@ public class CourseRoll {
 		
 		return true;
 	}
+	
 }

@@ -228,8 +228,15 @@ abstract public class User {
 //		user fields cannot be null
 //		if (obj == null)
 //			return false;
-		if (getClass() != obj.getClass())
+		System.out.println("This executed 1");
+
+		if (getClass() != obj.getClass()) {
+			System.out.println("This executed");
 			return false;
+		}
+		System.out.println("This executed 2");
+
+		
 //		cast 
 		User other = (User) obj;
 //		email cannot be null		

@@ -43,7 +43,7 @@ public class LinkedAbstractList<E> extends AbstractList<Object> {
 	
 	@Override
 	public void add (int index, Object e) {
-		if (e.equals(null)) {
+		if (e == null) {
 			throw new NullPointerException ("cannot add a null object to the list");
 		}
 		
