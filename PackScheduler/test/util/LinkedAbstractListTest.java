@@ -23,7 +23,8 @@ public class LinkedAbstractListTest {
 	}
 
 	/**
-	
+	 * adding in testing for add() method
+	 */
 	@Test
 	public void Addtest() {
 		String b = "b";
@@ -38,127 +39,208 @@ public class LinkedAbstractListTest {
 		String k = "k";
 		String l = "l";
 		String m = "m";
-		ArrayList a = null;
-		a = new ArrayList();
+
+		LinkedAbstractList a = null;
+		a = new LinkedAbstractList(10);
+		
+		assertEquals(a.size(), 0);
 		
 		//add one object
 		a.add(0, b);
 		
 		assertEquals(a.size(), 1);
+		
+		assertTrue(a.get(0).equals(b));
 
 		//add second object to the front
 		a.add(0, c);
+		//should be object c in front
+		assertTrue(a.get(0).equals(c));
 		assertEquals(a.size(), 2);
-		
-		//add third object
+
+		assertTrue(a.get(1).equals(b));
+//		
+//		//add third object
 		a.add(0, d);
 		assertEquals(a.size(), 3);
-		
-		//add object to the end
+		assertTrue(a.get(0).equals(d));
+		assertTrue(a.get(1).equals(c));
+		assertTrue(a.get(2).equals(b));
+//		
+//		//add object to the end
 		a.add(3, e);
 		assertEquals(a.size(), 4);
-		
-		//add object to the middle
+		assertTrue(a.get(0).equals(d));
+		assertTrue(a.get(1).equals(c));
+		assertTrue(a.get(2).equals(b));
+		assertTrue(a.get(3).equals(e));
+//		
+//		//add object to the middle
 		a.add(2, f);
 		assertEquals(a.size(), 5);
-		
-		a.add(0, g);
-		assertEquals(a.size(), 6);
-		a.add(3, h);
-		assertEquals(a.size(), 7);
-		a.add(3, i);
-		assertEquals(a.size(), 8);
-		
-		a.add(3, j);
-		assertEquals(a.size(), 9);
-		//try to double size
-		a.add(3, k);
-		assertEquals(a.size(), 10);
-		
+		assertTrue(a.get(0).equals(d));
+		assertTrue(a.get(1).equals(c));
+		assertTrue(a.get(2).equals(f));
+		assertTrue(a.get(3).equals(b));
+		assertTrue(a.get(4).equals(e));		
 	}
 	
 	/**
+	 * test removal
+	 */
 
 	@Test
 	public void Removetest() {
-		ArrayList a = null;
-		a = new ArrayList();
-		
 		String b = "b";
 		String c = "c";
 		String d = "d";
 		String e = "e";
+		String f = "f";
+		String g = "g";
+		String h = "h";
+		String i = "i";
+		String j = "j";
+		String k = "k";
+		String l = "l";
+		String m = "m";
+
+		LinkedAbstractList a = null;
+		a = new LinkedAbstractList(10);
+		
+		assertEquals(a.size(), 0);
 		
 		//add one object
 		a.add(0, b);
 		
 		assertEquals(a.size(), 1);
-		assertEquals(a.get(0), b);
+		
+		assertTrue(a.get(0).equals(b));
 
 		//add second object to the front
 		a.add(0, c);
+		//should be object c in front
+		assertTrue(a.get(0).equals(c));
 		assertEquals(a.size(), 2);
-		assertEquals(a.get(0), c);
-				
-		//add third object
+
+		assertTrue(a.get(1).equals(b));
+//		
+//		//add third object
 		a.add(0, d);
 		assertEquals(a.size(), 3);
-		assertEquals(a.get(0), d);
-		assertEquals(a.get(1), c);
-				
-		//add object to the end
+		assertTrue(a.get(0).equals(d));
+		assertTrue(a.get(1).equals(c));
+		assertTrue(a.get(2).equals(b));
+//		
+//		//add object to the end
 		a.add(3, e);
 		assertEquals(a.size(), 4);
-		assertEquals(a.get(2), b);
+		assertTrue(a.get(0).equals(d));
+		assertTrue(a.get(1).equals(c));
+		assertTrue(a.get(2).equals(b));
+		assertTrue(a.get(3).equals(e));
+//		
+//		//add object to the middle
+		a.add(2, f);
+		assertEquals(a.size(), 5);
+		assertTrue(a.get(0).equals(d));
+		assertTrue(a.get(1).equals(c));
+		assertTrue(a.get(2).equals(f));
+		assertTrue(a.get(3).equals(b));
+		assertTrue(a.get(4).equals(e));		
+		//test removal from pos. 4 (the end)
+		assertTrue(a.remove(4).equals(e));
+		assertEquals(a.size(), 4);
+		assertTrue(a.get(0).equals(d));
+		assertTrue(a.get(1).equals(c));
+		assertTrue(a.get(2).equals(f));
+		assertTrue(a.get(3).equals(b));
 		
-		//remove from the middle
-		assertEquals(a.remove(2), b);
-		//remove from the front
-		assertEquals(a.remove(0), d);
+		//test removal from the front (pos 0)
+		assertTrue(a.remove(0).equals(d));
+		assertEquals(a.size(), 3);
+		assertTrue(a.get(0).equals(c));
+		assertTrue(a.get(1).equals(f));
+		assertTrue(a.get(2).equals(b));
+		
+		//test removal from the middle (pos 1)
+		assertTrue(a.remove(1).equals(f));
 		assertEquals(a.size(), 2);
+		assertTrue(a.get(0).equals(c));
+		assertTrue(a.get(1).equals(b));
 		
-		//remove from the end
-		assertEquals(a.remove(1), e);
 	}
 	
 	/**
+	 * tests setting at an index
+	 */ 
 
 	@Test
 	public void Settest() {
-		ArrayList a = null;
-		a = new ArrayList();
-		
 		String b = "b";
 		String c = "c";
 		String d = "d";
 		String e = "e";
-		String aa = "aa";
+		String f = "f";
+		String g = "g";
+		String h = "h";
+		String i = "i";
+		String j = "j";
+		String k = "k";
+		String l = "l";
+		String m = "m";
+
+		LinkedAbstractList a = null;
+		a = new LinkedAbstractList(10);
+		
+		assertEquals(a.size(), 0);
 		
 		//add one object
 		a.add(0, b);
 		
 		assertEquals(a.size(), 1);
-		assertEquals(a.get(0), b);
+		
+		assertTrue(a.get(0).equals(b));
 
 		//add second object to the front
 		a.add(0, c);
+		//should be object c in front
+		assertTrue(a.get(0).equals(c));
 		assertEquals(a.size(), 2);
-		assertEquals(a.get(0), c);
-				
-		//add third object
+
+		assertTrue(a.get(1).equals(b));
+//		
+//		//add third object
 		a.add(0, d);
 		assertEquals(a.size(), 3);
-		assertEquals(a.get(0), d);
-		assertEquals(a.get(1), c);
-				
-		//add object to the end
+		assertTrue(a.get(0).equals(d));
+		assertTrue(a.get(1).equals(c));
+		assertTrue(a.get(2).equals(b));
+//		
+//		//add object to the end
 		a.add(3, e);
 		assertEquals(a.size(), 4);
-		assertEquals(a.get(2), b);
+		assertTrue(a.get(0).equals(d));
+		assertTrue(a.get(1).equals(c));
+		assertTrue(a.get(2).equals(b));
+		assertTrue(a.get(3).equals(e));
+//		
+//		//add object to the middle
+		a.add(2, f);
+		assertEquals(a.size(), 5);
+		assertTrue(a.get(0).equals(d));
+		assertTrue(a.get(1).equals(c));
+		assertTrue(a.get(2).equals(f));
+		assertTrue(a.get(3).equals(b));
+		assertTrue(a.get(4).equals(e));	
 		
-		a.set(3, aa);
-		assertEquals(a.size(), 4);
-		assertEquals(a.get(3), aa);
+		a.set(0, m);
+		assertEquals(a.size(), 5);
+		assertTrue(a.get(0).equals(m));
+		
+		a.set(3, l);
+		assertEquals(a.size(), 5);
+		assertTrue(a.get(3).equals(l));
+
 	}
-	**/
+	
 }

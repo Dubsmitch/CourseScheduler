@@ -32,10 +32,13 @@ public class LinkedAbstractList<E> extends AbstractList<Object> {
 		int idx = 0;
 		E datum = null; 
 		for (ListNode p = front; p != null; p = p.next) {
+			
 			if (idx == index) {
 				datum = p.data;
 			}
+			idx++;
 		}
+		System.out.println(datum);
 		return datum;
 	}
 	
@@ -48,11 +51,23 @@ public class LinkedAbstractList<E> extends AbstractList<Object> {
 		if (capacity == size) {
 			throw new IllegalArgumentException ("The list is full");
 		}
+		size = size + 1;
+		if (index == 0) {
+			front = new ListNode (e, front);
+		} else if (front != null && index > 0) {
+			ListNode leading = front;
+			while (leading != null && index > 1) {
+				leading = leading.next;
+				index--;
+			}
+			if (leading != null) {
+				leading.next = new ListNode (e, leading.next);
+			}
 		//if empty then add a new listnode with a null tail link
-		if (size == 0) {
-			front = new ListNode(e);
-			size = size + 1;
-		//if the size isn't 0 and the index is 1
+//		if (size == 0) {
+//			front = new ListNode(e);
+//			size = size + 1;
+//		//if the size isn't 0 and the index is 1
 		//not equal to the size (adding to second index)
 		//} else if (size > 0 && index == 1) {
 			//make first node reference the second node
@@ -60,22 +75,23 @@ public class LinkedAbstractList<E> extends AbstractList<Object> {
 		//	front = new ListNode(e, front);
 		//	size = size + 1;
 		//add to middle
-		} else if (size > 1 && index > 1) {
-			ListNode leading = front;
-			ListNode trailing = null;
-			int idx = 0;
-			//theoretical: size 8, index to insert: 5
-			//need to change the reference of index 4 to the new obj
-			//need to insert at # 5 and make a reference to old 5
-			while (leading != null && idx < index ) {
-				trailing = leading;
-				leading = leading.next;
-			}
-			//search for the insertion position. Stop when it
-			//finds the index, then sets the first node equal to old
+//		} else if (size >= 1) {
+//			ListNode leading = front;
+//			ListNode trailing = null;
+//			int idx = 0;
+//			//theoretical: size 8, index to insert: 5
+//			//need to change the reference of index 4 to the new obj
+//			//need to insert at # 5 and make a reference to old 5
+//			while (leading != null && idx < index ) {
+//				trailing = leading;
+//				leading = leading.next;
+//			}
+//			//search for the insertion position. Stop when it
+//			//finds the index, then sets the first node equal to old
 			//sets the trailing equal to #4
-			trailing.next = new ListNode(e, leading);
-			size = size + 1;
+			
+//			trailing.next = new ListNode(e, leading);
+//			size = size + 1;
 			
 			//not sure if this is correct 
 		}
@@ -108,35 +124,49 @@ public class LinkedAbstractList<E> extends AbstractList<Object> {
 		if (e == null) {
 			throw new NullPointerException ("element to be added cant be null");
 		}
+		System.out.println("This executed (outside of comp statement");
 		
-		for (ListNode comp = front; comp != null; comp = front.next) {
-			if (comp.data.equals(e)) {
+		ListNode leading = front;
+		ListNode trailing = null;
+		
+		while (leading != null) {
+			System.out.println("This executed (inside of comp statement");
+
+			if (leading.data.equals(e)) {
 				throw new IllegalArgumentException ("cannot have duplicate elements");
 			}
+			trailing = leading;
+			leading = leading.next;
+			
+			//index--;
 		}
 		
 		if (index < 0 || index >= size) {
 			throw new IndexOutOfBoundsException ("index was out of range");
 		}
 		
-		ListNode leading = front;
-		ListNode trailing = null;
+		E q = (E) this.get(index);
 		
-		while (leading != null && index > 0) {
-			trailing = leading;
-			leading = leading.next;
-			
-			index--;
+		if (index == 0) {
+			front = new ListNode (e, front);
+		} else if (front != null && index > 0) {
+			leading = front;
+			while (leading != null && index > 1) {
+				leading = leading.next;
+				index--;
+			}
+			if (leading != null) {
+				leading.next = new ListNode (e, leading.next);
+			}
 		}
-		
-		E datum = leading.data;
+		//E datum = leading.data;
 		
 		// the leading equal to e, leading.next
-		leading = new ListNode(e, leading);
+		//leading = new ListNode(e, leading);
 		//set the trailing equal to itself plus the new item
-		trailing.next = leading;
+		//trailing.next = leading;
 		
-		return datum;
+		return q;
 		
 	}
 	
