@@ -38,7 +38,6 @@ public class LinkedAbstractList<E> extends AbstractList<Object> {
 			}
 			idx++;
 		}
-		System.out.println(datum);
 		return datum;
 	}
 	
@@ -124,13 +123,11 @@ public class LinkedAbstractList<E> extends AbstractList<Object> {
 		if (e == null) {
 			throw new NullPointerException ("element to be added cant be null");
 		}
-		System.out.println("This executed (outside of comp statement");
 		
 		ListNode leading = front;
 		ListNode trailing = null;
 		
 		while (leading != null) {
-			System.out.println("This executed (inside of comp statement");
 
 			if (leading.data.equals(e)) {
 				throw new IllegalArgumentException ("cannot have duplicate elements");
