@@ -3,6 +3,7 @@
  */
 package edu.ncsu.csc216.pack_scheduler.course;
 
+import edu.ncsu.csc216.pack_scheduler.course.roll.CourseRoll;
 import edu.ncsu.csc216.pack_scheduler.course.validator.CourseNameValidator;
 import edu.ncsu.csc216.pack_scheduler.course.validator.InvalidTransitionException;
 
@@ -25,6 +26,9 @@ public class Course extends Activity implements Comparable<Course> {
 	private static final int MAX_CREDITS = 5;
 	/** minimum number of credits */
 	private static final int MIN_CREDITS = 1;
+	
+	/**Course's roll **/
+	private CourseRoll roll;
 	/** Course's name. */
 	private String name;
 	/** Course's section. */
@@ -47,8 +51,10 @@ public class Course extends Activity implements Comparable<Course> {
 	 * @param meetingDays meeting days for Course as series of chars
 	 * @throws InvalidTransitionException 
 	 */
-	public Course(String name, String title, String section, int credits, String instructorId, String meetingDays) throws InvalidTransitionException {
-	    this(name, title, section, credits, instructorId, meetingDays, 0, 0);
+	public Course(String name, String title, String section, int credits, String instructorId, int enrollmentCap, String meetingDays) throws InvalidTransitionException {
+	    this(name, title, section, credits, instructorId, enrollmentCap, meetingDays, 0, 0);
+	    
+	    roll = new CourseRoll(enrollmentCap);
 	}
 
 	/**
@@ -63,13 +69,17 @@ public class Course extends Activity implements Comparable<Course> {
 	 * @param endTime time that the course ends
 	 * @throws InvalidTransitionException 
 	 */
-	public Course(String name, String title, String section, int credits, String instructorId, String meetingDays,
+	public Course(String name, String title, String section, int credits, String instructorId, int enrollmentCap, String meetingDays,
 			int startTime, int endTime) throws InvalidTransitionException {
 	    super(title, meetingDays, startTime, endTime);
 		setName(name);
 	    setSection(section);
 	    setCredits(credits);
 	    setInstructorId(instructorId);
+	    
+	    roll = new CourseRoll(enrollmentCap);
+
+	    
 	}
 
 	/**
@@ -92,14 +102,16 @@ public class Course extends Activity implements Comparable<Course> {
 	private void setName(String name) throws InvalidTransitionException {
 	    validator = new CourseNameValidator();
 	    
-	    validator.isValid(name);
-	    
-		if (name == null) {
+	    if (name == null) {
 	        throw new IllegalArgumentException("Invalid course name");
 	    }
+	    
 	    if (name.length() < MIN_NAME_LENGTH || name.length() > MAX_NAME_LENGTH) {
 	        throw new IllegalArgumentException("Invalid course name");
 	    }
+	    
+	    validator.isValid(name);
+	   
 	    this.name = name;
 	}
 
@@ -244,9 +256,11 @@ public class Course extends Activity implements Comparable<Course> {
 	@Override
 	public String toString() {
 	    if (super.getMeetingDays().equals("A")) {
-	        return name + "," + super.getTitle() + "," + section + "," + credits + "," + instructorId + "," + super.getMeetingDays();
+	        return name + "," + super.getTitle() + "," + section + "," + credits + "," + instructorId + ","
+	        		+ this.roll.getEnrollmentCap() + "," + super.getMeetingDays();
 	    }
-	    return name + "," + super.getTitle() + "," + section + "," + credits + "," + instructorId + "," + super.getMeetingDays() + "," + super.getStartTime() + "," + super.getEndTime(); 
+	    return name + "," + super.getTitle() + "," + section + "," + credits + "," + instructorId + ","
+	    		 + this.roll.getEnrollmentCap() + "," + super.getMeetingDays() + "," + super.getStartTime() + "," + super.getEndTime(); 
 	}
 	
 	/**
@@ -284,11 +298,11 @@ public class Course extends Activity implements Comparable<Course> {
 	public String[] getShortDisplayArray() {
 		//Course name, section, title, and meeting days string.
 		String [] shortArray;
-		shortArray = new String [4];
+		shortArray = new String [5];
 		String title = super.getTitle();
 		String meetingDays = super.getMeetingString();
-		
-		for (int i = 0; i < 4; i++) {
+		int cap = this.roll.getEnrollmentCap(); 
+		for (int i = 0; i < 5; i++) {
 			if (i == 0) {
 				shortArray [i] = this.getName();  
 			}
@@ -303,6 +317,10 @@ public class Course extends Activity implements Comparable<Course> {
 			if (i == 3) {
 				shortArray [i] = meetingDays;
 			}
+			if (i == 4) {
+				shortArray [i] = Integer.toString(cap);
+			}
+			
 		}
 	return shortArray;
 	}
@@ -432,5 +450,10 @@ public class Course extends Activity implements Comparable<Course> {
 				return -1;
 			}	
 		}
+		
+	}
+	
+	public CourseRoll getCourseRoll() {
+		return this.roll;
 	}
 }

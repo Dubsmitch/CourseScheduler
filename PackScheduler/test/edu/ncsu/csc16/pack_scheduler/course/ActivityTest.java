@@ -24,17 +24,17 @@ public class ActivityTest {
 	@Test
 	public void testCheckConflict() throws InvalidTransitionException {
 		Activity a1 = new Course("CSC216", "Programming Concepts - Java", "001", 4,
-				"sesmith5", "MW", 1330, 1445);
+				"sesmith5", 25, "MW", 1330, 1445);
 		Activity a2 = new Course("CSC216", "Programming Concepts - Java", "001", 4,
-				"sesmith5", "TH", 1330, 1445);
+				"sesmith5", 25, "TH", 1330, 1445);
 		Activity a3 = new Course("CSC216", "Programming Concepts - Java", "001", 4,
-				"sesmith5", "A");
+				"sesmith5", 25, "A");
 		Activity a4 = new Course("CSC216", "Programming Concepts - Java", "001", 4,
-				"sesmith5", "A");
+				"sesmith5", 25, "A");
 		Activity a5 = new Course("CSC216", "Programming Concepts - Java", "001", 4,
-				"sesmith5", "MW", 1330, 1445);
+				"sesmith5", 25, "MW", 1330, 1445);
 		Activity a6 = new Course ("CSC216", "Programming Concepts - Java", "001", 4,
-				"sesmith5", "MW", 1000, 1130);
+				"sesmith5", 25, "MW", 1000, 1130);
 		
 		//test end time between start and end time of activity to be added
 		a6.setActivityTime(1400, 1500);
@@ -133,7 +133,7 @@ public class ActivityTest {
 	@Test
 	public void testSetTitle() throws InvalidTransitionException {
 		Activity a1 = new Course("CSC216", "Programming Concepts - Java", "001", 4,
-				"sesmith5", "MW", 1330, 1445);
+				"sesmith5", 25, "MW", 1330, 1445);
 		//set title to empty
 		try {
 			a1.setTitle("");
@@ -160,7 +160,7 @@ public class ActivityTest {
 	@Test
 	public void testSetActivityTime() throws InvalidTransitionException {
 		Activity a1 = new Course("CSC216", "Programming Concepts - Java", "001", 4,
-				"sesmith5", "MW", 1330, 1445);
+				"sesmith5", 25, "MW", 1330, 1445);
 		
 		//set activity time to unacceptable start time
 		try {
@@ -231,19 +231,19 @@ public class ActivityTest {
 		
 		//create to equal activities
 		Activity a1 = new Course("CSC216", "Programming Concepts - Java", "001", 4,
-				"sesmith5", "MW", 1330, 1445);
+				"sesmith5", 25, "MW", 1330, 1445);
 		Activity a2 = new Course("CSC216", "Programming Concepts - Java", "001", 4,
-				"sesmith5", "MW", 1330, 1445);
+				"sesmith5", 25, "MW", 1330, 1445);
 		
 		//create activities that are different on all hash related fields 
 		Activity a3 = new Course("CSC217", "Programming Concepts - Java", "001", 4,
-				"sesmith5", "A");
+				"sesmith5", 25, "A");
 		Activity a4 = new Course("CSC216", "Programming Concepts - J", "001", 4,
-				"sesmith5", "A");
+				"sesmith5", 25, "A");
 		Activity a5 = new Course("CSC216", "Programming Concepts - Java", "001", 4,
-				"sesmith5", "MW", 1345, 1445);
+				"sesmith5", 25, "MW", 1345, 1445);
 		Activity a6 = new Course ("CSC216", "Programming Concepts - Java", "001", 4,
-				"sesmith5", "MW", 1330, 1530);
+				"sesmith5", 25, "MW", 1330, 1530);
 		
 		//test for equality in all fields
 		assertEquals(a1.hashCode(), a2.hashCode());
@@ -265,19 +265,19 @@ public class ActivityTest {
 		
 		//create two equal activities
 		Activity a1 = new Course("CSC216", "Programming Concepts - Java", "001", 4,
-				"sesmith5", "MW", 1330, 1445);
+				"sesmith5", 25, "MW", 1330, 1445);
 		Activity a2 = new Course("CSC216", "Programming Concepts - Java", "001", 4,
-				"sesmith5", "MW", 1330, 1445);
+				"sesmith5", 25, "MW", 1330, 1445);
 		
 		//create activities that are different on all hash related fields 
 		Activity a3 = new Course("CSC217", "Programming Concepts - Java", "001", 4,
-				"sesmith5", "A");
+				"sesmith5", 25, "A");
 		Activity a4 = new Course("CSC216", "Programming Concepts - J", "001", 4,
-				"sesmith5", "A");
+				"sesmith5", 25, "A");
 		Activity a5 = new Course("CSC216", "Programming Concepts - Java", "001", 4,
-				"sesmith5", "MW", 1345, 1445);
+				"sesmith5", 25, "MW", 1345, 1445);
 		Activity a6 = new Course ("CSC216", "Programming Concepts - Java", "001", 4,
-				"sesmith5", "MW", 1330, 1530);
+				"sesmith5", 25, "MW", 1330, 1530);
 
 		//for testing object of a different class, a string is a class
 		String word = "not a Course";
