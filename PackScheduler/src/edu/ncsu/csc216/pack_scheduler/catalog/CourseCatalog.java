@@ -76,10 +76,10 @@ public class CourseCatalog {
 	 * @throws InvalidTransitionException 
 	 */
 	public boolean addCourseToCatalog(String name, String title, String section, int credits, String instructorId,
-			String meetingDays, int startTime, int endTime) throws InvalidTransitionException {
+			int enrollmentCap, String meetingDays, int startTime, int endTime) throws InvalidTransitionException {
 		//need to create the course that will be added; 
 
-		Course c = new Course(name, title, section, credits, instructorId, meetingDays,
+		Course c = new Course(name, title, section, credits, instructorId, enrollmentCap, meetingDays,
 				startTime, endTime);
 		
 		boolean inCatalog = false;

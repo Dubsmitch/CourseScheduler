@@ -1,1 +1,1 @@
-ABCD,Programming Concepts - Java,001,4,sesmith5,TH,1330,1445
+ABCD,Programming Concepts - Java,001,4,sesmith5,25,TH,1330,1445

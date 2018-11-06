@@ -83,6 +83,7 @@ public class CourseRecordIO {
 		String section = "";
 		int credits = -1;
 		String instructorId = "";
+		int enrollmentCap = -1;
 		String meetingDays = "";
 		int startTime = 0;
 		int endTime = 0;
@@ -124,6 +125,14 @@ public class CourseRecordIO {
 			return null;
 		}
 		
+		if (lineScanner.hasNextInt()) {
+			enrollmentCap = lineScanner.nextInt();
+		} else {
+			lineScanner.close();
+
+			return null;
+		}
+		
 		if (lineScanner.hasNext()) {
 			meetingDays = lineScanner.next();
 		} else {
@@ -144,11 +153,11 @@ public class CourseRecordIO {
 				lineScanner.close();
 				return null;
 			}
-			Course c = new Course(name, title, section, credits, instructorId, meetingDays, startTime, endTime);
+			Course c = new Course(name, title, section, credits, instructorId, enrollmentCap, meetingDays, startTime, endTime);
 			lineScanner.close();
 			return c;
 		} else {
-			Course c = new Course(name, title, section, credits, instructorId, meetingDays);
+			Course c = new Course(name, title, section, credits, instructorId, enrollmentCap, meetingDays);
 			lineScanner.close();
 			return c;
 		}
