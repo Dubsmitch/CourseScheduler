@@ -15,7 +15,7 @@ public class LinkedAbstractListTest {
 //		String b = "b";
 //		String c = "c";
 		LinkedAbstractList a = null;
-		a = new LinkedAbstractList();
+		a = new LinkedAbstractList(1);
 		
 		assertEquals(a.size(), 0);
 //		a.add(0, b);
@@ -23,8 +23,7 @@ public class LinkedAbstractListTest {
 	}
 
 	/**
-	 * tests the add method
-	 */
+	
 	@Test
 	public void Addtest() {
 		String b = "b";
@@ -79,9 +78,7 @@ public class LinkedAbstractListTest {
 	}
 	
 	/**
-	 * tests the remove method
-	 * This test also tests the get method
-	 */
+
 	@Test
 	public void Removetest() {
 		ArrayList a = null;
@@ -125,8 +122,7 @@ public class LinkedAbstractListTest {
 	}
 	
 	/**
-	 * tests the set method
-	 */
+
 	@Test
 	public void Settest() {
 		ArrayList a = null;
@@ -164,6 +160,5 @@ public class LinkedAbstractListTest {
 		assertEquals(a.size(), 4);
 		assertEquals(a.get(3), aa);
 	}
-}
-
+	**/
 }
