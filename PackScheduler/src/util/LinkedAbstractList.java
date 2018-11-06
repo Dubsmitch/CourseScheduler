@@ -10,7 +10,7 @@ import java.util.AbstractList;
  * @param <E>
  * 		generic type parameter
  */
-public class LinkedAbstractList<E> extends AbstractList {
+public class LinkedAbstractList<E> extends AbstractList<Object> {
 	/** reference to the first element **/
 	private ListNode front;
 	
@@ -40,7 +40,7 @@ public class LinkedAbstractList<E> extends AbstractList {
 	}
 	
 	@Override
-	public void add (int index, E e) {
+	public void add (int index, Object e) {
 		if (e.equals(null)) {
 			throw new NullPointerException ("cannot add a null object to the list");
 		}
@@ -54,11 +54,11 @@ public class LinkedAbstractList<E> extends AbstractList {
 			size = size + 1;
 		//if the size isn't 0 and the index is 1
 		//not equal to the size (adding to second index)
-		} else if (size > 0 && index == 1) {
+		//} else if (size > 0 && index == 1) {
 			//make first node reference the second node
-			ListNode newFront = front;
-			front = new ListNode(e, front);
-			size = size + 1;
+		//	ListNode newFront = front;
+		//	front = new ListNode(e, front);
+		//	size = size + 1;
 		//add to middle
 		} else if (size > 1 && index > 1) {
 			ListNode leading = front;
@@ -104,7 +104,7 @@ public class LinkedAbstractList<E> extends AbstractList {
 	}
 	
 	@Override
-	public E set (int index, E e) {
+	public E set (int index, Object e) {
 		if (e == null) {
 			throw new NullPointerException ("element to be added cant be null");
 		}
@@ -139,6 +139,11 @@ public class LinkedAbstractList<E> extends AbstractList {
 		return datum;
 		
 	}
+	
+	@Override
+	public int size() {
+		return this.size;
+	}
 	/**
 	 * inner class of LinkedAbstractList 
 	 * 
@@ -151,13 +156,16 @@ public class LinkedAbstractList<E> extends AbstractList {
 		
 		private ListNode next;
 		
-		public ListNode (E data) {
-			this.data = data;
+		@SuppressWarnings("unchecked")
+		public ListNode (Object data) {
+			this.data = (E) data;
 			next = null;
 		}
-		public ListNode (E data, ListNode next) {
-			this.data = data;
+		@SuppressWarnings("unchecked")
+		public ListNode (Object data, ListNode next) {
+			this.data = (E) data;
 			this.next = next;
 		}
 	}
+
 }
