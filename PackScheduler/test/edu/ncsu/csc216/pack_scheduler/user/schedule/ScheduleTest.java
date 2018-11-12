@@ -7,7 +7,6 @@ import org.junit.Test;
 import edu.ncsu.csc216.pack_scheduler.course.ConflictException;
 import edu.ncsu.csc216.pack_scheduler.course.Course;
 import edu.ncsu.csc216.pack_scheduler.course.validator.InvalidTransitionException;
-import edu.ncsu.csc216.pack_scheduler.user.Student;
 
 /**
  * tests the schedule class

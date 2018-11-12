@@ -34,8 +34,10 @@ public class StudentTest {
 	/** Course meeting days */
 	private static final String MEETING_DAYS = "MW";
 	/** Course start time */
+	@SuppressWarnings("unused")
 	private static final int START_TIME = 1330;
 	/** Course end time */
+	@SuppressWarnings("unused")
 	private static final int END_TIME = 1445;
 	
 	/**
