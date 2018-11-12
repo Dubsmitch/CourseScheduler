@@ -4,6 +4,10 @@ package edu.ncsu.csc216.pack_scheduler.user;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+
+import edu.ncsu.csc216.pack_scheduler.course.ConflictException;
+import edu.ncsu.csc216.pack_scheduler.course.Course;
+import edu.ncsu.csc216.pack_scheduler.course.validator.InvalidTransitionException;
 /**
  * This tests the Student class
  * 
@@ -15,6 +19,25 @@ import org.junit.Test;
  */
 public class StudentTest {
 
+	/** Course name */
+	private static final String NAME = "CSC216";
+	/** Course title */
+	private static final String TITLE = "Programming Concepts - Java";
+	/** Course section */
+	private static final String SECTION = "001";
+	/** Course credits */
+	private static final int CREDITS = 4;
+	/** cap **/
+	private static final int CAP = 25;
+	/** Course instructor id */
+	private static final String INSTRUCTOR_ID = "sesmith5";
+	/** Course meeting days */
+	private static final String MEETING_DAYS = "MW";
+	/** Course start time */
+	private static final int START_TIME = 1330;
+	/** Course end time */
+	private static final int END_TIME = 1445;
+	
 	/**
 	 * tests that hashCode() works correctly
 	 */
@@ -532,5 +555,53 @@ public class StudentTest {
 		
 
 	}
+	
+	/**
+	 * tests can add method
+	 * @throws InvalidTransitionException 
+	 * @throws ConflictException 
+	 */
+	@Test
+	public void testCanAdd() throws InvalidTransitionException, ConflictException {
+		Student s1 = new Student ("a", "a", "a", "email@ncsu.edu", "hashedpassword", 15);
+		Course c = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, CAP, MEETING_DAYS, 0011, 0012);
 
+		
+		//student credits 15
+		//schedule credits 0
+		//course credits 4
+		
+		assertTrue(s1.canAdd(c));
+		s1.schedule.addCourseToSchedule(c);
+		
+		assertEquals(s1.getSchedule().getSchedule().size(), 1);
+		
+		Course c2 = new Course("AAAA", TITLE, SECTION, CREDITS, INSTRUCTOR_ID, CAP, MEETING_DAYS, 0013, 0014);
+		
+		//student credits 15
+		//schedule credits 4
+		//course credits 4
+		
+		s1.schedule.addCourseToSchedule(c2);
+		
+		//student credits 15
+		//schedule credits 4
+		//course credits 8
+		
+		Course c3 = new Course("AABA", TITLE, SECTION, CREDITS, INSTRUCTOR_ID, CAP, MEETING_DAYS, 0015, 0016);
+		s1.schedule.addCourseToSchedule(c3);
+
+		//student credits 15
+		//schedule credits 4
+		//course credits 12
+		Course c4 = new Course("AACA", TITLE, SECTION, CREDITS, INSTRUCTOR_ID, CAP, MEETING_DAYS, 0017, 18);
+		assertTrue(!s1.canAdd(c4));
+		
+		//boundary case
+		Course c5 = new Course("AACA", TITLE, SECTION, 3, INSTRUCTOR_ID, CAP, MEETING_DAYS, 0017, 18);
+		assertTrue(s1.canAdd(c5));
+
+		
+
+	}
 }

@@ -5,6 +5,8 @@
  */
 package edu.ncsu.csc216.pack_scheduler.user;
 
+import edu.ncsu.csc216.pack_scheduler.course.ConflictException;
+import edu.ncsu.csc216.pack_scheduler.course.Course;
 import edu.ncsu.csc216.pack_scheduler.user.schedule.Schedule;
 
 /**
@@ -187,6 +189,37 @@ public class Student extends User implements Comparable<Student> {
 	
 	public Schedule getSchedule() {
 		return this.schedule;
+	}
+	/**
+	 * checks to see if a course can be added to the student's
+	 * schedule
+	 * @param course
+	 * 			the course to be added
+	 * @return boolean
+	 * 			whether or not a course can be added to the schedule
+	 * @throws ConflictException
+	 * 			thrown if there is a conflict (should really
+	 * 			go back and surround course with try/catch
+	 */
+	public boolean canAdd(Course course) throws ConflictException {
+		if (!schedule.canAdd(course)) {
+			return false;
+		}
+		
+		//get how many credits the student is enrolled in   0
+		int currentCredits = this.getSchedule().getScheduleCredits();
+		//get how many credits the student can have         15
+		int maximum = this.getMaxCredits();
+		//find the difference
+		int diff = maximum - currentCredits;
+		
+		// compare the above with how many credits the course has
+		diff = diff - course.getCredits();
+		// if the number is >=0 then it can be added, else not.
+		if (diff >= 0) {
+			return true;
+		}
+		return false;
 	}
 }
 

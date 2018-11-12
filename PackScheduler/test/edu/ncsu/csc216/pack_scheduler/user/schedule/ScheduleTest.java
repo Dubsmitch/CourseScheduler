@@ -1,10 +1,10 @@
 package edu.ncsu.csc216.pack_scheduler.user.schedule;
 
 import static org.junit.Assert.*;
-import util.ArrayList;
 
 import org.junit.Test;
 
+import edu.ncsu.csc216.pack_scheduler.course.ConflictException;
 import edu.ncsu.csc216.pack_scheduler.course.Course;
 import edu.ncsu.csc216.pack_scheduler.course.validator.InvalidTransitionException;
 
@@ -25,6 +25,9 @@ public class ScheduleTest {
 	private static final String SECTION = "001";
 	/** Course credits */
 	private static final int CREDITS = 4;
+	/** cap **/
+	@SuppressWarnings("unused")
+	private static final int CAP = 25;
 	/** Course instructor id */
 	private static final String INSTRUCTOR_ID = "sesmith5";
 	/** Course meeting days */
@@ -59,10 +62,15 @@ public class ScheduleTest {
 		//check that the schedule has been created and is empty
 		assertEquals(a.getSchedule().size(), 0); 
 		//create a course to be added
-		Course coursea = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, 
+		Course coursea = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, 25,
 				MEETING_DAYS, START_TIME, END_TIME);
 		//add course to shedule
-		a.addCourseToSchedule(coursea);
+		try {
+			a.addCourseToSchedule(coursea);
+		} catch (ConflictException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		assertTrue(a.getSchedule().get(0).equals(coursea));
 	}
@@ -80,10 +88,15 @@ public class ScheduleTest {
 		//check that the schedule has been created and is empty
 		assertEquals(a.getSchedule().size(), 0); 
 		//create a course to be added
-		Course coursea = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, 
+		Course coursea = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, 25,
 				MEETING_DAYS, START_TIME, END_TIME);
 		//add course to shedule
-		a.addCourseToSchedule(coursea);
+		try {
+			a.addCourseToSchedule(coursea);
+		} catch (ConflictException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		assertTrue(a.getSchedule().get(0).equals(coursea));
 		
@@ -104,10 +117,15 @@ public class ScheduleTest {
 		//check that the schedule has been created and is empty
 		assertEquals(a.getSchedule().size(), 0); 
 		//create a course to be added
-		Course coursea = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, 
+		Course coursea = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, 25,
 				MEETING_DAYS, START_TIME, END_TIME);
 		//add course to shedule
-		a.addCourseToSchedule(coursea);
+		try {
+			a.addCourseToSchedule(coursea);
+		} catch (ConflictException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		assertTrue(a.getSchedule().get(0).equals(coursea));
 		assertEquals(a.getSchedule().size(), 1);

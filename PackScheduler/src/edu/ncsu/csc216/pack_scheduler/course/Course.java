@@ -306,7 +306,6 @@ public class Course extends Activity implements Comparable<Course> {
 			if (i == 0) {
 				shortArray [i] = this.getName();  
 			}
-    	
 			if (i == 1) {
 				shortArray [i] = this.getSection(); 
 			}

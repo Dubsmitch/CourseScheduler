@@ -28,8 +28,10 @@ public class Schedule {
 	 * 			course to be added
 	 * @return boolean
 	 * 			if a course can be added or not
+	 * @throws ConflictException 
+	 * 			thrown if there is a conflict in course times
 	 */
-	public boolean addCourseToSchedule (Course course) {
+	public boolean addCourseToSchedule (Course course) throws ConflictException {
 		for (int i = 0; i < schedule.size(); i++) {
 			if (schedule.get(i).equals(course)) {
 				throw new IllegalArgumentException ("You are alread enrolled in " + course.getName());
@@ -38,7 +40,7 @@ public class Schedule {
 		try {
 			schedule.get(i).checkConflict(course);
 		} catch (ConflictException e) {
-			System.out.println("The course cannot be added due to a conflict.");
+			throw new ConflictException("The course cannot be added due to a conflict.");
 		}
 				
 		}
@@ -79,13 +81,14 @@ public class Schedule {
 	 * @return
 	 */
 	public String[][] getScheduledCourses(){
-		String [][] scheduleCourse = new String[schedule.size()][4];
+		String [][] scheduleCourse = new String[schedule.size()][5];
 		for (int i = 0; i < schedule.size(); i++) {
 			Course aa = schedule.get(i);
 			scheduleCourse[i][0] = aa.getName();
 			scheduleCourse[i][1] = aa.getSection();
 			scheduleCourse[i][2] = aa.getTitle();
 			scheduleCourse[i][3] = aa.getMeetingString();
+			scheduleCourse[i][4] = Integer.toString(aa.getCourseRoll().getEnrollmentCap());
 		}
 		return scheduleCourse;
 	}
@@ -102,5 +105,40 @@ public class Schedule {
 	public String getTitle() {
 		return title;
 	}
-
+	
+	public int getScheduleCredits() {
+		int total = 0;
+		System.out.println("Size of array is " + this.getSchedule().size());
+		if (this.getSchedule().size() == 0)
+			return 0;
+		for (int i = 0; i < this.getSchedule().size(); i++) {
+			System.out.println("This executed " + (i + 1) + " times");
+			total = total + this.getSchedule().get(i).getCredits();
+		}
+		return total;
+	}
+	/**
+	 * 
+	 * @param course
+	 * 			the course to be added to the schedule
+	 * @return boolean
+	 * 			whether or not the course can be added to the schedule
+	 * @throws ConflictException
+	 * 			If the course to be added has a conflict
+	 */
+	public boolean canAdd(Course course) throws ConflictException {
+		if (course == null) {
+			return false;
+		}
+		
+		for (int i = 0; i < this.getSchedule().size(); i++) {
+			if (this.getSchedule().get(i).equals(course)) {
+				this.getSchedule().get(i).checkConflict(course);
+				return false;
+			}
+		}
+		
+		return true;
+		
+	}
 }
