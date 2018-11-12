@@ -227,71 +227,7 @@ public class ScheduleTest {
 		assertEquals(s1.getScheduleCredits(), 6);
 	}
 	
-	/**
-	 * Returns true if the logged in student can enroll in the given course.
-	 * @param c Course to enroll in
-	 * @return true if enrolled
-	 */
-	public boolean enrollStudentInCourse(Course c) {
-	    if (currentUser == null || !(currentUser instanceof Student)) {
-	        throw new IllegalArgumentException("Illegal Action");
-	    }
-	    try {
-	        Student s = (Student)currentUser;
-	        Schedule schedule = s.getSchedule();
-	        CourseRoll roll = c.getCourseRoll();
-	        
-	        if (s.canAdd(c) && roll.canEnroll(s)) {
-	            schedule.addCourseToSchedule(c);
-	            roll.enroll(s);
-	            return true;
-	        }
-	        
-	    } catch (IllegalArgumentException e) {
-	        return false;
-	    }
-	    return false;
-	}
-
-	/**
-	 * Returns true if the logged in student can drop the given course.
-	 * @param c Course to drop
-	 * @return true if dropped
-	 */
-	public boolean dropStudentFromCourse(Course c) {
-	    if (currentUser == null || !(currentUser instanceof Student)) {
-	        throw new IllegalArgumentException("Illegal Action");
-	    }
-	    try {
-	        Student s = (Student)currentUser;
-	        c.getCourseRoll().drop(s);
-	        return s.getSchedule().removeCourseFromSchedule(c);
-	    } catch (IllegalArgumentException e) {
-	        return false; 
-	    }
-	}
-
-	/**
-	 * Resets the logged in student's schedule by dropping them
-	 * from every course and then resetting the schedule.
-	 */
-	public void resetSchedule() {
-	    if (currentUser == null || !(currentUser instanceof Student)) {
-	        throw new IllegalArgumentException("Illegal Action");
-	    }
-	    try {
-	        Student s = (Student)currentUser;
-	        Schedule schedule = s.getSchedule();
-	        String [][] scheduleArray = schedule.getScheduledCourses();
-	        for (int i = 0; i < scheduleArray.length; i++) {
-	            Course c = courseCatalog.getCourseFromCatalog(scheduleArray[i][0], scheduleArray[i][1]);
-	            c.getCourseRoll().drop(s);
-	        }
-	        schedule.resetSchedule();
-	    } catch (IllegalArgumentException e) {
-	        //do nothing 
-	    }
-	}
+	
 	
 }
 	

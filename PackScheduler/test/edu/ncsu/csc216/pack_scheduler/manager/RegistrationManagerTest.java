@@ -6,8 +6,10 @@ import org.junit.Before;
 import org.junit.Test;
 
 import edu.ncsu.csc216.pack_scheduler.catalog.CourseCatalog;
+import edu.ncsu.csc216.pack_scheduler.course.validator.InvalidTransitionException;
 import edu.ncsu.csc216.pack_scheduler.directory.StudentDirectory;
 import edu.ncsu.csc216.pack_scheduler.user.Student;
+import edu.ncsu.csc216.pack_scheduler.user.schedule.Schedule;
 
 /**
  * tests registration manager.
@@ -85,6 +87,7 @@ public class RegistrationManagerTest {
 	public void testGetCurrentUser() {
 		StudentDirectory sd = manager.getStudentDirectory();
 		sd.loadStudentsFromFile("test-files/actual_student_records.txt");
+		@SuppressWarnings("unused")
 		Student a = new Student("William", "Mitchell", "wimitcc", "wimitchell@ncsu.edu", "asdf", 15);
 		manager.login("wimitcc", "asdf");
 		
@@ -99,7 +102,12 @@ public class RegistrationManagerTest {
 	    directory.loadStudentsFromFile("test-files/student_records.txt");
 	    
 	    CourseCatalog catalog = manager.getCourseCatalog();
-	    catalog.loadCoursesFromFile("test-files/course_records.txt");
+	    try {
+			catalog.loadCoursesFromFile("test-files/course_records.txt");
+		} catch (InvalidTransitionException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 	    
 	    manager.logout(); //In case not handled elsewhere
 	    
@@ -183,7 +191,12 @@ public class RegistrationManagerTest {
 	    directory.loadStudentsFromFile("test-files/student_records.txt");
 	    
 	    CourseCatalog catalog = manager.getCourseCatalog();
-	    catalog.loadCoursesFromFile("test-files/course_records.txt");
+	    try {
+			catalog.loadCoursesFromFile("test-files/course_records.txt");
+		} catch (InvalidTransitionException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 	    
 	    manager.logout(); //In case not handled elsewhere
 	    
@@ -308,7 +321,12 @@ public class RegistrationManagerTest {
 	    directory.loadStudentsFromFile("test-files/student_records.txt");
 	    
 	    CourseCatalog catalog = manager.getCourseCatalog();
-	    catalog.loadCoursesFromFile("test-files/course_records.txt");
+	    try {
+			catalog.loadCoursesFromFile("test-files/course_records.txt");
+		} catch (InvalidTransitionException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 	    
 	    manager.logout(); //In case not handled elsewhere
 	    
