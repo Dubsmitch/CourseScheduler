@@ -28,10 +28,15 @@ public class CourseRecordIO {
      * Reads course records from a file and generates a list of valid Courses.  Any invalid
      * Courses are ignored.  If the file to read cannot be found or the permissions are incorrect
      * a File NotFoundException is thrown.
-     * @param fileName file to read Course records from
-     * @return a list of valid Courses
-     * @throws FileNotFoundException if the file cannot be found or read
+     * @param fileName 
+     * 			file to read Course records from
+     * @return SortedList<Course>
+     * 			a list of valid Courses
+     * @throws FileNotFoundException 
+     * 			if the file cannot be found or read
+     * 			
      * @throws InvalidTransitionException 
+     * 			Throws an invalid transition exception if the course name is not valid
      */
 	public static SortedList<Course> readCourseRecords(String fileName) throws FileNotFoundException, InvalidTransitionException {
 	    Scanner fileReader = new Scanner(new FileInputStream(fileName));

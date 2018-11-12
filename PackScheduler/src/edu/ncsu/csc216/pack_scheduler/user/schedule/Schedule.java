@@ -78,7 +78,9 @@ public class Schedule {
 
 	/**
 	 * get Schedule Courses
-	 * @return
+	 * @return String [] []
+	 * 			an Array of strings that represent different
+	 * 			fields in each course in the schedule
 	 */
 	public String[][] getScheduledCourses(){
 		String [][] scheduleCourse = new String[schedule.size()][5];

@@ -41,7 +41,8 @@ public class CourseCatalog {
 	 * @param fileName
 	 * 			the name of the file to be loaded
 	 * @throws InvalidTransitionException 
-	 * 
+	 * 			throws an InvalidTransitionException if the course from
+	 * 			the file is incorrectly constructed
 	 * @throws IllegalArgumentException
 	 * 			throws an IAE if the compiler is not able to read the file
 	 */
@@ -65,6 +66,8 @@ public class CourseCatalog {
 	 * 			the number of credits of the course
 	 * @param instructorId
 	 * 			the instructor of the course
+	 * @param enrollmentCap
+	 * 			the enrollment cap for the course
 	 * @param meetingDays
 	 * 			the days the course meets
 	 * @param startTime
@@ -74,6 +77,8 @@ public class CourseCatalog {
 	 * @return boolean
 	 * 		if a course can be added or not
 	 * @throws InvalidTransitionException 
+	 * 			this an invalid transition exception if the course to be added is
+	 * 			invalid
 	 */
 	public boolean addCourseToCatalog(String name, String title, String section, int credits, String instructorId,
 			int enrollmentCap, String meetingDays, int startTime, int endTime) throws InvalidTransitionException {

@@ -8,6 +8,7 @@ import java.util.AbstractList;
  * @author William
  * 
  * @param <E>
+ * 			generic parameter
  */
 public class ArrayList<E> extends AbstractList<E> {
     /** initial size of the list **/
@@ -19,11 +20,6 @@ public class ArrayList<E> extends AbstractList<E> {
     
     /**
      * Constructor for Array List
-     * 
-     * @param c
-     * 		the arraylist
-     * @param INIT_SIZE
-     * 		the initial size of the basic array
      */
     public ArrayList () {
         @SuppressWarnings("unchecked")

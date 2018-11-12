@@ -43,13 +43,22 @@ public class Course extends Activity implements Comparable<Course> {
 	/**
 	 * Creates a Course with the given name, title, section, credits, instructorId, and meetingDays for 
 	 * courses that are arranged.
-	 * @param name name of Course
-	 * @param title title of Course
-	 * @param section section of Course
-	 * @param credits credit hours for Course
-	 * @param instructorId instructor's unity id
-	 * @param meetingDays meeting days for Course as series of chars
+	 * @param name
+	 * 			the name of the course
+	 * @param title
+	 * 			the title of the course
+	 * @param section
+	 * 			the section of the course
+	 * @param credits
+	 * 			the number of credits of the course
+	 * @param instructorId
+	 * 			the instructor of the course
+	 * @param enrollmentCap
+	 * 			the enrollment cap for the course
+	 * @param meetingDays
+	 * 			the days the course meets
 	 * @throws InvalidTransitionException 
+	 * 			throws an ITE if the course is not constructed correctly 
 	 */
 	public Course(String name, String title, String section, int credits, String instructorId, int enrollmentCap, String meetingDays) throws InvalidTransitionException {
 	    this(name, title, section, credits, instructorId, enrollmentCap, meetingDays, 0, 0);
@@ -59,15 +68,26 @@ public class Course extends Activity implements Comparable<Course> {
 
 	/**
 	 * Constructs a Course object with values for all fields.
-	 * @param name name of course
-	 * @param title title of course
-	 * @param section section of course
-	 * @param credits credits for the course
-	 * @param instructorId instructor's id for the course
-	 * @param meetingDays days in which the course is meeting
-	 * @param startTime time that the course starts
-	 * @param endTime time that the course ends
-	 * @throws InvalidTransitionException 
+	 * @param name
+	 * 			the name of the course
+	 * @param title
+	 * 			the title of the course
+	 * @param section
+	 * 			the section of the course
+	 * @param credits
+	 * 			the number of credits of the course
+	 * @param instructorId
+	 * 			the instructor of the course
+	 * @param enrollmentCap
+	 * 			the enrollment cap for the course
+	 * @param meetingDays
+	 * 			the days the course meets
+	 * @param startTime
+	 * 			the start time of the course
+	 * @param endTime
+	 * 			the end time of the course
+	 * @throws InvalidTransitionException
+	 * 			throws an ITE if the course is not constructed correctly 
 	 */
 	public Course(String name, String title, String section, int credits, String instructorId, int enrollmentCap, String meetingDays,
 			int startTime, int endTime) throws InvalidTransitionException {
