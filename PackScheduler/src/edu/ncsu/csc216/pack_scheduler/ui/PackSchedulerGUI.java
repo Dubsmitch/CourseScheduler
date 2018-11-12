@@ -362,7 +362,7 @@ public class PackSchedulerGUI {
 		 * Updates tables
 		 */
 		public void updateTables() {
-			studentRegPanel.updateUI();
+			studentRegPanel.updateTables();
 		}
 		
 	}
