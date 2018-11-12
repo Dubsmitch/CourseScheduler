@@ -7,6 +7,7 @@ import org.junit.Test;
 import edu.ncsu.csc216.pack_scheduler.course.ConflictException;
 import edu.ncsu.csc216.pack_scheduler.course.Course;
 import edu.ncsu.csc216.pack_scheduler.course.validator.InvalidTransitionException;
+import edu.ncsu.csc216.pack_scheduler.user.Student;
 
 /**
  * tests the schedule class
@@ -181,6 +182,52 @@ public class ScheduleTest {
 		
 		assertEquals(a.getTitle(), "Yo!");
 	}
+	
+	/**
+	 * tests adding to a schedule
+	 * @throws InvalidTransitionException 
+	 * @throws ConflictException 
+	 */
+	@Test
+	public void testcanAdd() throws InvalidTransitionException, ConflictException {
+		Schedule s1 = new Schedule();
+		Course c = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, CAP, MEETING_DAYS, 0011, 0012);
+
+
+		
+		assertTrue(s1.canAdd(c));
+		s1.addCourseToSchedule(c);
+		assertTrue(!s1.canAdd(c));
+		
+		c = null;
+		assertTrue(!s1.canAdd(c));
+		
+	}
+	
+	/**
+	 * tests getting the schedule's credits
+	 * @throws InvalidTransitionException 
+	 * @throws ConflictException 
+	 */
+	@Test
+	public void testGetScheduleCredits() throws InvalidTransitionException, ConflictException {
+		Schedule s1 = new Schedule();
+		Course c = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, CAP, MEETING_DAYS, 0011, 0012);
+
+
+		assertEquals(s1.getScheduleCredits(), 0);
+
+		assertTrue(s1.canAdd(c));
+		s1.addCourseToSchedule(c);
+		assertEquals(s1.getScheduleCredits(), 4);
+		
+		Course c1 = new Course("ABCD", TITLE, SECTION, 2, INSTRUCTOR_ID, CAP, MEETING_DAYS, 0013, 0014);
+		assertTrue(s1.canAdd(c1));
+		s1.addCourseToSchedule(c1);
+		assertEquals(s1.getScheduleCredits(), 6);
+	}
+	
+	
 }
 	
 
