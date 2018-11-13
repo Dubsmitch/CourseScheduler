@@ -126,7 +126,7 @@ public class CourseRoll {
 		if (inWaitingList) {
 			//make a new list
 			LinkedQueue<Student> tempList = new LinkedQueue<Student>(waitList.size());
-			LinkedQueue<Student> tempList2 = new LinkedQueue<Student>(waitList.size());
+			//LinkedQueue<Student> tempList2 = new LinkedQueue<Student>(waitList.size());
 			//make variable to find where the index of the student was
 			Student element = null;
 			for (int i = 0; i < waitList.size(); i++) {
@@ -139,8 +139,9 @@ public class CourseRoll {
 				}
 			}
 			for (int i = 0; i < tempList.size(); i++) {
-				tempList2.enqueue(tempList.dequeue());
+				waitList.enqueue(tempList.dequeue());
 			}
+			
 		}			
 		
 		//
@@ -163,6 +164,7 @@ public class CourseRoll {
 				} 
 		
 				if (this.waitList.size() > 0) {
+					System.out.println("hello" + this.roll.size());
 					this.roll.add(this.roll.size(), s);
 				}
 			}
@@ -239,7 +241,7 @@ public class CourseRoll {
 	 * @return int
 	 * 			number of students on the waitlist
 	 */
-	public int getNumberOnWaitList() {
+	public int getNumberOnWaitlist() {
 		return waitList.size();
 	}
 	

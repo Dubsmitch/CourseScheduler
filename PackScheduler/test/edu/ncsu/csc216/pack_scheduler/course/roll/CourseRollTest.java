@@ -168,7 +168,10 @@ public class CourseRollTest {
 		assertTrue(rollA.canEnroll(a));
 		
 		rollA.enroll(a);
-		assertEquals(rollA.getNumberOnWaitList(),0);
+		assertEquals(rollA.getNumberOnWaitList(), 0);
+		rollA.drop(a);
+		assertEquals(rollA.getNumberOnWaitList(), 0);
+		rollA.enroll(a);
 
 		assertEquals(rollA.getOpenSeats(), 9);
 		assertEquals(rollA.getNumberOnWaitList(),0);
@@ -209,10 +212,12 @@ public class CourseRollTest {
 		assertTrue(rollA.canEnroll(m));
 		assertEquals(rollA.getNumberOnWaitList(), 1);
 
+		rollA.enroll(m);
+		assertEquals(rollA.getNumberOnWaitList(), 2);
 		
 
 
-		
+		assertEquals(rollA.getOpenSeats(), 0);
 		rollA.drop(a);
 		assertEquals(rollA.getNumberOnWaitList(), 0);
 
