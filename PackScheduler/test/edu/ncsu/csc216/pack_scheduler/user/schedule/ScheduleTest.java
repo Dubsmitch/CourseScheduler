@@ -65,13 +65,7 @@ public class ScheduleTest {
 		Course coursea = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, 25,
 				MEETING_DAYS, START_TIME, END_TIME);
 		//add course to shedule
-		try {
-			a.addCourseToSchedule(coursea);
-		} catch (ConflictException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+		a.addCourseToSchedule(coursea);
 		assertTrue(a.getSchedule().get(0).equals(coursea));
 	}
 	
@@ -91,12 +85,8 @@ public class ScheduleTest {
 		Course coursea = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, 25,
 				MEETING_DAYS, START_TIME, END_TIME);
 		//add course to shedule
-		try {
-			a.addCourseToSchedule(coursea);
-		} catch (ConflictException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		a.addCourseToSchedule(coursea);
+		
 		
 		assertTrue(a.getSchedule().get(0).equals(coursea));
 		
@@ -120,12 +110,9 @@ public class ScheduleTest {
 		Course coursea = new Course(NAME, TITLE, SECTION, CREDITS, INSTRUCTOR_ID, 25,
 				MEETING_DAYS, START_TIME, END_TIME);
 		//add course to shedule
-		try {
-			a.addCourseToSchedule(coursea);
-		} catch (ConflictException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		a.addCourseToSchedule(coursea);
+	
+
 		
 		assertTrue(a.getSchedule().get(0).equals(coursea));
 		assertEquals(a.getSchedule().size(), 1);
