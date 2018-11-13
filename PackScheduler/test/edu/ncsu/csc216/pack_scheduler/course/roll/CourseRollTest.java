@@ -145,7 +145,7 @@ public class CourseRollTest {
 		CourseRoll rollA = c.getCourseRoll();
 		//test that there are 25 open seats
 		//test that the enrollment cap is 25.
-		assertEquals(rollA.getNumberOnWaitList(),0);
+		assertEquals(rollA.getNumberOnWaitlist(),0);
 		assertEquals(rollA.getOpenSeats(), 10);
 		assertEquals(rollA.getEnrollmentCap(), 10);
 		
@@ -168,16 +168,16 @@ public class CourseRollTest {
 		assertTrue(rollA.canEnroll(a));
 		
 		rollA.enroll(a);
-		assertEquals(rollA.getNumberOnWaitList(), 0);
+		assertEquals(rollA.getNumberOnWaitlist(), 0);
 		rollA.drop(a);
-		assertEquals(rollA.getNumberOnWaitList(), 0);
+		assertEquals(rollA.getNumberOnWaitlist(), 0);
 		rollA.enroll(a);
 
 		assertEquals(rollA.getOpenSeats(), 9);
-		assertEquals(rollA.getNumberOnWaitList(),0);
+		assertEquals(rollA.getNumberOnWaitlist(),0);
 
 		assertTrue(!rollA.canEnroll(a));
-		assertEquals(rollA.getNumberOnWaitList(),0);
+		assertEquals(rollA.getNumberOnWaitlist(),0);
 
 		assertEquals(rollA.getOpenSeats(), 9);
 
@@ -206,20 +206,20 @@ public class CourseRollTest {
 
 		rollA.enroll(k);
 		rollA.enroll(l);
-		assertEquals(rollA.getNumberOnWaitList(), 1);
+		assertEquals(rollA.getNumberOnWaitlist(), 1);
 		//assertTrue(rollA.canEnroll(k));
 		
 		assertTrue(rollA.canEnroll(m));
-		assertEquals(rollA.getNumberOnWaitList(), 1);
+		assertEquals(rollA.getNumberOnWaitlist(), 1);
 
 		rollA.enroll(m);
-		assertEquals(rollA.getNumberOnWaitList(), 2);
+		assertEquals(rollA.getNumberOnWaitlist(), 2);
 		
 
 
 		assertEquals(rollA.getOpenSeats(), 0);
 		rollA.drop(a);
-		assertEquals(rollA.getNumberOnWaitList(), 0);
+		assertEquals(rollA.getNumberOnWaitlist(), 0);
 
 		//assertEquals(rollA.getOpenSeats(), 22);
 		//assertTrue(rollA.canEnroll(a));
