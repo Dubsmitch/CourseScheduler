@@ -166,11 +166,12 @@ public class CourseCatalog {
 		//if catalog size is greater than zero
 		if (catalog.size() > 0) {
 			String [][] courseArray;
-			courseArray = new String [catalog.size()][4];
+			courseArray = new String [catalog.size()][5];
 			String courseName = "";
 			String courseSection = "";
 			String courseTitle = "";
 			String courseMeetingString = "";
+			
 			//for each course, return a name, section, and title.
 		
 		
@@ -195,6 +196,11 @@ public class CourseCatalog {
 					if (j == 3) {
 						courseArray[i][j] = courseMeetingString;
 					}
+					//is this why I'm failing?
+					if (j == 4) {
+						courseArray[i][j] = Integer.toString(c.getCourseRoll().getOpenSeats());
+					}
+					
 					
 				}
 

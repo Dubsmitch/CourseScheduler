@@ -14,8 +14,8 @@ public class LinkedAbstractListTest {
 	public void Constructortest() {
 //		String b = "b";
 //		String c = "c";
-		LinkedAbstractList a = null;
-		a = new LinkedAbstractList(1);
+		LinkedAbstractList<String> a = null;
+		a = new LinkedAbstractList<String>(1);
 		
 		assertEquals(a.size(), 0);
 //		a.add(0, b);
@@ -32,16 +32,10 @@ public class LinkedAbstractListTest {
 		String d = "d";
 		String e = "e";
 		String f = "f";
-		String g = "g";
-		String h = "h";
-		String i = "i";
-		String j = "j";
-		String k = "k";
-		String l = "l";
-		String m = "m";
+		
 
-		LinkedAbstractList a = null;
-		a = new LinkedAbstractList(10);
+		LinkedAbstractList<String> a = null;
+		a = new LinkedAbstractList<String>(10);
 		
 		assertEquals(a.size(), 0);
 		
@@ -96,16 +90,9 @@ public class LinkedAbstractListTest {
 		String d = "d";
 		String e = "e";
 		String f = "f";
-		String g = "g";
-		String h = "h";
-		String i = "i";
-		String j = "j";
-		String k = "k";
-		String l = "l";
-		String m = "m";
-
-		LinkedAbstractList a = null;
-		a = new LinkedAbstractList(10);
+	
+		LinkedAbstractList<String> a = null;
+		a = new LinkedAbstractList<String>(10);
 		
 		assertEquals(a.size(), 0);
 		
@@ -181,16 +168,12 @@ public class LinkedAbstractListTest {
 		String d = "d";
 		String e = "e";
 		String f = "f";
-		String g = "g";
-		String h = "h";
-		String i = "i";
-		String j = "j";
-		String k = "k";
+
 		String l = "l";
 		String m = "m";
 
-		LinkedAbstractList a = null;
-		a = new LinkedAbstractList(10);
+		LinkedAbstractList<String> a = null;
+		a = new LinkedAbstractList<String>(10);
 		
 		assertEquals(a.size(), 0);
 		

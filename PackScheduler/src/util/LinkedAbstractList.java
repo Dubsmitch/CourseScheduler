@@ -125,6 +125,7 @@ public class LinkedAbstractList<E> extends AbstractList<Object> {
 		}
 		
 		ListNode leading = front;
+		@SuppressWarnings("unused")
 		ListNode trailing = null;
 		
 		while (leading != null) {
@@ -171,6 +172,14 @@ public class LinkedAbstractList<E> extends AbstractList<Object> {
 	public int size() {
 		return this.size;
 	}
+	
+	public void setCapacity(int enrollmentCap) {
+		if (enrollmentCap < 0 || enrollmentCap < size) {
+			throw new IllegalArgumentException ("cannot set the capacity to a size smaller"
+					+ " than zero or the size of the current list");
+		}
+		this.capacity = enrollmentCap;
+	}
 	/**
 	 * inner class of LinkedAbstractList 
 	 * 
@@ -183,7 +192,7 @@ public class LinkedAbstractList<E> extends AbstractList<Object> {
 		
 		private ListNode next;
 		
-		@SuppressWarnings("unchecked")
+		@SuppressWarnings({ "unchecked", "unused" })
 		public ListNode (Object data) {
 			this.data = (E) data;
 			next = null;

@@ -46,6 +46,7 @@ public class CourseRoll {
 		}
 		
 		this.enrollmentCap = enrollmentCap;
+		roll.setCapacity(enrollmentCap);
 	}
 	
 	public void enroll(Student s) {
