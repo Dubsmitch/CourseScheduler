@@ -134,7 +134,11 @@ public class Schedule {
 				try {
 					this.getSchedule().get(i).checkConflict(course);
 				} catch (ConflictException e) {
-					throw new IllegalArgumentException("cant do that");
+					try {
+						throw new ConflictException ("cant do that");
+					} catch (ConflictException e1) {
+						return false;
+					}
 				}
 			}
 		}
