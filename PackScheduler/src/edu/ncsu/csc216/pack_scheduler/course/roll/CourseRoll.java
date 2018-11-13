@@ -79,6 +79,7 @@ public class CourseRoll {
 		}
 		boolean inWaitingList = false;
 		boolean inRoll = false;
+		
 		if (this.waitList.size() > 0) {
 			LinkedQueue<Student> waitList2 = waitList;
 			for (int i = 0; i < this.waitList.size(); i++) {
@@ -121,48 +122,77 @@ public class CourseRoll {
 			for (int i = 0; i < waitList.size() - 1; i++) {
 				waitList4.enqueue(waitList3.dequeue());
 			}
+			
+			waitList = waitList4;
 		}			
 		
-		
+		//
 		for (int i = 0; i < this.roll.size(); i++) {
 			if (s.equals(this.roll.get(i))) {
 				inRoll = true;
 			}
 		}
-		
-		int index = -1;
 		if (inRoll) {
-			for (int i = 0; i < this.roll.size(); i++) {
-				if (s.equals(this.roll.get(i))) {
-					index = i;
+			int index = -1;
+			if (inRoll) {
+				for (int i = 0; i < this.roll.size(); i++) {
+					if (s.equals(this.roll.get(i))) {
+						index = i;
+					}
 				}
-			}
 		
-			if (index != -1) {
-				this.roll.remove(index);
-			} 
+				if (index != -1) {
+					this.roll.remove(index);
+				} 
 		
-			if (this.waitList.size() > 0) {
-				this.roll.add(this.roll.size(), s);
+				if (this.waitList.size() > 0) {
+					this.roll.add(this.roll.size(), s);
+				}
 			}
 		}
 	}
 	
 	public boolean canEnroll (Student s) {
-		if (this.getOpenSeats() == 0) {
-			return false;
+		LinkedQueue<Student> waitList2 = waitList; 
+		
+		boolean canAddToWaitList = false;
+		//try to add the student
+		try {
+			waitList2.enqueue(s);
+			//if he can be added then mark it true
+			canAddToWaitList = true;
+		} catch (IllegalArgumentException e) {
 		}
 		
+		// get open seats, if there are none then see if
+		//the can be added to the wait list
+		
+		if (this.getOpenSeats() == 0) {
+			if (!canAddToWaitList) {
+				return false;
+			}
+		}
+				
+		//check if they are already in the roll
 		for (int i = 0; i < this.roll.size(); i++) {
 			if (s.equals(this.roll.get(i))) {
 				return false;
 			}
 		}
 		
+		//check if it is the same as someone already on the waitlist
+		LinkedQueue<Student> waitList3 = waitList; 
+
+		for (int i = 0; i < this.waitList.size(); i++) {
+			if (s.equals(waitList3.dequeue())) {
+				return false;
+			}
+		}
+		//check for null
 		if (s == null) {
 			return false;
 		}
-		
+		//if it passes then true
 		return true;
 	}
 	
