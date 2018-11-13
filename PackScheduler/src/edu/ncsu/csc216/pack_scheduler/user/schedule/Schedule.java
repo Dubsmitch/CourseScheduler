@@ -123,10 +123,8 @@ public class Schedule {
 	 * 			the course to be added to the schedule
 	 * @return boolean
 	 * 			whether or not the course can be added to the schedule
-	 * @throws ConflictException
-	 * 			If the course to be added has a conflict
 	 */
-	public boolean canAdd(Course course) throws ConflictException {
+	public boolean canAdd(Course course){
 		if (course == null) {
 			return false;
 		}
