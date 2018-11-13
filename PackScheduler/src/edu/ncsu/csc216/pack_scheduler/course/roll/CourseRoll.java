@@ -1,10 +1,14 @@
 package edu.ncsu.csc216.pack_scheduler.course.roll;
 
+import edu.ncsu.csc216.pack_scheduler.course.Course;
 import edu.ncsu.csc216.pack_scheduler.user.Student;
 import util.LinkedAbstractList;
+import util.LinkedQueue;
 
 public class CourseRoll {
 	//State
+	/** the waitlist **/
+	private LinkedQueue<Student> waitList;
 	/** a custom LinkedAbstractList of Student **/
 	private LinkedAbstractList<Student> roll;
 	/** the roll's enrollment capacity **/
@@ -15,12 +19,15 @@ public class CourseRoll {
 	/** the largest a class can be **/
 	public static final int MAX_ENROLLMENT = 250;
 	
-	public CourseRoll(int enrollmentCap) {
+	public CourseRoll(int enrollmentCap, Course course) {
 		if (enrollmentCap < MIN_ENROLLMENT || enrollmentCap > MAX_ENROLLMENT) {
 			throw new IllegalArgumentException ("Enrollment Cap must be between 10 and 250");
 		}
 		
-		
+		if (course == null) {
+			throw new IllegalArgumentException ("Course must not be null");
+		}
+		waitList = new LinkedQueue<Student>(10);
 		
 		LinkedAbstractList<Student> myRoll = new 
 				LinkedAbstractList<Student>(enrollmentCap);
@@ -55,33 +62,58 @@ public class CourseRoll {
 		}
 		
 		if (this.getOpenSeats() == 0) {
-			throw new IllegalArgumentException ("Roll is full");
-		}
-		
-		for (int i = 0; i < roll.size(); i++) {
-			if (s.equals(roll.get(i))) {
-				throw new IllegalArgumentException ("student is already enrolled");
+			this.waitList.enqueue(s);
+		} else {
+			for (int i = 0; i < roll.size(); i++) {
+				if (s.equals(roll.get(i))) {
+					throw new IllegalArgumentException ("student is already enrolled");
+				}
 			}
+			this.roll.add(0, s);
 		}
-		this.roll.add(0, s);
 	}
 	
 	public void drop (Student s) {
 		if (s == null) {
 			throw new IllegalArgumentException ("Student cannot be null");
 		}
-		
-		int index = -1;
+		boolean inWaitingList = false;
+		boolean inRoll = false;
+		if (this.waitList.size() > 0) {
+			LinkedQueue<Student> waitList2 = waitList;
+			for (int i = 0; i < this.waitList.size(); i++) {
+				if(s.equals(waitList2.dequeue())) {
+					inWaitingList = true;
+				}
+			}
+		}
+		if (inWaitingList) {
+			LinkedQueue<Student> waitList2 = waitList;
+			
+		}
 		
 		for (int i = 0; i < this.roll.size(); i++) {
 			if (s.equals(this.roll.get(i))) {
-				index = i;
+				inRoll = true;
 			}
 		}
 		
-		if (index != -1) {
-			this.roll.remove(index);
-		} 
+		int index = -1;
+		if (inRoll) {
+			for (int i = 0; i < this.roll.size(); i++) {
+				if (s.equals(this.roll.get(i))) {
+					index = i;
+				}
+			}
+		
+			if (index != -1) {
+				this.roll.remove(index);
+			} 
+		
+			if (this.waitList.size() > 0) {
+				this.roll.add(this.roll.size(), s);
+			}
+		}
 	}
 	
 	public boolean canEnroll (Student s) {

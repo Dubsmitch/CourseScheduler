@@ -63,7 +63,7 @@ public class Course extends Activity implements Comparable<Course> {
 	public Course(String name, String title, String section, int credits, String instructorId, int enrollmentCap, String meetingDays) throws InvalidTransitionException {
 	    this(name, title, section, credits, instructorId, enrollmentCap, meetingDays, 0, 0);
 	    
-	    roll = new CourseRoll(enrollmentCap);
+	    roll = new CourseRoll(enrollmentCap, this);
 	}
 
 	/**
@@ -97,7 +97,7 @@ public class Course extends Activity implements Comparable<Course> {
 	    setCredits(credits);
 	    setInstructorId(instructorId);
 	    
-	    roll = new CourseRoll(enrollmentCap);
+	    roll = new CourseRoll(enrollmentCap, this);
 
 	    
 	}

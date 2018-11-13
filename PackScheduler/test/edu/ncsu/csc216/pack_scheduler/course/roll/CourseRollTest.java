@@ -4,15 +4,21 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import edu.ncsu.csc216.pack_scheduler.course.Course;
+import edu.ncsu.csc216.pack_scheduler.course.validator.InvalidTransitionException;
 import edu.ncsu.csc216.pack_scheduler.user.Student;
 
 public class CourseRollTest {
 	/**
 	 * test the constructor
+	 * @throws InvalidTransitionException 
+	 * 		if there is an invalid transition. should really fix this
 	 */
 	@Test
-	public void testConstructor() {
-		CourseRoll rollA = new CourseRoll(25);
+	public void testConstructor() throws InvalidTransitionException {
+		Course c = new Course("CSC216", "Programming Concepts - Java", "001", 4, "sesmith5", 25, "A");
+		
+		CourseRoll rollA = c.getCourseRoll();
 		
 		//test that there are 25 open seats
 		//test that the enrollment cap is 25.
@@ -22,11 +28,14 @@ public class CourseRollTest {
 	
 	/**
 	 * test setting the enrollment cap
+	 * @throws InvalidTransitionException 
+	 * 		should really fix this
 	 */
 	@Test
-	public void testSetEnrollmentCap() {
-		CourseRoll rollA = new CourseRoll(25);
+	public void testSetEnrollmentCap() throws InvalidTransitionException {
+		Course c = new Course("CSC216", "Programming Concepts - Java", "001", 4, "sesmith5", 25, "A");
 		
+		CourseRoll rollA = c.getCourseRoll();		
 		//test that there are 25 open seats
 		//test that the enrollment cap is 25.
 		assertEquals(rollA.getOpenSeats(), 25);
@@ -40,14 +49,17 @@ public class CourseRollTest {
 	
 	/**
 	 * test adding a student
+	 * @throws InvalidTransitionException 
+	 * 		should really fix this
 	 */
 	@Test
-	public void testAddStudent() {
+	public void testAddStudent() throws InvalidTransitionException {
 		//(String firstName, String lastName, String id, String email,
 		//		String password, int maxCredits)
 		
-		CourseRoll rollA = new CourseRoll(25);
+		Course c = new Course("CSC216", "Programming Concepts - Java", "001", 4, "sesmith5", 25, "A");
 		
+		CourseRoll rollA = c.getCourseRoll();		
 		//test that there are 25 open seats
 		//test that the enrollment cap is 25.
 		assertEquals(rollA.getOpenSeats(), 25);
@@ -55,9 +67,9 @@ public class CourseRollTest {
 		
 		Student a = new Student("first", "last", "fila", "fila@ncsu.edu", "pw", 15);
 		Student b = new Student("firs", "last", "fila", "fila@ncsu.edu", "pw", 15);
-		Student c = new Student("fir", "last", "fila", "fila@ncsu.edu", "pw", 15);
+		Student q = new Student("fir", "last", "fila", "fila@ncsu.edu", "pw", 15);
 		Student d = new Student("f", "last", "fila", "fila@ncsu.edu", "pw", 15);
-		Student e = new Student("firsty", "last", "fila", "fila@ncsu.edu", "pw", 15);
+		//Student e = new Student("firsty", "last", "fila", "fila@ncsu.edu", "pw", 15);
 		
 		
 		rollA.enroll(a);
@@ -66,7 +78,7 @@ public class CourseRollTest {
 		rollA.enroll(b);
 		assertEquals(rollA.getOpenSeats(), 23);
 		
-		rollA.enroll(c);
+		rollA.enroll(q);
 		assertEquals(rollA.getOpenSeats(), 22);
 		
 		rollA.enroll(d);
@@ -75,13 +87,16 @@ public class CourseRollTest {
 	
 	/**
 	 * test removing a student
+	 * @throws InvalidTransitionException 
+	 * 		should really fix this
 	 */
 	@Test
-	public void testRemoveStudent() {
+	public void testRemoveStudent() throws InvalidTransitionException {
 		//(String firstName, String lastName, String id, String email,
 		//		String password, int maxCredits)
+		Course c = new Course("CSC216", "Programming Concepts - Java", "001", 4, "sesmith5", 25, "A");
 		
-		CourseRoll rollA = new CourseRoll(25);
+		CourseRoll rollA = c.getCourseRoll();
 		
 		//test that there are 25 open seats
 		//test that the enrollment cap is 25.
@@ -90,9 +105,9 @@ public class CourseRollTest {
 		
 		Student a = new Student("first", "last", "fila", "fila@ncsu.edu", "pw", 15);
 		Student b = new Student("firs", "last", "fila", "fila@ncsu.edu", "pw", 15);
-		Student c = new Student("fir", "last", "fila", "fila@ncsu.edu", "pw", 15);
+		Student q = new Student("fir", "last", "fila", "fila@ncsu.edu", "pw", 15);
 		Student d = new Student("f", "last", "fila", "fila@ncsu.edu", "pw", 15);
-		Student e = new Student("firsty", "last", "fila", "fila@ncsu.edu", "pw", 15);
+		//Student e = new Student("firsty", "last", "fila", "fila@ncsu.edu", "pw", 15);
 		
 		
 		rollA.enroll(a);
@@ -101,7 +116,7 @@ public class CourseRollTest {
 		rollA.enroll(b);
 		assertEquals(rollA.getOpenSeats(), 23);
 		
-		rollA.enroll(c);
+		rollA.enroll(q);
 		assertEquals(rollA.getOpenSeats(), 22);
 		
 		rollA.enroll(d);
@@ -118,14 +133,16 @@ public class CourseRollTest {
 	
 	/**
 	 * test canenroll method
+	 * @throws InvalidTransitionException 
+	 * 		should really fix this
 	 */
 	@Test
-	public void testCanEnroll() {
+	public void testCanEnroll() throws InvalidTransitionException {
 		//(String firstName, String lastName, String id, String email,
 		//		String password, int maxCredits)
+		Course c = new Course("CSC216", "Programming Concepts - Java", "001", 4, "sesmith5", 25, "A");
 		
-		CourseRoll rollA = new CourseRoll(25);
-		
+		CourseRoll rollA = c.getCourseRoll();
 		//test that there are 25 open seats
 		//test that the enrollment cap is 25.
 		assertEquals(rollA.getOpenSeats(), 25);
@@ -133,9 +150,9 @@ public class CourseRollTest {
 		
 		Student a = new Student("first", "last", "fila", "fila@ncsu.edu", "pw", 15);
 		Student b = new Student("firs", "last", "fila", "fila@ncsu.edu", "pw", 15);
-		Student c = new Student("fir", "last", "fila", "fila@ncsu.edu", "pw", 15);
+		Student q = new Student("fir", "last", "fila", "fila@ncsu.edu", "pw", 15);
 		Student d = new Student("f", "last", "fila", "fila@ncsu.edu", "pw", 15);
-		Student e = new Student("firsty", "last", "fila", "fila@ncsu.edu", "pw", 15);
+		//Student e = new Student("firsty", "last", "fila", "fila@ncsu.edu", "pw", 15);
 		
 		
 		rollA.enroll(a);
@@ -144,7 +161,7 @@ public class CourseRollTest {
 		rollA.enroll(b);
 		assertEquals(rollA.getOpenSeats(), 23);
 		
-		rollA.enroll(c);
+		rollA.enroll(q);
 		assertEquals(rollA.getOpenSeats(), 22);
 		
 		rollA.enroll(d);
@@ -160,7 +177,7 @@ public class CourseRollTest {
 		
 		assertTrue(rollA.canEnroll(a));
 		
-		assertTrue(!rollA.canEnroll(c));
+		assertTrue(!rollA.canEnroll(q));
 	}
 	
 }
