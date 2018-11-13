@@ -79,7 +79,7 @@ public class CourseRoll {
 		}
 		boolean inWaitingList = false;
 		boolean inRoll = false;
-		
+		System.out.println(waitList.size());
 		if (this.waitList.size() > 0) {
 			LinkedQueue<Student> waitList2 = waitList;
 			for (int i = 0; i < this.waitList.size(); i++) {
@@ -110,6 +110,7 @@ public class CourseRoll {
 			}
 			//add up to the student that was removed
 			for (int i = 0; i < indexOfStudentInList; i++) {
+				System.out.println("This happened");
 				waitList3.enqueue(waitList4.dequeue());
 			}
 			//remove the student to be dropped
@@ -153,17 +154,26 @@ public class CourseRoll {
 	}
 	
 	public boolean canEnroll (Student s) {
-		LinkedQueue<Student> waitList2 = waitList; 
+		LinkedQueue<Student> waitList2 = new LinkedQueue<Student>(waitList.size()); 
+		LinkedQueue<Student> waitList3 = new LinkedQueue<Student>(waitList.size()); 
+
 		boolean canAddToWaitList = false;
 		//try to add the student
 		try {
 
-			waitList2.enqueue(s);
+			waitList.enqueue(s);
 			//if he can be added then mark it true
 			canAddToWaitList = true;
 		} catch (IllegalArgumentException e) {
 		}
-
+		for (int i = 0; i < waitList.size() - 1; i++) {
+			waitList2.enqueue(waitList.dequeue());
+		}
+		waitList.dequeue();
+		
+		for (int i = 0; i < waitList2.size(); i++) {
+			waitList.enqueue(waitList2.dequeue());
+		}
 		// get open seats, if there are none then see if
 		//the can be added to the wait list
 		
@@ -182,16 +192,17 @@ public class CourseRoll {
 		}
 		
 		//check if it is the same as someone already on the waitlist
-		LinkedQueue<Student> waitList3 = waitList; 
+		LinkedQueue<Student> waitList4 = new LinkedQueue<Student>(waitList.size());
+		
 		if (waitList.size() > 0) {
-			System.out.println(waitList.dequeue().getFirstName());
 			for (int i = 0; i < this.waitList.size(); i++) {
-				System.out.println("this executed");
-
-				if (s.equals(waitList3.dequeue())) {
+				Student element = waitList.dequeue();
+				if (s.equals(element)) {
 					return false;
 				}
+				waitList4.enqueue(element);
 			}
+			waitList.enqueue(waitList4.dequeue());
 		}
 		//check for null
 		if (s == null) {
