@@ -77,11 +77,15 @@ public class CourseCatalogTest {
 	/**
 	 * Tests loadFromFile().
 	 * @throws InvalidTransitionException 
+	 * 		throw if not possible
 	 */
 	@Test
 	public void testLoadCoursesFromFile() throws InvalidTransitionException {
 		CourseCatalog c1 = new CourseCatalog();
-		c1.loadCoursesFromFile(validTestFile);
+		try {
+			c1.loadCoursesFromFile(validTestFile);
+		} catch (InvalidTransitionException e) {
+		}
 		assertEquals(8, c1.getCourseCatalog().length);
 	}
 	
