@@ -28,20 +28,18 @@ public class Schedule {
 	 * 			course to be added
 	 * @return boolean
 	 * 			if a course can be added or not
-	 * @throws ConflictException 
-	 * 			thrown if there is a conflict in course times
 	 */
-	public boolean addCourseToSchedule (Course course) throws ConflictException {
+	public boolean addCourseToSchedule (Course course) {
 		for (int i = 0; i < schedule.size(); i++) {
 			if (schedule.get(i).equals(course)) {
 				throw new IllegalArgumentException ("You are alread enrolled in " + course.getName());
 			}
 			
-		try {
-			schedule.get(i).checkConflict(course);
-		} catch (ConflictException e) {
-			throw new ConflictException("The course cannot be added due to a conflict.");
-		}
+			try {
+				schedule.get(i).checkConflict(course);
+			} catch (ConflictException e) {
+				return false;
+			}
 				
 		}
 		
