@@ -7,6 +7,8 @@ package util;
 public interface Queue <E> {
 	/**
 	 * adds element to the back of the queue
+	 * throws and IllegalArgumentException if the capacity
+	 * has been reached
 	 * 
 	 * @param element
 	 * 		the element to be added to the back of the queue
@@ -14,6 +16,7 @@ public interface Queue <E> {
 	void enqueue(E element);
 	/**
 	 * removes an element from the queue and returns it
+	 * throws a NoSuchElementException if the queue is empty
 	 * @return element
 	 * 		the element that is removed
 	 */
@@ -34,6 +37,9 @@ public interface Queue <E> {
 	int size();
 	/**
 	 * sets the capacity of the queue
+	 * throws an IllegalArgumentException if the capacity
+	 * to be set to is less than the size of the current queue
+	 * 
 	 * @param capacity
 	 * 			the capacity of the queue
 	 */
