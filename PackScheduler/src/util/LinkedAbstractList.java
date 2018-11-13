@@ -18,6 +18,8 @@ public class LinkedAbstractList<E> extends AbstractList<Object> {
 	
 	private int capacity;
 	
+	private ListNode back;
+	
 	public LinkedAbstractList (int cap) {
 		if (cap < size) {
 			throw new IllegalArgumentException ("Capacity cannot be less "
@@ -26,6 +28,7 @@ public class LinkedAbstractList<E> extends AbstractList<Object> {
 		front = null;
 		size = 0;
 		capacity = cap;
+		back = null;
 	}
 	
 	public E get(int index) {
@@ -50,10 +53,28 @@ public class LinkedAbstractList<E> extends AbstractList<Object> {
 		if (capacity == size) {
 			throw new IllegalArgumentException ("The list is full");
 		}
-		size = size + 1;
+		
+		//first addition taken care of//
 		if (index == 0) {
 			front = new ListNode (e, front);
+			size = size + 1;
+			if (size == 1) {
+				size = 0;
+				back = front;
+				size = 1;
+			}
+			//adding to the end//
+		} else if (index == size) {
+			
+			//make new node for old back//
+			ListNode newBack = new ListNode (e);
+			
+			back.next = newBack;
+			
+			back = newBack;
+			size = size + 1;
 		} else if (front != null && index > 0) {
+			size = size + 1;
 			ListNode leading = front;
 			while (leading != null && index > 1) {
 				leading = leading.next;
@@ -62,38 +83,7 @@ public class LinkedAbstractList<E> extends AbstractList<Object> {
 			if (leading != null) {
 				leading.next = new ListNode (e, leading.next);
 			}
-		//if empty then add a new listnode with a null tail link
-//		if (size == 0) {
-//			front = new ListNode(e);
-//			size = size + 1;
-//		//if the size isn't 0 and the index is 1
-		//not equal to the size (adding to second index)
-		//} else if (size > 0 && index == 1) {
-			//make first node reference the second node
-		//	ListNode newFront = front;
-		//	front = new ListNode(e, front);
-		//	size = size + 1;
-		//add to middle
-//		} else if (size >= 1) {
-//			ListNode leading = front;
-//			ListNode trailing = null;
-//			int idx = 0;
-//			//theoretical: size 8, index to insert: 5
-//			//need to change the reference of index 4 to the new obj
-//			//need to insert at # 5 and make a reference to old 5
-//			while (leading != null && idx < index ) {
-//				trailing = leading;
-//				leading = leading.next;
-//			}
-//			//search for the insertion position. Stop when it
-//			//finds the index, then sets the first node equal to old
-			//sets the trailing equal to #4
-			
-//			trailing.next = new ListNode(e, leading);
-//			size = size + 1;
-			
-			//not sure if this is correct 
-		}
+		}		
 	}
 	
 	public E remove (int idx) {
@@ -111,6 +101,7 @@ public class LinkedAbstractList<E> extends AbstractList<Object> {
 				front = front.next;
 			} else {
 				trailing.next = leading.next;
+				back = leading.next;
 			} 
 			size = size - 1;
 			return leading.data;
