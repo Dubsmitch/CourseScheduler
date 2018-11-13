@@ -123,17 +123,19 @@ public class Schedule {
 	 * 			the course to be added to the schedule
 	 * @return boolean
 	 * 			whether or not the course can be added to the schedule
-	 * @throws ConflictException 
-	 * 		if there is conflict
 	 */
-	public boolean canAdd(Course course) throws ConflictException{
+	public boolean canAdd(Course course) {
 		if (course == null) {
 			return false;
 		}
 		
 		for (int i = 0; i < this.getSchedule().size(); i++) {
 			if (this.getSchedule().get(i).equals(course)) {
-				this.getSchedule().get(i).checkConflict(course);
+				try{
+					this.getSchedule().get(i).checkConflict(course);
+				} catch (ConflictException e) {
+					return false;
+				}
 				
 			}
 		}
