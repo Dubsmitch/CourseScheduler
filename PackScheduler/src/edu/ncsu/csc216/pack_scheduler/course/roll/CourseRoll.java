@@ -4,7 +4,11 @@ import edu.ncsu.csc216.pack_scheduler.course.Course;
 import edu.ncsu.csc216.pack_scheduler.user.Student;
 import util.LinkedAbstractList;
 import util.LinkedQueue;
-
+/**
+ * holds the number of students that are enrolled in a course
+ * @author William
+ *
+ */
 public class CourseRoll {
 	//State
 	/** the waitlist **/
@@ -18,7 +22,13 @@ public class CourseRoll {
 	//by the way the following number is crazy.
 	/** the largest a class can be **/
 	public static final int MAX_ENROLLMENT = 250;
-	
+	/**
+	 * constructs a course roll
+	 * @param enrollmentCap
+	 * 		how many students can be enrolled in a given course
+	 * @param course
+	 * 		the course to be enrolled in
+	 */
 	public CourseRoll(int enrollmentCap, Course course) {
 		if (enrollmentCap < MIN_ENROLLMENT || enrollmentCap > MAX_ENROLLMENT) {
 			throw new IllegalArgumentException ("Enrollment Cap must be between 10 and 250");
@@ -36,15 +46,30 @@ public class CourseRoll {
 		this.setEnrollmentCap(enrollmentCap);
 		
 	}
-	
+	/**
+	 * returns the number of open seats
+	 * @return	int
+	 * 		the number of open seats
+	 */
 	public int getOpenSeats() {
 		return (this.getEnrollmentCap() - this.roll.size()); 
 	}
-	
+	/**
+	 * returns the enrollmentcap
+	 * @return int
+	 * 		the number of students that can take a course
+	 */
 	public int getEnrollmentCap() {
 		return this.enrollmentCap;
 	}
-	
+	/**
+	 * sets the enrollmentcap
+	 * @param enrollmentCap
+	 * 			the number of students that can take a course
+	 * @throws IllegalArgumentException
+	 * 			if the size of the cap is less than the
+	 * 			size of the current roll
+	 */
 	public void setEnrollmentCap(int enrollmentCap) {
 		if (enrollmentCap < this.roll.size()) {
 			throw new IllegalArgumentException ("Enrollment cap "
@@ -55,7 +80,11 @@ public class CourseRoll {
 		this.enrollmentCap = enrollmentCap;
 		roll.setCapacity(enrollmentCap);
 	}
-	
+	/**
+	 * enrolls a student
+	 * @param s
+	 * 		the student to be enrolled
+	 */
 	public void enroll(Student s) {
 		if (s == null) {
 			throw new IllegalArgumentException ("Student cannot be null");
@@ -72,7 +101,11 @@ public class CourseRoll {
 			this.roll.add(0, s);
 		}
 	}
-	
+	/**
+	 * drops a student from the roll or waitlist
+	 * @param s
+	 * 			the student to be dropped
+	 */
 	public void drop (Student s) {
 		if (s == null) {
 			throw new IllegalArgumentException ("Student cannot be null");
@@ -152,7 +185,13 @@ public class CourseRoll {
 			}
 		}
 	}
-	
+	/**
+	 * checks to see if a student can be enrolled
+	 * @param s 
+	 * 		the student to be enrolled
+	 * @return boolean
+	 * 		whether or not a student can be enrolled
+	 */
 	public boolean canEnroll (Student s) {
 		LinkedQueue<Student> waitList2 = new LinkedQueue<Student>(waitList.size()); 
 		LinkedQueue<Student> waitList3 = new LinkedQueue<Student>(waitList.size()); 
@@ -211,7 +250,11 @@ public class CourseRoll {
 		//if it passes then true
 		return true;
 	}
-	
+	/**
+	 * returns the number of students on the waitlist
+	 * @return int
+	 * 			number of students on the waitlist
+	 */
 	public int getNumberOnWaitList() {
 		return waitList.size();
 	}
