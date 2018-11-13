@@ -92,7 +92,11 @@ public class Course extends Activity implements Comparable<Course> {
 	public Course(String name, String title, String section, int credits, String instructorId, int enrollmentCap, String meetingDays,
 			int startTime, int endTime) throws InvalidTransitionException {
 	    super(title, meetingDays, startTime, endTime);
-		setName(name);
+		try {
+			setName(name);
+		} catch (InvalidTransitionException e) {
+			
+		}
 	    setSection(section);
 	    setCredits(credits);
 	    setInstructorId(instructorId);
