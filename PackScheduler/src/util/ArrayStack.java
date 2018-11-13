@@ -31,6 +31,8 @@ public class ArrayStack<E> implements Stack<E> {
 	 * Throws an IllegalArgumentException if there is no room
 	 * @param element
 	 * 			the element to be added
+	 * @throws IllegalArgumentException
+	 * 			if the stack is full
 	 */
 	@Override
 	public void push(E element) {
@@ -44,6 +46,8 @@ public class ArrayStack<E> implements Stack<E> {
 	 * if the stack is empty an EmptyStackException is thrown
 	 * @return E
 	 * 			the element to be deleted is returned
+	 * @throws EmptyStackException
+	 * 			if the stack is empty
 	 */
 	@Override
 	public E pop() {
@@ -60,6 +64,7 @@ public class ArrayStack<E> implements Stack<E> {
 	 * returns true if the stack is empty, else false
 	 * @return boolean
 	 * 			if the stack is empty
+	 * 
 	 */
 	@Override
 	public boolean isEmpty() {
@@ -83,6 +88,9 @@ public class ArrayStack<E> implements Stack<E> {
 	 * is negative or less than the size of the stack
 	 * @param Capacity
 	 * 			the size of the stack
+	 * @throws IllegalArgumentException
+	 * 			if the capacity is less than the size of
+	 * 			the current stack
 	 */
 	@Override
 	public void setCapacity(int capacity) {

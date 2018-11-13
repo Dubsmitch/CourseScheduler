@@ -37,6 +37,8 @@ public class LinkedStack<E> implements Stack<E> {
 	 * if the stack is empty an EmptyStackException is thrown
 	 * @return E
 	 * 			the element to be deleted is returned
+	 * @throws EmptyStackException
+	 * 			if the stack is empty
 	 */
 	@Override
 	public E pop() {
@@ -77,6 +79,9 @@ public class LinkedStack<E> implements Stack<E> {
 	 * is negative or less than the size of the stack
 	 * @param Capacity
 	 * 			the size of the stack
+	 * @throws IllegalArgumentException
+	 * 			if the capacity is being set smaller
+	 * 			than the size of the current stack
 	 */
 	@Override
 	public void setCapacity(int capacity) {
