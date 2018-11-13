@@ -154,21 +154,22 @@ public class CourseRoll {
 	
 	public boolean canEnroll (Student s) {
 		LinkedQueue<Student> waitList2 = waitList; 
-		
 		boolean canAddToWaitList = false;
 		//try to add the student
 		try {
+
 			waitList2.enqueue(s);
 			//if he can be added then mark it true
 			canAddToWaitList = true;
 		} catch (IllegalArgumentException e) {
 		}
-		
+
 		// get open seats, if there are none then see if
 		//the can be added to the wait list
 		
 		if (this.getOpenSeats() == 0) {
 			if (!canAddToWaitList) {
+
 				return false;
 			}
 		}
@@ -182,10 +183,14 @@ public class CourseRoll {
 		
 		//check if it is the same as someone already on the waitlist
 		LinkedQueue<Student> waitList3 = waitList; 
+		if (waitList.size() > 0) {
+			System.out.println(waitList.dequeue().getFirstName());
+			for (int i = 0; i < this.waitList.size(); i++) {
+				System.out.println("this executed");
 
-		for (int i = 0; i < this.waitList.size(); i++) {
-			if (s.equals(waitList3.dequeue())) {
-				return false;
+				if (s.equals(waitList3.dequeue())) {
+					return false;
+				}
 			}
 		}
 		//check for null
@@ -194,6 +199,10 @@ public class CourseRoll {
 		}
 		//if it passes then true
 		return true;
+	}
+	
+	public int getNumberOnWaitList() {
+		return waitList.size();
 	}
 	
 }

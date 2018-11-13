@@ -152,12 +152,14 @@ public class CourseRollTest {
 		Student b = new Student("firs", "last", "fila", "fila@ncsu.edu", "pw", 15);
 		Student q = new Student("fir", "last", "fila", "fila@ncsu.edu", "pw", 15);
 		Student d = new Student("f", "last", "fila", "fila@ncsu.edu", "pw", 15);
-		//Student e = new Student("firsty", "last", "fila", "fila@ncsu.edu", "pw", 15);
+		Student e = new Student("firsty", "last", "fila", "fila@ncsu.edu", "pw", 15);
 		
-		
+		assertTrue(rollA.canEnroll(a));
 		rollA.enroll(a);
 		assertEquals(rollA.getOpenSeats(), 24);
-		
+		assertTrue(!rollA.canEnroll(a));
+		assertEquals(rollA.getOpenSeats(), 24);
+
 		rollA.enroll(b);
 		assertEquals(rollA.getOpenSeats(), 23);
 		
@@ -166,18 +168,25 @@ public class CourseRollTest {
 		
 		rollA.enroll(d);
 		assertEquals(rollA.getOpenSeats(), 21);
-	
+		
+		//assertTrue()
+		
 		rollA.drop(a);
 		assertEquals(rollA.getOpenSeats(), 22);
-		
+		assertTrue(rollA.canEnroll(a));
+
 		//try to drop student not in roll
 		//should not throw exception but instead do nothing
 		rollA.drop(a);
-		assertEquals(rollA.getOpenSeats(), 22);
+		//assertEquals(rollA.getOpenSeats(), 22);
 		
-		assertTrue(rollA.canEnroll(a));
+		//assertTrue(!rollA.canEnroll(a));
+		//assertTrue(!rollA.canEnroll(q));
+		//assertTrue(rollA.canEnroll(d));
 		
-		assertTrue(!rollA.canEnroll(q));
+		//assertTrue(rollA.canEnroll(a));
+		//assertTrue(rollA.canEnroll(e));
+		//assertTrue(rollA.canEnroll(e));
 	}
 	
 }

@@ -70,7 +70,6 @@ public class CourseNameValidator {
 				throw new InvalidTransitionException("Course name cannot have"
 						+ "more than 4 letters");
 			} else {
-			System.out.println("This is executing");	
 			letterCount++;
 			}
 		}
