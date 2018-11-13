@@ -131,15 +131,12 @@ public class Schedule {
 		
 		for (int i = 0; i < this.getSchedule().size(); i++) {
 			if (this.getSchedule().get(i).equals(course)) {
-				try {
-					this.getSchedule().get(i).checkConflict(course);
-				} catch (ConflictException e) {
 					try {
-						throw new ConflictException ("cant do that");
-					} catch (ConflictException e1) {
+						this.getSchedule().get(i).checkConflict(course);
+					} catch (ConflictException e) {
 						return false;
 					}
-				}
+				
 			}
 		}
 		
