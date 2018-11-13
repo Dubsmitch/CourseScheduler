@@ -57,10 +57,8 @@ public class Course extends Activity implements Comparable<Course> {
 	 * 			the enrollment cap for the course
 	 * @param meetingDays
 	 * 			the days the course meets
-	 * @throws InvalidTransitionException 
-	 * 			throws an ITE if the course is not constructed correctly 
 	 */
-	public Course(String name, String title, String section, int credits, String instructorId, int enrollmentCap, String meetingDays) throws InvalidTransitionException {
+	public Course(String name, String title, String section, int credits, String instructorId, int enrollmentCap, String meetingDays) {
 	    this(name, title, section, credits, instructorId, enrollmentCap, meetingDays, 0, 0);
 	    
 	    roll = new CourseRoll(enrollmentCap, this);
@@ -86,17 +84,12 @@ public class Course extends Activity implements Comparable<Course> {
 	 * 			the start time of the course
 	 * @param endTime
 	 * 			the end time of the course
-	 * @throws InvalidTransitionException
-	 * 			throws an ITE if the course is not constructed correctly 
 	 */
 	public Course(String name, String title, String section, int credits, String instructorId, int enrollmentCap, String meetingDays,
-			int startTime, int endTime) throws InvalidTransitionException {
+			int startTime, int endTime) {
 	    super(title, meetingDays, startTime, endTime);
-		try {
-			setName(name);
-		} catch (InvalidTransitionException e) {
-			
-		}
+		
+		setName(name);
 	    setSection(section);
 	    setCredits(credits);
 	    setInstructorId(instructorId);
@@ -120,10 +113,8 @@ public class Course extends Activity implements Comparable<Course> {
 	 * @param name 
 	 * 		the name of the course to be set
 	 * @throws InvalidTransitionException 
-	 * @throws IllegalArgumentException if name is null or length is less than 4 or 
-	 * greater than 6
 	 */
-	private void setName(String name) throws InvalidTransitionException {
+	private void setName(String name){
 	    validator = new CourseNameValidator();
 	    
 	    if (name == null) {
@@ -133,9 +124,11 @@ public class Course extends Activity implements Comparable<Course> {
 	    if (name.length() < MIN_NAME_LENGTH || name.length() > MAX_NAME_LENGTH) {
 	        throw new IllegalArgumentException("Invalid course name");
 	    }
-	    
-	    validator.isValid(name);
-	   
+	    try {
+	    	validator.isValid(name);
+	    } catch (InvalidTransitionException e) {
+	    	
+	    }
 	    this.name = name;
 	}
 

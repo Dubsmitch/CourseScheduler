@@ -12,7 +12,6 @@ import edu.ncsu.csc216.collections.list.SortedList;
 import java.util.Scanner;
 
 import edu.ncsu.csc216.pack_scheduler.course.Course;
-import edu.ncsu.csc216.pack_scheduler.course.validator.InvalidTransitionException;
 
 /**
  *
@@ -35,10 +34,8 @@ public class CourseRecordIO {
      * @throws FileNotFoundException 
      * 			if the file cannot be found or read
      * 			
-     * @throws InvalidTransitionException 
-     * 			Throws an invalid transition exception if the course name is not valid
      */
-	public static SortedList<Course> readCourseRecords(String fileName) throws FileNotFoundException, InvalidTransitionException {
+	public static SortedList<Course> readCourseRecords(String fileName) throws FileNotFoundException {
 	    Scanner fileReader = new Scanner(new FileInputStream(fileName));
 	    SortedList<Course> courses = new SortedList<Course>();
 	    while (fileReader.hasNextLine()) {
@@ -77,9 +74,8 @@ public class CourseRecordIO {
 	 * 
 	 * @param nextLine from a scanner object that contains course information
 	 * @return course the course that will be added to a sorted list of courses
-	 * @throws InvalidTransitionException 
 	 */
-	private static Course readCourse(String nextLine) throws InvalidTransitionException {
+	private static Course readCourse(String nextLine) {
 
 		Scanner lineScanner = new Scanner(nextLine);
 		lineScanner.useDelimiter(",");

@@ -7,7 +7,6 @@ import java.io.IOException;
 import edu.ncsu.csc216.collections.list.SortedList;
 
 import edu.ncsu.csc216.pack_scheduler.course.Course;
-import edu.ncsu.csc216.pack_scheduler.course.validator.InvalidTransitionException;
 import edu.ncsu.csc216.pack_scheduler.io.CourseRecordIO;
 /**
  * This class creates a catalog of courses
@@ -40,13 +39,11 @@ public class CourseCatalog {
 	 * 
 	 * @param fileName
 	 * 			the name of the file to be loaded
-	 * @throws InvalidTransitionException 
-	 * 			throws an InvalidTransitionException if the course from
-	 * 			the file is incorrectly constructed
+
 	 * @throws IllegalArgumentException
 	 * 			throws an IAE if the compiler is not able to read the file
 	 */
-	public void loadCoursesFromFile(String fileName) throws InvalidTransitionException {
+	public void loadCoursesFromFile(String fileName){
 		try {
 			catalog = CourseRecordIO.readCourseRecords(fileName);
 		} catch (FileNotFoundException e) {
@@ -76,12 +73,10 @@ public class CourseCatalog {
 	 * 			the end time of the course
 	 * @return boolean
 	 * 		if a course can be added or not
-	 * @throws InvalidTransitionException 
-	 * 			this an invalid transition exception if the course to be added is
-	 * 			invalid
+
 	 */
 	public boolean addCourseToCatalog(String name, String title, String section, int credits, String instructorId,
-			int enrollmentCap, String meetingDays, int startTime, int endTime) throws InvalidTransitionException {
+			int enrollmentCap, String meetingDays, int startTime, int endTime) {
 		//need to create the course that will be added; 
 
 		Course c = new Course(name, title, section, credits, instructorId, enrollmentCap, meetingDays,
