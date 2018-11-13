@@ -1,28 +1,23 @@
-package util;
+package edu.ncsu.csc216.pack_scheduler.util;
 
 import java.util.EmptyStackException;
 /**
- * Creates and gives functionality to a stack using
- * an underlying array list
+ * creates a new stack using a linked list
  * 
  * @author William
  *
  * @param <E>
- * 		generic type
  */
-public class ArrayStack<E> implements Stack<E> {
-	/** the underlying array list **/
-	private ArrayList<E> stack;
-	/** the capacity of the stack **/
-	private int capacity;
+public class LinkedStack<E> implements Stack<E> {
+	/** the underlying abstract list **/
+	private LinkedAbstractList<E> stack;
 	/**
-	 * creates a new array Stack with a given capacity
+	 * creates a new Linked Stack with a given capacity
 	 * @param capacity
-	 * 			the capacity of the stack
+	 * 			the capacity of the new stack
 	 */
-	public ArrayStack(int capacity) {
-			ArrayList<E> thing = new ArrayList<E>();
-			this.capacity = capacity;
+	public LinkedStack(int capacity) {
+			LinkedAbstractList<E> thing = new LinkedAbstractList<E>(capacity);
 			this.stack = thing;
 			
 	}
@@ -31,14 +26,10 @@ public class ArrayStack<E> implements Stack<E> {
 	 * Throws an IllegalArgumentException if there is no room
 	 * @param element
 	 * 			the element to be added
-	 * @throws IllegalArgumentException
-	 * 			if the stack is full
 	 */
 	@Override
 	public void push(E element) {
-		if (stack.size() == capacity) {
-			throw new IllegalArgumentException ("Stack is full");
-		}
+
 		this.stack.add(0, element);
 	}
 	/**
@@ -64,7 +55,6 @@ public class ArrayStack<E> implements Stack<E> {
 	 * returns true if the stack is empty, else false
 	 * @return boolean
 	 * 			if the stack is empty
-	 * 
 	 */
 	@Override
 	public boolean isEmpty() {
@@ -82,6 +72,7 @@ public class ArrayStack<E> implements Stack<E> {
 	public int size() {
 		return this.stack.size();
 	}
+	
 	/**
 	 * sets the capacity of the stack
 	 * throws an IllegalArgumentException if the parameter
@@ -89,15 +80,15 @@ public class ArrayStack<E> implements Stack<E> {
 	 * @param Capacity
 	 * 			the size of the stack
 	 * @throws IllegalArgumentException
-	 * 			if the capacity is less than the size of
-	 * 			the current stack
+	 * 			if the capacity is being set smaller
+	 * 			than the size of the current stack
 	 */
 	@Override
 	public void setCapacity(int capacity) {
 		if (capacity < stack.size()) {
 			throw new IllegalArgumentException ("Capacity cannot be set to less than size");
 		}
-		this.capacity = capacity;
+		this.stack.setCapacity(capacity);
 	}
 
 }

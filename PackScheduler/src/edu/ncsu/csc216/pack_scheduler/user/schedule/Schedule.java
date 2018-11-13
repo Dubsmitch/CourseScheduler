@@ -4,7 +4,7 @@ package edu.ncsu.csc216.pack_scheduler.user.schedule;
 
 import edu.ncsu.csc216.pack_scheduler.course.ConflictException;
 import edu.ncsu.csc216.pack_scheduler.course.Course;
-import util.ArrayList;
+import edu.ncsu.csc216.pack_scheduler.util.ArrayList;
 
 
 

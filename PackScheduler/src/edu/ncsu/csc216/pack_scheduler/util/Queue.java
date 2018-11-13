@@ -1,4 +1,4 @@
-package util;
+package edu.ncsu.csc216.pack_scheduler.util;
 /**
  * contains all methods for a queue
  * @author William

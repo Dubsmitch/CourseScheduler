@@ -1,45 +1,42 @@
-package util;
+package edu.ncsu.csc216.pack_sheduler.util;
 
 import static org.junit.Assert.*;
 
-import java.util.EmptyStackException;
+import java.util.NoSuchElementException;
 
 import org.junit.Test;
-/**
- * tests the linkedStack class
- * 
- * @author William
- *
- */
-public class LinkedStackTest {
+
+import edu.ncsu.csc216.pack_scheduler.util.ArrayQueue;
+
+public class ArrayQueueTest {
 	/**
 	 * tests the constructor
 	 */
 	@Test
 	public void testConstructor() {
 		@SuppressWarnings("rawtypes")
-		LinkedStack newStack = new LinkedStack(5);
-		assertEquals(newStack.size(), 0);
+		ArrayQueue newQueue = new ArrayQueue(5);
+		assertEquals(newQueue.size(), 0);
 	}
 	
 	/**
-	 * tests pop
+	 * tests enqueue
 	 */
 	@Test
-	public void testPush() {
-		LinkedStack<String> newStack = new LinkedStack<String>(5);
+	public void testEnqueue() {
+		ArrayQueue<String> newStack = new ArrayQueue<String>(5);
 		String a = "a";
 		String b = "b";
 		String c = "c";
 		
 		//add one
-		newStack.push(a);
+		newStack.enqueue(a);
 		
 		//add two
-		newStack.push(b);
+		newStack.enqueue(b);
 		
 		//add three
-		newStack.push(c);
+		newStack.enqueue(c);
 		
 		assertEquals(newStack.size(), 3);
 	}
@@ -49,48 +46,48 @@ public class LinkedStackTest {
 	 */
 	@Test
 	public void testPop() {
-		LinkedStack<String> newStack = new LinkedStack<String>(5);
+		ArrayQueue<String> newStack = new ArrayQueue<String>(5);
 		String a = "a";
 		String b = "b";
 		String c = "c";
 		
 		//add one
-		newStack.push(a);
+		newStack.enqueue(a);
 		
 		//add two
-		newStack.push(b);
+		newStack.enqueue(b);
 		
 		//add three
-		newStack.push(c);
+		newStack.enqueue(c);
 		
 		//test removing first element
-		assertEquals(newStack.pop(), c);
+		assertEquals(newStack.dequeue(), a);
 		//test removing second element
-		assertEquals(newStack.pop(), b);
+		assertEquals(newStack.dequeue(), b);
 		//test removing third element
-		assertEquals(newStack.pop(), a);
+		assertEquals(newStack.dequeue(), c);
 		
 		
 		//add one
-		newStack.push(a);
+		newStack.enqueue(a);
 		
 		//add two
-		newStack.push(b);
+		newStack.enqueue(b);
 		
-		//test removing top (second) element
-		assertEquals(newStack.pop(), b);
+		//test removing top  element
+		assertEquals(newStack.dequeue(), a);
 		
 		//add three
-		newStack.push(c);
+		newStack.enqueue(c);
 
-		assertEquals(newStack.pop(), c);
+		assertEquals(newStack.dequeue(), b);
 		//test removing element
-		assertEquals(newStack.pop(), a);
+		assertEquals(newStack.dequeue(), c);
 	
 		try {
-			newStack.pop();
+			newStack.dequeue();
 			fail("Can't remove element from an empty stack");
-		} catch (EmptyStackException e) {
+		} catch (NoSuchElementException e) {
 			//successful
 		}	
 	}
@@ -100,19 +97,19 @@ public class LinkedStackTest {
 	 */
 	@Test
 	public void testSetCapacity() {
-		LinkedStack<String> newStack = new LinkedStack<String>(5);
+		ArrayQueue<String> newStack = new ArrayQueue<String>(5);
 		String a = "a";
 		String b = "b";
 		String c = "c";
 		
 		//add one
-		newStack.push(a);
+		newStack.enqueue(a);
 		
 		//add two
-		newStack.push(b);
+		newStack.enqueue(b);
 		
 		//add three
-		newStack.push(c);
+		newStack.enqueue(c);
 	
 		newStack.setCapacity(3);
 		

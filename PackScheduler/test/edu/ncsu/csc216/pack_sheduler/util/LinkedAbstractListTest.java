@@ -1,8 +1,10 @@
-package util;
+package edu.ncsu.csc216.pack_sheduler.util;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+
+import edu.ncsu.csc216.pack_scheduler.util.LinkedAbstractList;
 
 public class LinkedAbstractListTest {
 

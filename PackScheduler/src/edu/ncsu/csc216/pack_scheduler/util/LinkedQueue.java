@@ -1,4 +1,4 @@
-package util;
+package edu.ncsu.csc216.pack_scheduler.util;
 
 import java.util.NoSuchElementException;
 

@@ -1,10 +1,12 @@
-package util;
+package edu.ncsu.csc216.pack_sheduler.util;
 
 import static org.junit.Assert.*;
 
 import java.util.EmptyStackException;
 
 import org.junit.Test;
+
+import edu.ncsu.csc216.pack_scheduler.util.LinkedStack;
 /**
  * tests the array stack class
  * @author William

@@ -2,8 +2,8 @@ package edu.ncsu.csc216.pack_scheduler.course.roll;
 
 import edu.ncsu.csc216.pack_scheduler.course.Course;
 import edu.ncsu.csc216.pack_scheduler.user.Student;
-import util.LinkedAbstractList;
-import util.LinkedQueue;
+import edu.ncsu.csc216.pack_scheduler.util.LinkedAbstractList;
+import edu.ncsu.csc216.pack_scheduler.util.LinkedQueue;
 /**
  * holds the number of students that are enrolled in a course
  * @author William
