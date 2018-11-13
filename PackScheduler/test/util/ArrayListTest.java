@@ -17,8 +17,8 @@ public class ArrayListTest {
 	public void Constructortest() {
 //		String b = "b";
 //		String c = "c";
-		ArrayList a = null;
-		a = new ArrayList();
+		ArrayList<String> a = null;
+		a = new ArrayList<String>();
 		
 		assertEquals(a.size(), 0);
 //		a.add(0, b);
@@ -40,10 +40,9 @@ public class ArrayListTest {
 		String i = "i";
 		String j = "j";
 		String k = "k";
-		String l = "l";
-		String m = "m";
-		ArrayList a = null;
-		a = new ArrayList();
+
+		ArrayList<String> a = null;
+		a = new ArrayList<String>();
 		
 		//add one object
 		a.add(0, b);
@@ -87,8 +86,8 @@ public class ArrayListTest {
 	 */
 	@Test
 	public void Removetest() {
-		ArrayList a = null;
-		a = new ArrayList();
+		ArrayList<String> a = null;
+		a = new ArrayList<String>();
 		
 		String b = "b";
 		String c = "c";
@@ -132,8 +131,8 @@ public class ArrayListTest {
 	 */
 	@Test
 	public void Settest() {
-		ArrayList a = null;
-		a = new ArrayList();
+		ArrayList<String> a = null;
+		a = new ArrayList<String>();
 		
 		String b = "b";
 		String c = "c";

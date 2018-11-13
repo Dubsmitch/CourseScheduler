@@ -194,6 +194,7 @@ public class CourseRoll {
 	 */
 	public boolean canEnroll (Student s) {
 		LinkedQueue<Student> waitList2 = new LinkedQueue<Student>(waitList.size()); 
+		@SuppressWarnings("unused")
 		LinkedQueue<Student> waitList3 = new LinkedQueue<Student>(waitList.size()); 
 
 		boolean canAddToWaitList = false;
