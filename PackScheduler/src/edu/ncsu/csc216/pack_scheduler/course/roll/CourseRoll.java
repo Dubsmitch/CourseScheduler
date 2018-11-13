@@ -87,10 +87,42 @@ public class CourseRoll {
 				}
 			}
 		}
+		
 		if (inWaitingList) {
+			//make a new list
 			LinkedQueue<Student> waitList2 = waitList;
+			LinkedQueue<Student> waitList3 = waitList;
+			LinkedQueue<Student> waitList4 = waitList;
+			//make variable to find where the index of the student was
+			int indexOfStudentInList = -1;
 			
-		}
+			for (int i = 0; i < waitList.size(); i++) {
+				//remove students from the front of the list
+				//when they match set the index.
+				if (waitList2.dequeue().equals(s)) {
+					indexOfStudentInList = i;
+				}
+			}
+			//get an empty list
+			for (int i = 0; i < waitList.size(); i++) {
+				waitList3.dequeue();
+			}
+			//add up to the student that was removed
+			for (int i = 0; i < indexOfStudentInList; i++) {
+				waitList3.enqueue(waitList4.dequeue());
+			}
+			//remove the student to be dropped
+			waitList4.dequeue();
+			//now add the next students
+			for (int i = indexOfStudentInList + 1; i < waitList4.size(); i++) {
+				waitList3.enqueue(waitList4.dequeue());
+			}
+			//now add all the students back into original order to the 4th, and now empty, list
+			for (int i = 0; i < waitList.size() - 1; i++) {
+				waitList4.enqueue(waitList3.dequeue());
+			}
+		}			
+		
 		
 		for (int i = 0; i < this.roll.size(); i++) {
 			if (s.equals(this.roll.get(i))) {
