@@ -6,7 +6,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import edu.ncsu.csc216.pack_scheduler.catalog.CourseCatalog;
-import edu.ncsu.csc216.pack_scheduler.course.validator.InvalidTransitionException;
 import edu.ncsu.csc216.pack_scheduler.directory.StudentDirectory;
 import edu.ncsu.csc216.pack_scheduler.user.Student;
 import edu.ncsu.csc216.pack_scheduler.user.schedule.Schedule;
@@ -102,12 +101,8 @@ public class RegistrationManagerTest {
 	    directory.loadStudentsFromFile("test-files/student_records.txt");
 	    
 	    CourseCatalog catalog = manager.getCourseCatalog();
-	    try {
-			catalog.loadCoursesFromFile("test-files/course_records.txt");
-		} catch (InvalidTransitionException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+		catalog.loadCoursesFromFile("test-files/course_records.txt");
+
 	    
 	    manager.logout(); //In case not handled elsewhere
 	    
@@ -191,13 +186,9 @@ public class RegistrationManagerTest {
 	    directory.loadStudentsFromFile("test-files/student_records.txt");
 	    
 	    CourseCatalog catalog = manager.getCourseCatalog();
-	    try {
-			catalog.loadCoursesFromFile("test-files/course_records.txt");
-		} catch (InvalidTransitionException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
 	    
+		catalog.loadCoursesFromFile("test-files/course_records.txt");
+		
 	    manager.logout(); //In case not handled elsewhere
 	    
 	    //test if not logged in
@@ -321,12 +312,8 @@ public class RegistrationManagerTest {
 	    directory.loadStudentsFromFile("test-files/student_records.txt");
 	    
 	    CourseCatalog catalog = manager.getCourseCatalog();
-	    try {
-			catalog.loadCoursesFromFile("test-files/course_records.txt");
-		} catch (InvalidTransitionException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+
+		catalog.loadCoursesFromFile("test-files/course_records.txt");
 	    
 	    manager.logout(); //In case not handled elsewhere
 	    
