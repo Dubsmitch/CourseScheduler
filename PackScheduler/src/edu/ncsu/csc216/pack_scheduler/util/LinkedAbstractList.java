@@ -53,28 +53,20 @@ public class LinkedAbstractList<E> extends AbstractList<Object> {
 		if (capacity == size) {
 			throw new IllegalArgumentException ("The list is full");
 		}
-		
+		//System.out.println(theSize);
 		//first addition taken care of//
-		if (index == 0) {
+		if (size == 0 && index == 0) {
+			ListNode newNode = new ListNode(e);
+			front = newNode;
+			back = newNode;
+			size = size + 1;
+
+		} else if (index == 0 && (size >= 1 && size != index)) {
 			front = new ListNode (e, front);
-			size = size + 1;
-			if (size == 1) {
-				size = 0;
-				back = front;
-				size = 1;
-			}
 			//adding to the end//
-		} else if (index == size) {
-			
-			//make new node for old back//
-			ListNode newBack = new ListNode (e);
-			
-			back.next = newBack;
-			
-			back = newBack;
 			size = size + 1;
-		} else if (front != null && index > 0) {
-			size = size + 1;
+
+		} else if (front != null && index != size && index > 0) {
 			ListNode leading = front;
 			while (leading != null && index > 1) {
 				leading = leading.next;
@@ -83,6 +75,28 @@ public class LinkedAbstractList<E> extends AbstractList<Object> {
 			if (leading != null) {
 				leading.next = new ListNode (e, leading.next);
 			}
+			size = size + 1;
+
+		} else if (size != 0 && index == size) {
+			size = size + 1;
+
+			//make new node for old back//
+			ListNode newBack = new ListNode (e);
+			if (back == null) {
+				System.out.println("back is null");
+			}
+			back.next = newBack;
+			
+			back = newBack;
+		} else if (front != null && index != size && index > 0) {
+			ListNode leading = front;
+			while (leading != null && index > 1) {
+				leading = leading.next;
+				index--;
+			}
+		leading.next = new ListNode (e, leading.next);
+		size = size + 1;
+
 		}		
 	}
 	

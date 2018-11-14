@@ -17,12 +17,15 @@ public class CourseNameValidatorFSMTest {
 			assertTrue(a.isValid("1"));
 			fail("incorrect construction");
 		} catch (InvalidTransitionException e) {
+			assertTrue(a.equals(a));
 		}
 
 		try {
 			assertTrue(a.isValid("!"));
 			fail("incorrect construction");
 		} catch (InvalidTransitionException e) {
+			assertTrue(a.equals(a));
+
 		}
 		
 		try{
@@ -115,12 +118,6 @@ public class CourseNameValidatorFSMTest {
 			
 		}
 		
-		try{
-			assertTrue(a.isValid(""));
-			fail("");
-		} catch (InvalidTransitionException e) {
-			
-		}
 }
 
 }

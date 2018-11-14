@@ -174,8 +174,10 @@ public class CourseRollTest {
 		rollA.enroll(a);
 
 		assertEquals(rollA.getOpenSeats(), 9);
+		rollA.drop(a);
+		assertEquals(rollA.getOpenSeats(), 10);
 		assertEquals(rollA.getNumberOnWaitlist(),0);
-
+		rollA.enroll(a);
 		assertTrue(!rollA.canEnroll(a));
 		assertEquals(rollA.getNumberOnWaitlist(),0);
 
@@ -191,7 +193,10 @@ public class CourseRollTest {
 		assertEquals(rollA.getOpenSeats(), 6);
 		rollA.enroll(e);
 		assertEquals(rollA.getOpenSeats(), 5);
-
+		
+		rollA.drop(a);
+		rollA.enroll(a);
+		
 		rollA.enroll(g);
 		assertEquals(rollA.getOpenSeats(), 4);
 
@@ -215,19 +220,22 @@ public class CourseRollTest {
 		rollA.enroll(m);
 		assertEquals(rollA.getNumberOnWaitlist(), 2);
 		
+		rollA.drop(m);
+		assertEquals(rollA.getNumberOnWaitlist(), 1);
+		rollA.enroll(m);
 
 
 		assertEquals(rollA.getOpenSeats(), 0);
-		rollA.drop(a);
-		assertEquals(rollA.getNumberOnWaitlist(), 0);
+		//rollA.drop(a);
+		//assertEquals(rollA.getNumberOnWaitlist(), 0);
 
 		//assertEquals(rollA.getOpenSeats(), 22);
 		//assertTrue(rollA.canEnroll(a));
 
 		//try to drop student not in roll
 		//should not throw exception but instead do nothing
-		//rollA.drop(a);
-		//assertEquals(rollA.getOpenSeats(), 22);
+		rollA.drop(a);
+		assertEquals(rollA.getOpenSeats(), 0);
 		
 		//assertTrue(!rollA.canEnroll(a));
 		//assertTrue(!rollA.canEnroll(q));

@@ -128,13 +128,6 @@ public class CourseNameValidatorTest {
 		} catch (InvalidTransitionException e) {
 			
 		}
-		CourseNameValidator z = new CourseNameValidator();
-		try{
-			assertTrue(z.isValid(""));
-			fail("");
-		} catch (InvalidTransitionException e) {
-			
-		}
 }
 
 }

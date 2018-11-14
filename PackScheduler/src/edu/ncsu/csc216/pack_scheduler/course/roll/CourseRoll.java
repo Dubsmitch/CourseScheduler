@@ -164,7 +164,6 @@ public class CourseRoll {
 				} 
 		
 				if (this.waitList.size() > 0) {
-					System.out.println("hello" + this.roll.size());
 					this.roll.add(this.roll.size(), s);
 				}
 			}
