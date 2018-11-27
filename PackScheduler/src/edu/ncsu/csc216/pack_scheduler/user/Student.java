@@ -103,6 +103,9 @@ public class Student extends User implements Comparable<Student> {
 
 	/**
 	 * creates the equals object method for the student object
+	 * @return boolean
+	 * 		if two objects are equals true
+	 * 		else false
 	 */
 	@Override
 	public boolean equals(Object obj) {
