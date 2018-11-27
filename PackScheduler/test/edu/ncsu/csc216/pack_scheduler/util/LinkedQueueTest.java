@@ -1,4 +1,4 @@
-package edu.ncsu.csc216.pack_sheduler.util;
+package edu.ncsu.csc216.pack_scheduler.util;
 
 import static org.junit.Assert.*;
 
@@ -6,16 +6,16 @@ import java.util.NoSuchElementException;
 
 import org.junit.Test;
 
-import edu.ncsu.csc216.pack_scheduler.util.ArrayQueue;
+import edu.ncsu.csc216.pack_scheduler.util.LinkedQueue;
 
-public class ArrayQueueTest {
+public class LinkedQueueTest {
 	/**
 	 * tests the constructor
 	 */
 	@Test
 	public void testConstructor() {
 		@SuppressWarnings("rawtypes")
-		ArrayQueue newQueue = new ArrayQueue(5);
+		LinkedQueue newQueue = new LinkedQueue(5);
 		assertEquals(newQueue.size(), 0);
 	}
 	
@@ -24,7 +24,7 @@ public class ArrayQueueTest {
 	 */
 	@Test
 	public void testEnqueue() {
-		ArrayQueue<String> newStack = new ArrayQueue<String>(5);
+		LinkedQueue<String> newStack = new LinkedQueue<String>(5);
 		String a = "a";
 		String b = "b";
 		String c = "c";
@@ -46,7 +46,7 @@ public class ArrayQueueTest {
 	 */
 	@Test
 	public void testPop() {
-		ArrayQueue<String> newStack = new ArrayQueue<String>(5);
+		LinkedQueue<String> newStack = new LinkedQueue<String>(5);
 		String a = "a";
 		String b = "b";
 		String c = "c";
@@ -97,7 +97,7 @@ public class ArrayQueueTest {
 	 */
 	@Test
 	public void testSetCapacity() {
-		ArrayQueue<String> newStack = new ArrayQueue<String>(5);
+		LinkedQueue<String> newStack = new LinkedQueue<String>(5);
 		String a = "a";
 		String b = "b";
 		String c = "c";
@@ -122,3 +122,5 @@ public class ArrayQueueTest {
 
 	}
 }
+
+

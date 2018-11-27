@@ -1,4 +1,4 @@
-package edu.ncsu.csc216.pack_sheduler.util;
+package edu.ncsu.csc216.pack_scheduler.util;
 
 import static org.junit.Assert.*;
 

@@ -161,9 +161,9 @@ public class CourseRollTest {
 		Student k = new Student("firsty2", "last", "fila", "fila@ncsu.edu", "pw", 15);		
 		Student l = new Student("first2", "last", "fila", "fila@ncsu.edu", "pw", 15);
 		Student m = new Student("firs2", "last", "fila", "fila@ncsu.edu", "pw", 15);
-		Student n= new Student("fir2", "last", "fila", "fila@ncsu.edu", "pw", 15);
-		Student o = new Student("f2", "last", "fila", "fila@ncsu.edu", "pw", 15);
-		Student p = new Student("firsty3", "last", "fila", "fila@ncsu.edu", "pw", 15);
+		//Student n= new Student("fir2", "last", "fila", "fila@ncsu.edu", "pw", 15);
+		//Student o = new Student("f2", "last", "fila", "fila@ncsu.edu", "pw", 15);
+		//Student p = new Student("firsty3", "last", "fila", "fila@ncsu.edu", "pw", 15);
 		
 		assertTrue(rollA.canEnroll(a));
 		
