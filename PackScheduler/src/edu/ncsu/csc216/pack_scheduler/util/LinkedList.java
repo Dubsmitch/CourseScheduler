@@ -26,6 +26,7 @@ public class LinkedList <E> extends AbstractSequentialList <E>{
 	 */
 	@Override
 	public E set(int index, E element) {
+
 		if (this.contains(element)) {
 			throw new IllegalArgumentException ();
 		}
@@ -170,7 +171,6 @@ public class LinkedList <E> extends AbstractSequentialList <E>{
 		private ListNode lastRetrieved;
 		
 		public LinkedListIterator(int index) {
-			
 			if (index < 0 || index > size()){
 				throw new IndexOutOfBoundsException();
 			}
@@ -295,12 +295,13 @@ public class LinkedList <E> extends AbstractSequentialList <E>{
 		public E next() {
 			//set the returned data
 			E thing = next.data;
-			
+
 			//throw exception if it's null (end of list)
 			if (thing == null) {
 				throw new NoSuchElementException();
 			}
-			
+			//System.out.println("yo");
+
 			//last retrieved set to the next null
 			lastRetrieved = next;
 			
@@ -323,6 +324,7 @@ public class LinkedList <E> extends AbstractSequentialList <E>{
 		public E previous() {
 			//set the data
 			E thing = previous.data;
+			
 			
 			//throw an error if it doesn't exist
 			if (thing == null) {
@@ -371,45 +373,49 @@ public class LinkedList <E> extends AbstractSequentialList <E>{
 			//we don't know what the call was. it could be next or previous node too.
 			
 			// if we are at the end of the list
-			System.out.println("made it here");
 			if (next.data == null) {
-				System.out.println(lastRetrieved.data);
+				previous = previous.prev;
 				lastRetrieved.data = datum;
+
 				next.prev = lastRetrieved;
+
 				previous.next = lastRetrieved;
 				next = next.prev;
 				back = next;
 				
 			} else if (previous.data == null) {
-				System.out.println("getting hung here1");
-				previous = previous.prev;
+				//System.out.println(previous.data + " " + next.data + " " + lastRetrieved.data);
+
+				next = next.next;
 				lastRetrieved.data = datum;
 				previous.next = lastRetrieved;
 				next.prev=lastRetrieved;
-				previous = previous.next;
+				next = next.prev;
 				front = previous;
 			}
 			//if lastRetrieved == next then we need to set previous == previous.prev
+			//I think this is broken still
 			else if (lastRetrieved.data.equals(next.data)) {
-				System.out.println("getting hung here2");
+				System.out.println(previous.data + " " + next.data + " " + lastRetrieved.data);
 
 				previous = previous.prev;
 				lastRetrieved.data = datum;
+
 				previous.next = lastRetrieved;
 				next.prev=lastRetrieved;
 				previous = previous.next;
 			//if last retrieved was 	
 			} else if (lastRetrieved == previous) {
-				System.out.println("getting hung here3");
+				//System.out.println(previous.data + " " + next.data + " " + lastRetrieved.data + " " + datum);
 
-				next = next.next;
+				previous = previous.prev;
+				//System.out.println(previous.data + " " + next.data + " " + lastRetrieved.data + " " + datum);
+
 				lastRetrieved.data = datum;
 				next.prev = lastRetrieved;
 				previous.next = lastRetrieved;
-				next = next.prev;
+				previous = previous.next;
 			}
-			
-		System.out.println(datum + " executed nothing? " + lastRetrieved.data + " " + next.data);
 		}
 		
 	}

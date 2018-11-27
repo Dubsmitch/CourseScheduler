@@ -90,7 +90,7 @@ public class LinkedListTest {
 	 * tests the remove method
 	 * This test also tests the get method
 	 */
-	@Test
+	
 	public void Removetest() {
 		LinkedList <String> a = null;
 		a = new LinkedList<String>();
@@ -169,21 +169,21 @@ public class LinkedListTest {
 		assertEquals(a.size(), 4);
 		assertEquals(a.get(2), b);
 		
-		//a.set(3, aa);
-		//assertEquals(a.size(), 4);
-		//assertEquals(a.get(3), aa);
-		//assertEquals(a.get(2), b);
+		a.set(3, aa);
+		assertEquals(a.size(), 4);
+		assertEquals(a.get(3), aa);
+		assertEquals(a.get(2), b);
 		
 		
-		//a.set(2, bb);
-		//assertEquals(a.size(), 4);
-		//assertEquals(a.get(2), bb);
+		a.set(2, bb);
+		assertEquals(a.size(), 4);
+		assertEquals(a.get(2), bb);
 		
 		a.set(0, cc);
 		assertEquals(a.size(), 4);
 		assertEquals(a.get(0), cc);
 		
-		a.add(3, bb);
+		//a.add(3, bb);
 		
 	}
 }
