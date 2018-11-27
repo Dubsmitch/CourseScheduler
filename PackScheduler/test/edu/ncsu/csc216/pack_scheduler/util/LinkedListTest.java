@@ -90,7 +90,7 @@ public class LinkedListTest {
 	 * tests the remove method
 	 * This test also tests the get method
 	 */
-	
+	@Test
 	public void Removetest() {
 		LinkedList <String> a = null;
 		a = new LinkedList<String>();

@@ -4,9 +4,26 @@ import java.util.AbstractSequentialList;
 import java.util.ListIterator;
 import java.util.NoSuchElementException;
 
+/**
+ * that class creates a linked list and contains within it
+ * two other inner classes that provide the functionality for the linked list
+ * 
+ * this linked list is doubly linked and contains a reference to the front
+ * and the back of the list
+ * 
+ * @author William
+ *
+ * @param <E>
+ */
 public class LinkedList <E> extends AbstractSequentialList <E>{
-	/* (non-Javadoc)
-	 * @see java.util.AbstractSequentialList#add(int, java.lang.Object)
+	/**
+	 * overrides the method for adding an element at a given index
+	 * also checks the element to ensure it is not a duplicate
+	 * 
+	 * @param idx
+	 * 		the index to add the element to
+	 * @param element
+	 * 		the element to be added at the given index
 	 */
 	@Override
 	public void add(int idx, E element) {
@@ -21,8 +38,12 @@ public class LinkedList <E> extends AbstractSequentialList <E>{
 	
 	}
 
-	/* (non-Javadoc)
-	 * @see java.util.AbstractSequentialList#set(int, java.lang.Object)
+	/**
+	 * Overrides the method to set an element at a given index
+	 * @param index
+	 * 		the index at which to set the element
+	 * @param element
+	 * 		the element to change the element at the given index to
 	 */
 	@Override
 	public E set(int index, E element) {
@@ -104,7 +125,18 @@ public class LinkedList <E> extends AbstractSequentialList <E>{
 	
 	
 	
-	
+	/**
+	 * this inner class constructs the individual nodes
+	 * 
+	 * each node holds data and a reference to the node before and after it.
+	 * 
+	 * the beginning of the list will hold null, null, reference; the end will hold
+	 * 
+	 * reference, null, null
+	 * 
+	 * @author William
+	 *
+	 */
 	private class ListNode {
 		/** the data of the node **/
 		public E data;
@@ -153,7 +185,15 @@ public class LinkedList <E> extends AbstractSequentialList <E>{
 	
 	
 	
-	
+	/**
+	 * creates an iterator for a linkedlist that can
+	 * traverse a list  bringing the complexity from O(n^2) to
+	 * O(n). provides basic functionality (adding, removing, setting)
+	 * 
+	 * 
+	 * @author William
+	 *
+	 */
 	private class LinkedListIterator implements ListIterator<E> {
 		/** represents the ListNode that would be returned on call "previous()" **/
 		private ListNode previous;
@@ -170,6 +210,12 @@ public class LinkedList <E> extends AbstractSequentialList <E>{
 		 */
 		private ListNode lastRetrieved;
 		
+		/**
+		 * creates a new iterator that points between a given index and 
+		 * the index before it
+		 * @param index
+		 * 		the index beyond which to point
+		 */
 		public LinkedListIterator(int index) {
 			if (index < 0 || index > size()){
 				throw new IndexOutOfBoundsException();
@@ -195,7 +241,12 @@ public class LinkedList <E> extends AbstractSequentialList <E>{
 			lastRetrieved = null;
 		}
 		
-		
+		/**
+		 * adds an element to the list
+		 * 
+		 * @param datum
+		 * 		the element to be added
+		 */
 		@Override
 		public void add(E datum) {
 			if (datum == null) {
@@ -274,7 +325,13 @@ public class LinkedList <E> extends AbstractSequentialList <E>{
 			lastRetrieved = null;
 			size = size + 1;
 		}
-
+		/**
+		 * returns true if there is a next element
+		 * else false
+		 * @return boolean
+		 * 		returns true if there is another element 
+		 * 		else false
+		 */
 		@Override
 		public boolean hasNext() {
 			if (next.data != null) {
@@ -282,7 +339,14 @@ public class LinkedList <E> extends AbstractSequentialList <E>{
 			}
 			return false;
 		}
-
+		/**
+		 * returns true if there is a node previous to the current one
+		 * else false
+		 * 
+		 * @boolean 
+		 * 		true if there is a previous element
+		 * 		false otherwise
+		 */
 		@Override
 		public boolean hasPrevious() {
 				if (previous.data != null) {
@@ -291,6 +355,12 @@ public class LinkedList <E> extends AbstractSequentialList <E>{
 			return false;
 		}
 
+		/**
+		 * returns the next node
+		 * 
+		 * @return E
+		 * 		next Node
+		 */
 		@Override
 		public E next() {
 			//set the returned data
@@ -314,12 +384,22 @@ public class LinkedList <E> extends AbstractSequentialList <E>{
 			//return the data
 			return  thing;
 		}
-
+		/**
+		 * provides the value of the next index
+		 * 
+		 * @return int
+		 * 		the index
+		 */
 		@Override
 		public int nextIndex() {
 			return this.nextIndex;
 		}
-
+		/**
+		 * returns the item in the previous location
+		 * 
+		 * @return E
+		 * 		the item in the previous location
+		 */
 		@Override
 		public E previous() {
 			//set the data
@@ -343,18 +423,78 @@ public class LinkedList <E> extends AbstractSequentialList <E>{
 			//return the data
 			return thing;
 		}
-
+		/**
+		 * returns the value of the previous index
+		 * 
+		 * @return int
+		 * 		the previous index
+		 */
 		@Override
 		public int previousIndex() {
 			return this.previousIndex;
 		}
-
+		/**
+		 * removes a node (list element)
+		 */
 		@Override
 		public void remove() {
 			// TODO Auto-generated method stub
+			if (this.lastRetrieved == null) {
+				throw new IllegalStateException();
+			}
+			
+			//cases:
+			//removing from the head
+			//removing from the back
+			//removing from the middle
+			
+			//removing from the back
+			if (next.data == null) {
+				previous = previous.prev;
+				previous.next = next;
+				next.prev = previous;
+				lastRetrieved = null;
+				back = next;
+			//removing from the front
+			} else if (previous.data == null) {
+				//System.out.println(previous.data + " " + next.data + " " + lastRetrieved.data);
+
+				next = next.next;
+				
+				previous.next = next;
+				next.prev = previous;
+				front = previous;
+			}
+			//if lastRetrieved == next then we need to set previous == previous.prev
+			//I think this is broken still
+			else if (lastRetrieved.data.equals(next.data)) {
+				System.out.println(previous.data + " " + next.data + " " + lastRetrieved.data);
+
+				next = next.next;
+				
+
+				previous.next = next;
+				next.prev=previous;
+			//if last retrieved was 	
+			} else if (lastRetrieved == previous) {
+				//System.out.println(previous.data + " " + next.data + " " + lastRetrieved.data + " " + datum);
+
+				previous = previous.prev;
+				//System.out.println(previous.data + " " + next.data + " " + lastRetrieved.data + " " + datum);
+
+				next.prev = previous;
+				previous.next = next;
+				
+			}
+			size = size - 1;
 			
 		}
-
+		/**
+		 * sets a node to a new value
+		 * 
+		 * @param datum
+		 * 		the data to be set to
+		 */
 		@Override
 		public void set(E datum) {
 			if (this.lastRetrieved == null) {
