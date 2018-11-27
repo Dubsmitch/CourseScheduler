@@ -398,12 +398,12 @@ public class LinkedList <E> extends AbstractSequentialList <E>{
 			else if (lastRetrieved.data.equals(next.data)) {
 				System.out.println(previous.data + " " + next.data + " " + lastRetrieved.data);
 
-				previous = previous.prev;
+				next = next.next;
 				lastRetrieved.data = datum;
 
 				previous.next = lastRetrieved;
 				next.prev=lastRetrieved;
-				previous = previous.next;
+				next = next.prev;
 			//if last retrieved was 	
 			} else if (lastRetrieved == previous) {
 				//System.out.println(previous.data + " " + next.data + " " + lastRetrieved.data + " " + datum);
