@@ -14,6 +14,7 @@ import java.util.NoSuchElementException;
  * @author William
  *
  * @param <E>
+ * 		the generic data type
  */
 public class LinkedList <E> extends AbstractSequentialList <E>{
 	/**
@@ -81,8 +82,10 @@ public class LinkedList <E> extends AbstractSequentialList <E>{
 	 * iterates through the list? (Maybe?)
 	 * 
 	 * @param int
+	 * 		the pointer (where the iterator should be pointing to)
 	 * 
 	 * @return ListIterator
+	 * 		an iterator that moves through a doubly linked list
 	 */
 	@Override
 	public ListIterator<E> listIterator(int idx) {

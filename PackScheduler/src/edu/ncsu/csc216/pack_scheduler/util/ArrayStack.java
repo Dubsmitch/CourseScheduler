@@ -86,7 +86,7 @@ public class ArrayStack<E> implements Stack<E> {
 	 * sets the capacity of the stack
 	 * throws an IllegalArgumentException if the parameter
 	 * is negative or less than the size of the stack
-	 * @param Capacity
+	 * @param capacity
 	 * 			the size of the stack
 	 * @throws IllegalArgumentException
 	 * 			if the capacity is less than the size of

@@ -135,7 +135,7 @@ public class FacultyRecordIO {
      * The IOException has been caught in the StudentDirectory class
      * 
      * @param fileName name of the file to which the directory will be written
-     * @param studentDirectory Sorted list of Students to be written to the file
+     * @param facultyDirectory Doubly Linked list of Faculty to be written to the file
 	 * @throws FileNotFoundException thrown if the file of filename cannot be found
 	 * (this is thrown by StudentDirectory class)
      * 

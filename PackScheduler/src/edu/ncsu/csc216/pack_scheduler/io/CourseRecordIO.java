@@ -29,7 +29,7 @@ public class CourseRecordIO {
      * a File NotFoundException is thrown.
      * @param fileName 
      * 			file to read Course records from
-     * @return SortedList<Course>
+     * @return SortedList
      * 			a list of valid Courses
      * @throws FileNotFoundException 
      * 			if the file cannot be found or read
