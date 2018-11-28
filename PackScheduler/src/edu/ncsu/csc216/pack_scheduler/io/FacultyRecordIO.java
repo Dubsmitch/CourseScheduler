@@ -28,7 +28,7 @@ public class FacultyRecordIO {
      * @return a sorted list of valid Students
      * @throws FileNotFoundException if the file cannot be found or read
      */
-	public static LinkedList<Faculty> readStudentRecords(String fileName) throws FileNotFoundException {
+	public static LinkedList<Faculty> readFacultyRecords(String fileName) throws FileNotFoundException {
 		Scanner fileReader = new Scanner(new FileInputStream(fileName));
 		LinkedList<Faculty> facultys = new LinkedList<Faculty>();
 	    while (fileReader.hasNextLine()) {
@@ -140,7 +140,7 @@ public class FacultyRecordIO {
 	 * (this is thrown by StudentDirectory class)
      * 
      */
-	public static void writeStudentRecords(String fileName, LinkedList<Faculty> facultyDirectory)
+	public static void writeFacultyRecords(String fileName, LinkedList<Faculty> facultyDirectory)
 			throws FileNotFoundException {
 		PrintStream fileWriter = new PrintStream(new File(fileName));
 
