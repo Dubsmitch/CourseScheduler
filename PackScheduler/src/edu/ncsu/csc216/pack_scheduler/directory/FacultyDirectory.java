@@ -96,7 +96,7 @@ public class FacultyDirectory {
 		
 		facultyDirectory.add(0, newFaculty);
 		
-		return false;
+		return true;
 	}
 	/**
 	 * removes a faculty member from the directory
