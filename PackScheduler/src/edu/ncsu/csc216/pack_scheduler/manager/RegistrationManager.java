@@ -11,7 +11,9 @@ import edu.ncsu.csc216.pack_scheduler.catalog.CourseCatalog;
 import edu.ncsu.csc216.pack_scheduler.course.ConflictException;
 import edu.ncsu.csc216.pack_scheduler.course.Course;
 import edu.ncsu.csc216.pack_scheduler.course.roll.CourseRoll;
+import edu.ncsu.csc216.pack_scheduler.directory.FacultyDirectory;
 import edu.ncsu.csc216.pack_scheduler.directory.StudentDirectory;
+import edu.ncsu.csc216.pack_scheduler.user.Faculty;
 import edu.ncsu.csc216.pack_scheduler.user.Student;
 import edu.ncsu.csc216.pack_scheduler.user.User;
 import edu.ncsu.csc216.pack_scheduler.user.schedule.Schedule;
@@ -31,6 +33,8 @@ public class RegistrationManager {
 	private StudentDirectory studentDirectory;
 	  private User registrar;
 	  private User currentUser;
+	private FacultyDirectory facultyDirectory;
+	
 	/** Hashing algorithm */
 	private static final String HASH_ALGORITHM = "SHA-256";
 	private static final String PROP_FILE = "registrar.properties";
@@ -50,6 +54,8 @@ public class RegistrationManager {
 		studentDirectory = sd;
 		
 		//RegistrationManager manager = RegistrationManager.getInstance();
+		
+		facultyDirectory = new FacultyDirectory();
 	}
 	/**
 	 * creates a registrar from a file
@@ -114,6 +120,15 @@ public class RegistrationManager {
 		return studentDirectory;
 	}
 	/**
+	 * provides the current faculty directory
+	 * 
+	 * @return FacultyDirectory
+	 * 		the current faculty directory
+	 */
+	public FacultyDirectory getFacultyDirectory() {
+		return facultyDirectory;
+	}
+	/**
 	 * logs in the current user
 	 * @param id
 	 * 			the unity id of the user
@@ -148,6 +163,22 @@ public class RegistrationManager {
 			}
 			if (s.getPassword().equals(localHashPW)) {
 				currentUser = s;
+				return true;
+			}
+		} catch (NoSuchAlgorithmException e){
+				throw new IllegalArgumentException("user doesn't exist.");
+		}	
+		
+		Faculty f = facultyDirectory.getFacultyById(id);
+		try {
+			MessageDigest digest = MessageDigest.getInstance(HASH_ALGORITHM);
+			digest.update(password.getBytes());
+			String localHashPW = new String(digest.digest());
+			if(f == null) {
+				throw new IllegalArgumentException ("User doesn't exist.");
+			}
+			if (f.getPassword().equals(localHashPW)) {
+				currentUser = f;
 				return true;
 			}
 		} catch (NoSuchAlgorithmException e){

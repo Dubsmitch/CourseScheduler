@@ -82,6 +82,8 @@ public class StudentRegistrationPanel  extends JPanel implements ActionListener 
 	private JLabel lblEnrollmentCapTitle = new JLabel("Enrollment Cap: ");
 	/** Label for Course Details open seats title */
 	private JLabel lblOpenSeatsTitle = new JLabel("Open Seats: ");
+	/** Label for Course Details waitlist title */
+	private JLabel lblWaitlistTitle = new JLabel("Number on Waitlist: ");
 	/** Label for Course Details name */
 	private JLabel lblName = new JLabel("");
 	/** Label for Course Details section */
@@ -98,6 +100,8 @@ public class StudentRegistrationPanel  extends JPanel implements ActionListener 
 	private JLabel lblEnrollmentCap = new JLabel("");
 	/** Label for Course Details open seats */
 	private JLabel lblOpenSeats = new JLabel("");
+	/** Label for waitlist seats */
+	private JLabel lblWaitlist = new JLabel("");
 	/** Current user */
 	private Student currentUser;
 	/** Course catalog */
@@ -212,7 +216,7 @@ public class StudentRegistrationPanel  extends JPanel implements ActionListener 
 		
 		//Set up the course details panel
 		pnlCourseDetails = new JPanel();
-		pnlCourseDetails.setLayout(new GridLayout(5, 1));
+		pnlCourseDetails.setLayout(new GridLayout(6, 1));
 		JPanel pnlName = new JPanel(new GridLayout(1, 4));
 		pnlName.add(lblNameTitle);
 		pnlName.add(lblName);
@@ -239,11 +243,16 @@ public class StudentRegistrationPanel  extends JPanel implements ActionListener 
 		pnlEnrollment.add(lblOpenSeatsTitle);
 		pnlEnrollment.add(lblOpenSeats);
 		
+		JPanel pnlWaitlist = new JPanel(new GridLayout(1, 2));
+		pnlWaitlist.add(lblWaitlistTitle);
+		pnlWaitlist.add(lblWaitlist);
+		
 		pnlCourseDetails.add(pnlName);
 		pnlCourseDetails.add(pnlTitle);
 		pnlCourseDetails.add(pnlInstructor);
 		pnlCourseDetails.add(pnlMeeting);
 		pnlCourseDetails.add(pnlEnrollment);
+		pnlCourseDetails.add(pnlWaitlist);
 		
 		TitledBorder borderCourseDetails = BorderFactory.createTitledBorder(lowerEtched, "Course Details");
 		pnlCourseDetails.setBorder(borderCourseDetails);
@@ -354,6 +363,7 @@ public class StudentRegistrationPanel  extends JPanel implements ActionListener 
 			lblMeeting.setText(c.getMeetingString());
 			lblEnrollmentCap.setText("" + c.getCourseRoll().getEnrollmentCap());
 			lblOpenSeats.setText("" + c.getCourseRoll().getOpenSeats());
+			lblWaitlist.setText("" + c.getCourseRoll().getNumberOnWaitlist());
 		}
 	}
 	
