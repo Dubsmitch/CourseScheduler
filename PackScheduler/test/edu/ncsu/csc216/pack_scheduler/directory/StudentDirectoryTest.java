@@ -267,29 +267,6 @@ public class StudentDirectoryTest {
 		checkFiles("test-files/expected_student_records.txt", "test-files/actual_student_records.txt");
 	}
 	
-//	attempted to write test for not having permission, don't know how to handle the exception correctly
-//	asked on piazza 9/20/2018
-//	/**
-//	 * tests saveStudentDirectlry() by providing a pathway to which
-//	 * I do not have permission (nothing should be attempted to be written)
-//	 */
-//	@Test
-//	public void testSaveStudentDirectoryNoPermissions() {
-//		StudentDirectory sd = new StudentDirectory();
-//		
-//		//Add a student
-//		sd.addStudent("Zahir", "King", "zking", "orci.Donec@ametmassaQuisque.com", "pw", "pw", 15);
-//		assertEquals(1, sd.getStudentDirectory().length);
-//	   
-//		try {
-//	        sd.saveStudentDirectory("/home/sesmith5/actual_student_records.txt");
-//	        fail("Attempted to write to a directory location that doesn't exist or without the appropriate permissions and the write happened.");
-//	    } catch (IllegalArgumentException e) {
-//	        assertEquals("/home/sesmith5/actual_student_records.txt (Permission denied)", e.getMessage());
-//	        //The actual error message on Jenkins!
-//	    }
-//	    
-//	}
 	/**
 	 * Helper method to compare two files for the same contents
 	 * @param expFile expected output
