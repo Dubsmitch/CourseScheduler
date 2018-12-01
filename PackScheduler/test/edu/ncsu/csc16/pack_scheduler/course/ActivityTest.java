@@ -9,7 +9,7 @@ import edu.ncsu.csc216.pack_scheduler.course.ConflictException;
 import edu.ncsu.csc216.pack_scheduler.course.Course;
 import edu.ncsu.csc216.pack_scheduler.course.validator.InvalidTransitionException;
 /**
- * Tests the Activity class.
+ * Tests the Activity class
  * 
  * @author William Mitchell
  */
