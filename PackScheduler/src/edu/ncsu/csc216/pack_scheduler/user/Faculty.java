@@ -1,5 +1,7 @@
 package edu.ncsu.csc216.pack_scheduler.user;
 
+import edu.ncsu.csc216.pack_scheduler.user.schedule.FacultySchedule;
+
 public class Faculty extends User {
 	/** maximum number of courses **/
 	private int maxCourses;
@@ -9,6 +11,9 @@ public class Faculty extends User {
 	
 	/** the maximum number of courses **/
 	private static final int MAX_COURSES = 3;
+	
+	/** schedule for faculty **/
+	private FacultySchedule schedule;
 	
 	/**
 	 * constructs a faculty object
@@ -35,6 +40,8 @@ public class Faculty extends User {
 		}
 		
 		this.maxCourses = maxCourses;
+		
+		this.schedule = new FacultySchedule(id);
 	}
 	/**
 	 * sets the number of courses a faculty memeber is teaching
@@ -56,7 +63,27 @@ public class Faculty extends User {
 	public int getMaxCourses() {
 		return this.maxCourses;
 	}
-	
+	/**
+	 * returns true if the faculty member is teaching to many courses
+	 * else false
+	 * @return boolean
+	 * 		if a faculty member is teaching too many courses else false
+	 */
+	public boolean isOverloaded() {
+		if (this.schedule.getNumScheduledCourses() > this.getMaxCourses()) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	/**
+	 * returns the faculty's schedule
+	 * @return FacultySchedule
+	 * 		the faculty memeber's schedule
+	 */
+	public FacultySchedule getSchedule() {
+		return this.schedule;
+	}
 	/**
 	 * returns a string of the Faculty's record
 	 * separated by commas

@@ -12,180 +12,110 @@ public class LinkedListRecursiveTest {
 	 */
 	@Test
 	public void Constructortest() {
-//		String b = "b";
-//		String c = "c";
-		LinkedListRecursive <String> a = null;
-		a = new LinkedListRecursive<String>();
-		
-		assertEquals(a.size(), 0);
-//		a.add(0, b);
-//		fail("Not yet implemented");
-	}
-
-	/**
-	 * tests the add method
-	 */
-	@Test
-	public void Addtest() {
+		String a = "a";
 		String b = "b";
 		String c = "c";
 		String d = "d";
 		String e = "e";
-		String f = "f";
-		String g = "g";
-		String h = "h";
-		String i = "i";
-		String j = "j";
-		String k = "k";
 
-		LinkedListRecursive <String> a = null;
-		a = new LinkedListRecursive<String>();
 		
-		//add one object
-		a.add(0, b);
-		assertEquals(a.get(0), b);
-		assertEquals(a.size(), 1);
-
-		//add second object to the front
-		a.add(0, c);
-		assertEquals(a.size(), 2);
-		assertEquals(a.get(0), c);
-
-		//add third object
-		a.add(0, d);
-		assertEquals(a.size(), 3);
+		LinkedListRecursive<String> rL = new LinkedListRecursive<String> ();
+		assertEquals(rL.size(), 0);
+		assertTrue(rL.isEmpty());
+		//assertTrue(!rL.contains(a));
 		
-		//add object to the end
-		a.add(3, e);
-		assertEquals(a.size(), 4);
-		assertEquals(a.get(3), e);
-
-		//add object to the middle
-		a.add(2, f);
-		assertEquals(a.size(), 5);
-		assertEquals(a.get(0), d);
-		assertEquals(a.get(1), c);
-		assertEquals(a.get(2), f);
-		assertEquals(a.get(3), b);
-		
-		a.add(0, g);
-		assertEquals(a.size(), 6);
-		a.add(3, h);
-		assertEquals(a.size(), 7);
-		a.add(3, i);
-		assertEquals(a.size(), 8);
-		
-		a.add(3, j);
-		assertEquals(a.size(), 9);
-		//try to double size
-		a.add(3, k);
-		assertEquals(a.size(), 10);
-		
-		
-		//a.get(0)
-		assertEquals(a.get(0), g);
-		assertEquals(a.get(9), e);
+//		rL.add(a);
+//		assertTrue(rL.contains(a));
+//		
+//		rL.add(b);
+//		assertTrue(rL.contains(b));
+//		
+//		rL.add(c);
+//		assertTrue(rL.contains(c));
+//		
+//		rL.add(d);
+//		assertTrue(rL.contains(d));
+//		
+//		
+//		assertTrue(!rL.contains(e));
 	}
 	
 	/**
-	 * tests the remove method
-	 * This test also tests the get method
+	 * tests add at index
 	 */
 	@Test
-	public void Removetest() {
-		LinkedListRecursive <String> a = null;
-		a = new LinkedListRecursive<String>();
-		
+	public void testAddIdx() {
+		String a = "a";
 		String b = "b";
 		String c = "c";
 		String d = "d";
-		String e = "e";
-		
-		//add one object
-		a.add(0, b);
-		
-		assertEquals(a.size(), 1);
-		assertEquals(a.get(0), b);
+		//String e = "e";
 
-		//add second object to the front
-		a.add(0, c);
-		assertEquals(a.size(), 2);
-		assertEquals(a.get(0), c);
-				
-		//add third object
-		a.add(0, d);
-		assertEquals(a.size(), 3);
-		assertEquals(a.get(0), d);
-		assertEquals(a.get(1), c);
-				
-		//add object to the end
-		a.add(3, e);
-		assertEquals(a.size(), 4);
-		assertEquals(a.get(2), b);
 		
-		//remove from the middle
-		assertEquals(a.remove(2), b);
-		//remove from the front
-		assertEquals(a.remove(0), d);
-		assertEquals(a.size(), 2);
+		LinkedListRecursive<String> rL = new LinkedListRecursive<String> ();
+		assertEquals(rL.size(), 0);
+		assertTrue(rL.isEmpty());
+		rL.add(a);
 		
-		//remove from the end
-		assertEquals(a.remove(1), e);
+		rL.add(b);
+		
+		rL.add(1, c);
+		
+		assertEquals(rL.get(1), b);
+		assertEquals(rL.size(), 3);
+		
+		rL.add(0, d);
+		assertEquals(rL.get(0), d);
+		assertEquals(rL.size(), 4);
+		assertTrue(rL.remove(c));
+		assertEquals(rL.size(), 3);
+		assertTrue(rL.contains(d));
+		assertTrue(rL.remove(d));
+		assertEquals(rL.size(), 2);
+		assertTrue(rL.remove(b));
+		assertEquals(rL.size(), 1);
 	}
-	
 	/**
-	 * tests the set method
+	 * removes an element at a given index
 	 */
 	@Test
-	public void Settest() {
-		LinkedListRecursive <String> a = null;
-		a = new LinkedListRecursive<String>();
-		
+	public void testRemoveindex() {
+		String a = "a";
 		String b = "b";
 		String c = "c";
 		String d = "d";
 		String e = "e";
-		String aa = "aa";
-		String bb = "bb";
-		String cc = "cc";
-		//add one object
-		a.add(0, b);
-		
-		assertEquals(a.size(), 1);
-		assertEquals(a.get(0), b);
 
-		//add second object to the front
-		a.add(0, c);
-		assertEquals(a.size(), 2);
-		assertEquals(a.get(0), c);
-				
-		//add third object
-		a.add(0, d);
-		assertEquals(a.size(), 3);
-		assertEquals(a.get(0), d);
-		assertEquals(a.get(1), c);
-				
-		//add object to the end
-		a.add(3, e);
-		assertEquals(a.size(), 4);
-		assertEquals(a.get(2), b);
 		
-		a.set(3, aa);
-		assertEquals(a.size(), 4);
-		assertEquals(a.get(3), aa);
-		assertEquals(a.get(2), b);
+		LinkedListRecursive<String> rL = new LinkedListRecursive<String> ();
+		assertEquals(rL.size(), 0);
+		assertTrue(rL.isEmpty());
+		rL.add(a);
 		
+		rL.add(b);
 		
-		a.set(2, bb);
-		assertEquals(a.size(), 4);
-		assertEquals(a.get(2), bb);
+		rL.add(1, c);
 		
-		a.set(0, cc);
-		assertEquals(a.size(), 4);
-		assertEquals(a.get(0), cc);
+		assertEquals(rL.get(1), b);
+		assertEquals(rL.size(), 3);
 		
-		//a.add(3, bb);
+		rL.add(0, d);
+		assertEquals(rL.get(0), d);
+		assertEquals(rL.size(), 4);
+		assertEquals(rL.remove(0), d);
+		assertEquals(rL.size(), 3);
+		assertEquals(rL.remove(1), c);
+		assertEquals(rL.size(), 2);
+		assertEquals(rL.remove(0), a);
+		assertEquals(rL.size(), 1);
 		
+		assertEquals(rL.set(0, e), b);
+		assertEquals(rL.get(0), e);
+		
+		rL.add(a);
+		rL.add(c);
+		rL.add(d);
+		assertEquals(rL.set(1, e), c);
+		assertEquals(rL.set(2, d), d);
 	}
-
 }

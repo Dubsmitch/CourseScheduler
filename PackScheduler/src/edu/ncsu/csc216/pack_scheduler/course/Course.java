@@ -211,11 +211,8 @@ public class Course extends Activity implements Comparable<Course> {
 	 */
 	public void setInstructorId(String instructorId) {
 		
-		if (instructorId == null || instructorId.equals("")) {
-			throw new IllegalArgumentException ("Invalid instructor unity id");	
-		} else {
 			this.instructorId = instructorId;
-		}
+	
 	}
 	
 	/**
@@ -295,7 +292,9 @@ public class Course extends Activity implements Comparable<Course> {
 	 * 			false if it already exists  	
 	 */
 	public boolean isDuplicate(Activity activity) {
-		
+		if (activity == null) {
+			return false;
+		}
 		if (activity.getClass() != Course.class) {
 			return false;
 		}

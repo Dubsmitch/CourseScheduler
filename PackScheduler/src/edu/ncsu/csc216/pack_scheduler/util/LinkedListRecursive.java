@@ -19,6 +19,10 @@ public class LinkedListRecursive<E> {
 	 * 		if a list is empty or not
 	 */
 	public boolean isEmpty() {
+		if (this.size == 0) {
+			return true;
+		}
+		
 		return false;
 	}
 	/**
@@ -37,7 +41,20 @@ public class LinkedListRecursive<E> {
 	 * 		whether or not the element was added
 	 */
 	public boolean add(E e) {
-		return false;
+		if (front == null) {
+			front = new ListNode (e, front);
+			this.size = size + 1;
+
+			return true;
+		} 
+		
+		if (front.contains(e)) {
+			throw new IllegalArgumentException();
+		} else {
+			front.add(e);
+			this.size = size + 1;
+			return true;
+		}
 	}
 	/**
 	 * adds an element e to a given index idx
@@ -47,7 +64,24 @@ public class LinkedListRecursive<E> {
 	 * 		the element to be added
 	 */
 	public void add(int idx, E e) {
-		//
+		if (idx < 0 || idx >= size()) {
+			throw new IllegalArgumentException();
+		}
+		if (front == null) {
+			front = new ListNode (e, front);
+			size = size + 1;
+		}
+		if (front.contains(e)) {
+			throw new IllegalArgumentException();
+		} 
+		
+		if (idx == 0) {
+			front = new ListNode(e, front);
+			size = size + 1;
+		} else {
+			front.add(e);
+			size = size + 1;
+		}
 	}
 	/**
 	 * returns an element at a give index
@@ -57,7 +91,14 @@ public class LinkedListRecursive<E> {
 	 * 		the element at a given index
 	 */
 	public E get(int idx) {
-		return null;
+		if (idx < 0 || idx >= size()) {
+			throw new IllegalArgumentException();
+		}
+		if (idx == 0) {
+			return front.data;
+		} else {
+			return front.get(idx);
+		}
 	}
 	/**
 	 * returns whether an element can be removed; and if it can be 
@@ -67,7 +108,24 @@ public class LinkedListRecursive<E> {
 	 * 		if an element was added or not
 	 */
 	public boolean remove(E e) {
-		return false;
+		if (front == null) {
+			return false;
+		}
+		if (e == null) {
+			return false;
+		}
+		if (front.data.equals(e)) {
+			front = front.next;
+			size = size - 1;
+			return true;
+		}
+		if (!front.contains(e)) {
+			return false;
+		}
+		
+		front.remove(e);
+		size = size - 1;
+		return true;
 	}
 	
 	/**
@@ -78,20 +136,41 @@ public class LinkedListRecursive<E> {
 	 * 		whether or not the element was removed
 	 */
 	public E remove(int idx) {
-		return null;
+		if(idx < 0 || idx >= size()) {
+			throw new IllegalArgumentException();
+		} 
+		if (idx == 0) {
+			ListNode thing = front;
+			front = front.next;
+			size = size - 1;
+			return thing.data;
+		} else {
+			size = size - 1;
+			return front.remove(idx);
+		}
 	}
 	
 	/**
 	 * sets an element at a given index and returns it
-	 * @param index
+	 * @param idx
 	 * 		the index at which to set the element
 	 * @param e
 	 * 		the element that the index will be set to
 	 * @return E
 	 * 		the element that was at the index
 	 */
-	public E set(int index, E e) {
-		return null;
+	public E set(int idx, E e) {
+		if(idx < 0 || idx >= size()) {
+			throw new IllegalArgumentException();
+		} 
+		if (idx == 0) {
+			ListNode thing = front;
+			ListNode newFront = new ListNode (e, front.next);
+			front = newFront;
+			return thing.data;	
+		} else {
+			return front.set(idx, e);
+		}
 	}
 	/**
 	 * returns whether or not an element is contained within the list
@@ -101,7 +180,13 @@ public class LinkedListRecursive<E> {
 	 * 		whether or not the element is in the list
 	 */
 	public boolean contains(E e) {
-		return false;
+		if (front == null) {
+			return false;
+		} else if (front.data.equals(e)) {
+			return true;
+		} else {
+			return front.contains(e);
+		}
 	}
 	public class ListNode {
 		/** the data included in the node **/
@@ -121,6 +206,19 @@ public class LinkedListRecursive<E> {
 			this.data = e;
 		}
 		/**
+		 * adds an element to the end of a non-empty list
+		 * @param e
+		 * 		the element to be added
+		 */
+		public void add (E e) {
+			if (next == null) {
+				next = new ListNode (e, null);
+
+			} else {
+				next.add(e);
+			}
+		}
+		/**
 		 * adds an alement at a given index
 		 * @param index
 		 * 		the index at which to add the element
@@ -128,7 +226,11 @@ public class LinkedListRecursive<E> {
 		 * 		the element to be added
 		 */
 		public void add (int index, E e) {
-			//adds
+			if (index == 0) {
+				next = new ListNode(e, next);
+			} else {
+				next.add(index - 1, e);
+			}
 		}
 		/**
 		 * returns an element at a given index
@@ -138,10 +240,11 @@ public class LinkedListRecursive<E> {
 		 * 		the element at the given index
 		 */
 		public E get(int idx) {
-			if (idx < size || idx >= size) {
-				throw new IllegalArgumentException();
+			if (idx == 0) {
+				return data;
+			} else {
+				return next.get(idx - 1);
 			}
-			return null;
 		}
 		/**
 		 * removes an element at a particular index, returns that element
@@ -151,7 +254,13 @@ public class LinkedListRecursive<E> {
 		 * 		the element at the given index
 		 */
 		public E remove(int idx) {
-			return null;
+			if (idx == 0) {
+				E stuff = next.data;
+				next = next.next;
+				return stuff;
+			} else {
+				return next.remove(idx - 1);
+			}
 		}
 		/**
 		 * removes a particular element that is given
@@ -161,7 +270,15 @@ public class LinkedListRecursive<E> {
 		 * 		whether or not the element is removed
 		 */
 		public boolean remove(E e) {
-			return false;
+			if (next != null) {
+				if (next.data.equals(e)) {
+					next = next.next;
+				} else {
+					next.remove(e);
+				}
+			} 
+			
+			return true;
 		}
 		/**
 		 * sets an element at a particular index and returns the
@@ -174,7 +291,14 @@ public class LinkedListRecursive<E> {
 		 * 		the original element
 		 */
 		public E set(int idx, E e) {
-			return null;
+			if (idx == 0) {
+				E stuff = next.data;
+				ListNode replace = new ListNode(e, next.next);
+				next = replace;
+				return stuff;
+			} else {
+				return next.set(idx - 1, e);
+			}		
 		}
 		/**
 		 * returns whether or not the list contains a data element
@@ -184,7 +308,13 @@ public class LinkedListRecursive<E> {
 		 * 		whether or not an element is contained within a list
 		 */
 		public boolean contains(E e) {
-			return true;
+			if (next == null) {
+				return false;
+			} else if (next.data == e) {
+				return true;
+			} else {
+				return next.contains(e);
+			}
 		}
 	}
 }

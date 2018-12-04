@@ -81,7 +81,7 @@ public class LinkedList <E> extends AbstractSequentialList <E>{
 	/**
 	 * iterates through the list? (Maybe?)
 	 * 
-	 * @param int
+	 * @param idx
 	 * 		the pointer (where the iterator should be pointing to)
 	 * 
 	 * @return ListIterator

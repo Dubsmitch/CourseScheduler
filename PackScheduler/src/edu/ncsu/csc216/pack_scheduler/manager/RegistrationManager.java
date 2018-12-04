@@ -273,7 +273,49 @@ public class RegistrationManager {
 	        return false; 
 	    }
 	}
-
+	
+	/**
+	 * adds a faculty member to a course
+	 * @param course
+	 * 		the course to be added to
+	 * @param faculty
+	 * 		the faculty memeber to add the course to
+	 * @return boolean
+	 * 		if a course gets added
+	 */
+	public boolean addFacultyToCourse(Course course, Faculty faculty) {
+		if (currentUser != null && currentUser instanceof Registrar) {
+			faculty.getSchedule().addCourseToSchedule(course);
+			return true;
+		}
+		return false;
+	}
+	/**
+	 * removes a faculty member to a course
+	 * @param course
+	 * 		the course to be added to
+	 * @param faculty
+	 * 		the faculty member to add the course to
+	 * @return boolean
+	 * 		if a course gets removed
+	 */
+	public boolean removeFacultyFromCourse(Course course, Faculty faculty) {
+		if (currentUser != null && currentUser instanceof Registrar) {
+			faculty.getSchedule().removeCourseFromSchedule(course);
+			return true;
+		}
+		return false;
+	}
+	/**
+	 * resets a faculty member's schedule
+	 * @param faculty
+	 * 		the faculty member to add the course to
+	 */
+	public void resetFacultySchedule(Faculty faculty) {
+		if (currentUser != null && currentUser instanceof Registrar) {
+			faculty.getSchedule().resetSchedule();
+		}
+	}
 	/**
 	 * Resets the logged in student's schedule by dropping them
 	 * from every course and then resetting the schedule.

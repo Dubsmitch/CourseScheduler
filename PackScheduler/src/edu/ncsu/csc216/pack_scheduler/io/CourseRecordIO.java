@@ -12,6 +12,8 @@ import edu.ncsu.csc216.collections.list.SortedList;
 import java.util.Scanner;
 
 import edu.ncsu.csc216.pack_scheduler.course.Course;
+import edu.ncsu.csc216.pack_scheduler.manager.RegistrationManager;
+import edu.ncsu.csc216.pack_scheduler.user.Faculty;
 
 /**
  *
@@ -35,12 +37,16 @@ public class CourseRecordIO {
      * 			if the file cannot be found or read
      * 			
      */
+	@SuppressWarnings("unused")
 	public static SortedList<Course> readCourseRecords(String fileName) throws FileNotFoundException {
 	    Scanner fileReader = new Scanner(new FileInputStream(fileName));
 	    SortedList<Course> courses = new SortedList<Course>();
 	    while (fileReader.hasNextLine()) {
             try{
             	Course course = readCourse(fileReader.nextLine());
+            	if (course.getInstructorId() != null) {
+            		RegistrationManager.getInstance().getFacultyDirectory().getFacultyById(course.getInstructorId()).getSchedule().addCourseToSchedule(course);
+            	}
             	
             	if (course == null) {
             		continue;
@@ -121,6 +127,10 @@ public class CourseRecordIO {
 		
 		if (lineScanner.hasNext()) {
 			 instructorId = lineScanner.next();
+			 Faculty currentFac = RegistrationManager.getInstance().getFacultyDirectory().getFacultyById(instructorId);
+			 if (currentFac == null) {
+				 instructorId = null;
+			 }
 		} else {
 			lineScanner.close();
 			return null;
@@ -154,11 +164,11 @@ public class CourseRecordIO {
 				lineScanner.close();
 				return null;
 			}
-			Course c = new Course(name, title, section, credits, instructorId, enrollmentCap, meetingDays, startTime, endTime);
+			Course c = new Course(name, title, section, credits, null, enrollmentCap, meetingDays, startTime, endTime);
 			lineScanner.close();
 			return c;
 		} else {
-			Course c = new Course(name, title, section, credits, instructorId, enrollmentCap, meetingDays);
+			Course c = new Course(name, title, section, credits, null, enrollmentCap, meetingDays);
 			lineScanner.close();
 			return c;
 		}

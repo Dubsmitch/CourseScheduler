@@ -179,7 +179,7 @@ public class ArrayList<E> extends AbstractList<E> {
      * @return E
      * 		returns the element that was removed
      * @throws IndexOutOfBoundsException
-     * 		if the index is not within range (index < 0 || index >= size())
+     * 		if the index is not within range (index less 0 || index greater or equal size())
      */
     @Override
     public E remove (int index) {
